@@ -59,6 +59,7 @@ import org.apache.sis.metadata.iso.identification.*;
 import org.apache.sis.metadata.iso.lineage.DefaultSource;
 import org.apache.sis.metadata.iso.lineage.DefaultLineage;
 import org.apache.sis.metadata.iso.quality.DefaultDataQuality;
+import org.apache.sis.metadata.sql.MetadataStoreException;
 import org.apache.sis.internal.netcdf.Axis;
 import org.apache.sis.internal.netcdf.Decoder;
 import org.apache.sis.internal.netcdf.Variable;
@@ -109,6 +110,7 @@ import static org.apache.sis.internal.util.CollectionsExt.first;
  * </ul>
  *
  * @author  Martin Desruisseaux (Geomatys)
+ * @author  Thi Phuong Hao Nguyen (VNSC)
  * @version 1.0
  * @since   0.3
  * @module
@@ -647,10 +649,11 @@ split:  while ((start = CharSequences.skipLeadingWhitespaces(value, start, lengt
      *
      * @param  publisher   the publisher names, built by the caller in an opportunist way.
      */
-    private void addIdentificationInfo(final Set<InternationalString> publisher) {
-        boolean     hasExtent = false;
-        Set<String> project   = null;
-        Set<String> standard  = null;
+    private void addIdentificationInfo(final Set<InternationalString> publisher) throws IOException, DataStoreException {
+        boolean     hasExtent   = false;
+        Set<String> project     = null;
+        Set<String> standard    = null;
+        boolean     hasDataType = false;
         final Set<String> keywords = new LinkedHashSet<>();
         for (final String path : searchPath) {
             decoder.setSearchPath(path);
@@ -661,7 +664,9 @@ split:  while ((start = CharSequences.skipLeadingWhitespaces(value, start, lengt
                 addAccessConstraint(forCodeName(Restriction.class, keyword));
             }
             addTopicCategory(forEnumName(TopicCategory.class, stringValue(TOPIC_CATEGORY)));
-            addSpatialRepresentation(forCodeName(SpatialRepresentationType.class, stringValue(DATA_TYPE)));
+            SpatialRepresentationType dt = forCodeName(SpatialRepresentationType.class, stringValue(DATA_TYPE));
+            addSpatialRepresentation(dt);
+            hasDataType |= (dt != null);
             if (!hasExtent) {
                 /*
                  * Takes only ONE extent, because a netCDF file may declare many time the same
@@ -670,6 +675,14 @@ split:  while ((start = CharSequences.skipLeadingWhitespaces(value, start, lengt
                  */
                 hasExtent = addExtent();
             }
+        }
+        /*
+         * Add spatial representation type only if it was not explicitly given in the metadata.
+         * The call to getGridGeometries() may be relatively costly, so we don't want to invoke
+         * it without necessity.
+         */
+        if (!hasDataType && decoder.getGridGeometries().length != 0) {
+            addSpatialRepresentation(SpatialRepresentationType.GRID);
         }
         /*
          * For the following properties, use only the first non-empty attribute value found on the search path.
@@ -693,6 +706,12 @@ split:  while ((start = CharSequences.skipLeadingWhitespaces(value, start, lengt
         if (wkt != null) {
             addBoundingPolygon(new StoreFormat(decoder.geomlib, decoder.listeners).parseGeometry(wkt,
                     stringValue(GEOSPATIAL_BOUNDS + "_crs"), stringValue(GEOSPATIAL_BOUNDS + "_vertical_crs")));
+        }
+        try {
+            setFormat("NetCDF");
+        } catch (MetadataStoreException e) {
+            addFormatName("NetCDF");
+            warning(e);
         }
     }
 

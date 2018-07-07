@@ -103,6 +103,11 @@ public final strictfp class MetadataReaderTest extends TestCase {
         verifier.addPropertyToIgnore(Metadata.class, "metadataStandard");
         verifier.addMetadataToVerify(actual);
         verifier.assertMetadataEquals(
+            // Hard-coded
+            "identificationInfo[0].resourceFormat[0].formatSpecificationCitation.alternateTitle[0]", "NetCDF",
+            "identificationInfo[0].resourceFormat[0].formatSpecificationCitation.title", "NetCDF Classic and 64-bit Offset Format",
+
+            // Read from the file
             "dateInfo[0].date",                                                        date("2018-05-15 13:01:00"),
             "dateInfo[0].dateType",                                                    DateType.REVISION,
             "metadataScope[0].resourceScope",                                          ScopeCode.DATASET,
