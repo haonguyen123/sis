@@ -18,10 +18,6 @@ package org.apache.sis.services.ows;
 
 import java.util.List;
 import javax.xml.bind.annotation.*;
-import org.apache.sis.metadata.iso.identification.DefaultKeywords;
-import org.apache.sis.util.iso.SimpleInternationalString;
-import org.opengis.metadata.identification.Keywords;
-import org.opengis.util.InternationalString;
 
 /**
  *
@@ -37,26 +33,54 @@ public class Description {
     private String title;
     private String abstracts;
     private List<OwsKeywords> keywords;
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Title",namespace = Namespaces.OWS)
     public String getTitle() {
         return title;
     }
     
+    /**
+     *
+     * @param title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Abstract",namespace = Namespaces.OWS)
      public String getAbstracts() {
         return abstracts;
     }
 
+    /**
+     *
+     * @param abstracts
+     */
     public void setAbstracts(String abstracts) {
         this.abstracts = abstracts;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Keywords",namespace = Namespaces.OWS)
     public List<OwsKeywords> getKeywords() {
         return keywords;
     }
+
+    /**
+     *
+     * @param keywords
+     */
     public void setKeywords(List<OwsKeywords> keywords) {
         this.keywords = keywords;
     }

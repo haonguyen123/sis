@@ -32,19 +32,37 @@ import org.apache.sis.metadata.iso.identification.DefaultServiceIdentification;
 public class OwsServiceIdentification extends Description{
     private String serviceType;
     private Version serviceTypeVersion;
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="ServiceType",namespace = Namespaces.OWS)
     public String getServiceType() {
         return serviceType;
     }
 
+    /**
+     *
+     * @param serviceType
+     */
     public void setServiceType(String serviceType) {
         this.serviceType = serviceType;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="ServiceTypeVersion",namespace = Namespaces.OWS)
     public Version getServiceTypeVersion() {
         return serviceTypeVersion;
     }
 
+    /**
+     *
+     * @param serviceTypeVersion
+     */
     public void setServiceTypeVersion(Version serviceTypeVersion) {
         this.serviceTypeVersion = serviceTypeVersion;
     }

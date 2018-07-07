@@ -16,7 +16,6 @@
  */
 package org.apache.sis.services.ows;
 
-import java.net.URI;
 import java.util.List;
 import javax.xml.bind.annotation.*;
 
@@ -30,11 +29,20 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name="Keywords",namespace=Namespaces.OWS)
 public class OwsKeywords {
     private List<String> keyword ;
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Keyword",namespace = Namespaces.OWS)
     public List<String> getKeyword() {
         return keyword;
     }
 
+    /**
+     *
+     * @param keyword
+     */
     public void setKeyword(List<String> keyword) {
         this.keyword = keyword;
     }

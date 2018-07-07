@@ -28,12 +28,21 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name="UnNamedDomain",namespace=Namespaces.OWS)
 public class UnNamedDomain {
     private AllowedValues allowedValues;
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="AllowedValues",namespace = Namespaces.OWS)
 
     public AllowedValues getAllowedValues() {
         return allowedValues;
     }
 
+    /**
+     *
+     * @param allowedValues
+     */
     public void setAllowedValues(AllowedValues allowedValues) {
         this.allowedValues = allowedValues;
     }

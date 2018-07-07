@@ -507,7 +507,7 @@ public final class Namespaces extends Static {
      *
      * @category OGC
      */
-    public static final String CSW = "http://www.opengis.net/cat/csw/2.0.2";
+    public static final String CSW = "http://www.opengis.net/cat/csw/3.0";
 
     /**
      * The <code>{@value}</code> URL.
@@ -558,7 +558,8 @@ public final class Namespaces extends Static {
         p.put("http://www.opengis.net/sensorML/1.0",                     "sml1");
         p.put("http://www.opengis.net/sensorML/1.0.1",                    "sml");
         p.put("http://www.opengis.net/swe/1.0",                          "swe1");
-        p.put("http://www.opengis.net/cat/csw/2.0.2",                     "csw");
+        p.put("http://www.opengis.net/cat/csw/3.0",                     "csw30");
+        p.put("http://www.opengis.net/ows/2.0",                         "ows20");
         p.put("http://www.opengis.net/cat/wrs/1.0",                       "wrs");
         p.put("http://www.opengis.net/cat/wrs",                         "wrs09");
         p.put("http://www.opengis.net/ows-6/utds/0.3",                   "utds");

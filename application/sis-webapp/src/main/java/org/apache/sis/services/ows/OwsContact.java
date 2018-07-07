@@ -32,27 +32,54 @@ public class OwsContact {
     private Address address;
     private Telephone phone;
     private OnlineResource onlineResource;
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Address",namespace = Namespaces.OWS)
     public Address getAddress() {
         return address;
     }
 
+    /**
+     *
+     * @param address
+     */
     public void setAddress(Address address) {
         this.address = address;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Phone",namespace = Namespaces.OWS)
     public Telephone getPhone() {
         return phone;
     }
 
+    /**
+     *
+     * @param phone
+     */
     public void setPhone(Telephone phone) {
         this.phone = phone;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="OnlineResource",namespace = Namespaces.OWS)
     public OnlineResource getOnlineResource() {
         return onlineResource;
     }
 
+    /**
+     *
+     * @param onlineResource
+     */
     public void setOnlineResource(OnlineResource onlineResource) {
         this.onlineResource = onlineResource;
     }

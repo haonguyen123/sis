@@ -16,14 +16,14 @@
  */
 package org.apache.sis.services.csw.discovery;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 /**
  *
  * @author haonguyen
  */
 @XmlType(name = "FederatedSearchResultType", namespace = Namespaces.CSW)
+@XmlRootElement(name = "FederatedSearchResult", namespace = Namespaces.CSW)
 public class FederatedSearchResult extends FederatedSearchResultBase {
     private SearchResults searchResult;
 

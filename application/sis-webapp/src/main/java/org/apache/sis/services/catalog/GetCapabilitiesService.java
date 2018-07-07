@@ -24,11 +24,15 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.Result;
 import javax.xml.transform.stream.StreamResult;
 import org.apache.sis.metadata.iso.identification.DefaultServiceIdentification;
 import org.apache.sis.services.csw.DAO.OGCServiceDAO;
+import org.apache.sis.services.csw.discovery.GetRecordById;
+import org.apache.sis.services.csw.impl.DiscoveryImpl;
+import org.apache.sis.storage.DataStoreException;
 import org.apache.sis.xml.XML;
 
 /**
@@ -38,11 +42,46 @@ import org.apache.sis.xml.XML;
 @Path("/csw")
 @Produces("application/xml")
 public class GetCapabilitiesService {           
+
+    /**
+     *
+     * @return
+     * @throws JAXBException
+     */
     @GET
     @Path("/GetCapabilities")
     @Consumes("application/xml")
-    public String  getTest() throws JAXBException{
+    public String  getCapabilities() throws JAXBException{
         OGCServiceDAO catalogue =new OGCServiceDAO();  
         return XML.marshal(catalogue.capa());
+    }
+
+    /**
+     *
+     * @return
+     * @throws JAXBException
+     */
+    @GET
+    @Path("/GetRecords")
+    @Consumes("application/xml")
+    public String  getRecords() throws JAXBException, DataStoreException{
+        DiscoveryImpl discovery =new DiscoveryImpl();  
+        return XML.marshal(discovery.getRecords(null));
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws JAXBException
+     */
+    @GET
+    @Path("/GetRecordById")
+    @Consumes("application/xml")
+    public String  getRecordById(@QueryParam("Id") String id) throws JAXBException, DataStoreException{
+        DiscoveryImpl discovery =new DiscoveryImpl();  
+        GetRecordById getRecordById = new GetRecordById();
+        getRecordById.setId(id);
+        return XML.marshal(discovery.getRecordById(getRecordById));
     }
 }

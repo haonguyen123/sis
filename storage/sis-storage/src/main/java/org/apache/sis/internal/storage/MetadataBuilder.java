@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.net.URI;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import javax.measure.Unit;
 import javax.measure.quantity.Length;
 import org.opengis.util.MemberName;
@@ -2706,7 +2707,29 @@ parse:      for (int i = 0; i < length;) {
             format.setFileDecompressionTechnique(append(format.getFileDecompressionTechnique(), i18n));
         }
     }
-
+    /**
+     * Adds a resource format.
+     * Storage location is:
+     *
+     * <ul>
+     *   <li>{@code metadata/identificationInfo/resourceFormat/formatSpecificationCitation}</li>
+     * </ul>
+     *
+     * @param value  the format name, or {@code null} for no-operation.
+     *
+     * @see #setFormat(String)
+     */
+    public final void addResourceFormat(final CharSequence value) {
+        final InternationalString i18n = trim(value);
+        if (i18n != null) {
+            final DefaultFormat format = format();
+            DefaultCitation  citation = new DefaultCitation();
+            List<InternationalString> name = new ArrayList<>();
+            name.add(i18n);
+            citation.setAlternateTitles(name);
+            format.setFormatSpecificationCitation(citation);
+        }
+    }
     /**
      * Adds a URL to a more complete description of the metadata.
      * Storage location is:

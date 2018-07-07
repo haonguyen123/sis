@@ -38,55 +38,106 @@ public class Address {
     private String postalCode;
     private String country;
     private String electronicMailAddress;
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="DeliveryPoint",namespace = Namespaces.OWS)
     public String getDeliveryPoint() {
         return deliveryPoint;
     }
 
+    /**
+     *
+     * @param deliveryPoint
+     */
     public void setDeliveryPoint(String deliveryPoint) {
         this.deliveryPoint = deliveryPoint;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="City",namespace = Namespaces.OWS)
     public String getCity() {
         return city;
     }
 
+    /**
+     *
+     * @param city
+     */
     public void setCity(String city) {
         this.city = city;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="AdministrativeArea",namespace = Namespaces.OWS)
 
     public String getAdministrativeArea() {
         return administrativeArea;
     }
 
+    /**
+     *
+     * @param administrativeArea
+     */
     public void setAdministrativeArea(String administrativeArea) {
         this.administrativeArea = administrativeArea;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="PostalCode",namespace = Namespaces.OWS)
     public String getPostalCode() {
         return postalCode;
     }
 
+    /**
+     *
+     * @param postalCode
+     */
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 
-    
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Country",namespace = Namespaces.OWS)
     public String getCountry() {
         return country;
     }
 
+    /**
+     *
+     * @param country
+     */
     public void setCountry(String country) {
         this.country = country;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="ElectronicMailAddress",namespace = Namespaces.OWS)
     public String getElectronicMailAddress() {
         return electronicMailAddress;
     }
 
+    /**
+     *
+     * @param electronicMailAddress
+     */
     public void setElectronicMailAddress(String electronicMailAddress) {
         this.electronicMailAddress = electronicMailAddress;
     }

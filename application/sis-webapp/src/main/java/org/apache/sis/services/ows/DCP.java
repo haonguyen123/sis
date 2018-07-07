@@ -28,11 +28,20 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name="DCP",namespace=Namespaces.OWS)
 public class DCP {
     private HTTP http;
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="HTTP",namespace = Namespaces.OWS)
     public HTTP getHttp() {
         return http;
     }
 
+    /**
+     *
+     * @param http
+     */
     public void setHttp(HTTP http) {
         this.http = http;
     }

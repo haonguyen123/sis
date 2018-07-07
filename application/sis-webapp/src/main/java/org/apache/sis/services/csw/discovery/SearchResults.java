@@ -18,13 +18,7 @@ package org.apache.sis.services.csw.discovery;
 
 import java.util.Date;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlElementRefs;
-import javax.xml.bind.annotation.XmlElements;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 /**
  *
@@ -222,7 +216,10 @@ public class SearchResults {
      *
      * @return
      */
-    @XmlElement(namespace=Namespaces.CSW)
+    @XmlElementRefs({
+        @XmlElementRef(name = "FederatedSearchResult", type = FederatedSearchResult.class),
+        @XmlElementRef(name = "FederatedException", type = FederatedException.class),
+    })
     public List<FederatedSearchResultBase> getFederatedSearchResultBase() {
         return federatedSearchResultBase;
     }
@@ -231,10 +228,7 @@ public class SearchResults {
      *
      * @param federatedSearchResultBase
      */
-    @XmlElementRefs({
-        @XmlElementRef(name = "FederatedSearchResult", type =FederatedSearchResult.class),
-        @XmlElementRef(name = "FederatedException", type = FederatedException.class),
-    })
+
     public void setFederatedSearchResultBase(List<FederatedSearchResultBase> federatedSearchResultBase) {
         this.federatedSearchResultBase = federatedSearchResultBase;
     }

@@ -30,19 +30,37 @@ import javax.xml.bind.annotation.*;
 public class HTTP {
     private RequestMethod get;
     private RequestMethod post;
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Get",namespace = Namespaces.OWS)
     public RequestMethod getGet() {
         return get;
     }
 
+    /**
+     *
+     * @param get
+     */
     public void setGet(RequestMethod get) {
         this.get = get;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Post",namespace = Namespaces.OWS)
     public RequestMethod getPost() {
         return post;
     }
 
+    /**
+     *
+     * @param post
+     */
     public void setPost(RequestMethod post) {
         this.post = post;
     }

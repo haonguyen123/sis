@@ -31,6 +31,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 
 public class RunServer {
+
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext(new String[] {           
             "org/apache/sis/services/catalog/restapp.xml"         

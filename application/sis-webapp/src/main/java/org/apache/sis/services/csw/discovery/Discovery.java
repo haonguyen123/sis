@@ -16,7 +16,6 @@
  */
 package org.apache.sis.services.csw.discovery;
 
-import java.util.List;
 
 /**
  *
@@ -36,7 +35,7 @@ public interface Discovery {
      * @param getRecordById
      * @return
      */
-    public List<AbstractRecord> getRecordById(GetRecordById getRecordById);
+    public AbstractRecord getRecordById(GetRecordById getRecordById);
 
     /**
      *

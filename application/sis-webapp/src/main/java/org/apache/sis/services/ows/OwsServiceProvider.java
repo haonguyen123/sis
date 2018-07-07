@@ -32,27 +32,54 @@ public class OwsServiceProvider {
     private String  providerName;
     private OnlineResource providerSite;
     private ResponsiblePartySubset serviceContact;
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="ProviderName",namespace = Namespaces.OWS)
     public String getProviderName() {
         return providerName;
     }
 
+    /**
+     *
+     * @param providerName
+     */
     public void setProviderName(String providerName) {
         this.providerName = providerName;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="ProviderSite",namespace = Namespaces.OWS)
     public OnlineResource getProviderSite() {
         return providerSite;
     }
 
+    /**
+     *
+     * @param providerSite
+     */
     public void setProviderSite(OnlineResource providerSite) {
         this.providerSite = providerSite;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="ServiceContact",namespace = Namespaces.OWS)
     public ResponsiblePartySubset getServiceContact() {
         return serviceContact;
     }
 
+    /**
+     *
+     * @param serviceContact
+     */
     public void setServiceContact(ResponsiblePartySubset serviceContact) {
         this.serviceContact = serviceContact;
     }

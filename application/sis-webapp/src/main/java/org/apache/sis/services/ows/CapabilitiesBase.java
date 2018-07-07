@@ -48,6 +48,10 @@ public class CapabilitiesBase {
         return serviceIdentification;
     }
 
+    /**
+     *
+     * @param serviceIdentification
+     */
     public void setServiceIdentification(OwsServiceIdentification serviceIdentification) {
         this.serviceIdentification = serviceIdentification;
     }
@@ -62,6 +66,10 @@ public class CapabilitiesBase {
         return serviceProvider;
     }
 
+    /**
+     *
+     * @param serviceProvider
+     */
     public void setServiceProvider(OwsServiceProvider serviceProvider) {
         this.serviceProvider = serviceProvider;
     }
@@ -75,6 +83,10 @@ public class CapabilitiesBase {
         return operationsMetadata;
     }
 
+    /**
+     *
+     * @param operationsMetadata
+     */
     public void setOperationsMetadata(OwsOperationsMetadata operationsMetadata) {
         this.operationsMetadata = operationsMetadata;
     }

@@ -26,11 +26,20 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name="AllowedValues",namespace=Namespaces.OWS)
 public class AllowedValues {
     private List<Value> value;
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Value",namespace = Namespaces.OWS)
     public List<Value> getValue() {
         return value;
     }
 
+    /**
+     *
+     * @param value
+     */
     public void setValue(List<Value> value) {
         this.value = value;
     }

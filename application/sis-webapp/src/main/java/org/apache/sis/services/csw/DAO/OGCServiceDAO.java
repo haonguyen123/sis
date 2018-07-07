@@ -21,8 +21,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.xml.bind.JAXBException;
-import org.apache.sis.metadata.iso.identification.DefaultOperationMetadata;
 import org.apache.sis.parameter.DefaultParameterDescriptor;
 import org.apache.sis.services.csw.ogcservice.Capabilities;
 import org.apache.sis.services.ows.Address;
@@ -42,10 +40,6 @@ import org.apache.sis.services.ows.ResponsiblePartySubset;
 import org.apache.sis.services.ows.Telephone;
 import org.apache.sis.services.ows.Value;
 import org.apache.sis.services.ows.Version;
-import org.apache.sis.xml.XML;
-import org.opengis.metadata.identification.DistributedComputingPlatform;
-import org.opengis.metadata.identification.OperationMetadata;
-import org.opengis.parameter.ParameterDescriptor;
 
 /**
  *
@@ -58,8 +52,7 @@ public class OGCServiceDAO {
         return properties;
     }
     static <T> DefaultParameterDescriptor<T> create(final String name, final Class<T> type,
-            final T[] validValues, final T defaultValue)
-    {
+        final T[] validValues, final T defaultValue){
         return new DefaultParameterDescriptor<>(properties(name), 1, 1, type, null, validValues, defaultValue);
     }
 
@@ -72,7 +65,6 @@ public class OGCServiceDAO {
         service.setServiceType("CSW");
         service.setServiceTypeVersion(new Version("3.0.0"));
         service.setTitle("Catalogue Service for Spatial Information");
-//        service.setCitation(citation);
         service.setAbstracts("SisCatalog based OGC CSW 3.0 Catalogue Service for OGC core and ISO metadata (describing geospatial services, datasets and series)");
         List<OwsKeywords> keywords = new ArrayList<>();
         OwsKeywords a = new OwsKeywords();
@@ -130,8 +122,7 @@ public class OGCServiceDAO {
         capaDCP.setHttp(capaHTTP);
         getCapabilities.setDcp(capaDCP);
         listoperation.add(getCapabilities);
-        operations.setOperation(listoperation);
-        
+        operations.setOperation(listoperation);   
         List<OwsDomain> parameters = new ArrayList<>();
         OwsDomain parameter = new OwsDomain();
         AllowedValues allow = new AllowedValues();
@@ -142,8 +133,7 @@ public class OGCServiceDAO {
         allow.setValue(values);
         parameter.setName("AcceptVersions");
         parameter.setAllowedValues(allow);
-        parameters.add(parameter);
-        
+        parameters.add(parameter);  
         List<OwsDomain> constraints = new ArrayList<>();
         OwsDomain constraint = new OwsDomain();
         AllowedValues allowconstraint = new AllowedValues();
@@ -155,20 +145,20 @@ public class OGCServiceDAO {
         constraint.setName("OpenSearch");
         constraint.setAllowedValues(allowconstraint);
         constraints.add(constraint);
-        
         getCapabilities.setParameter(parameters);
         operations.setConstraint(constraints);
         return operations;
     }
+
+    /**
+     *
+     * @return
+     */
     public  Capabilities capa(){
         Capabilities capabilities =new Capabilities();
         capabilities.setOperationsMetadata(operationsMetadata());
         capabilities.setServiceIdentification(serviceIdentification());
         capabilities.setServiceProvider(serviceProvider());
         return capabilities;
-    }
-    public static void main(String[] args) throws JAXBException  {
-        OGCServiceDAO dao = new OGCServiceDAO();
-        XML.marshal(dao.capa(), System.out);
     }
 }

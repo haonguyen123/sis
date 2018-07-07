@@ -33,30 +33,57 @@ public class OwsOperationsMetadata {
     private List<OwsOperation> operation;
     private List<OwsDomain> parameter;
     private List<OwsDomain> constraint;
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Operation",namespace = Namespaces.OWS)
 
     public List<OwsOperation> getOperation() {
         return operation;
     }
 
+    /**
+     *
+     * @param operation
+     */
     public void setOperation(List<OwsOperation> operation) {
         this.operation = operation;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Parameter",namespace = Namespaces.OWS)
     
     public List<OwsDomain> getParameter() {
         return parameter;
     }
 
+    /**
+     *
+     * @param parameter
+     */
     public void setParameter(List<OwsDomain> parameter) {
         this.parameter = parameter;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Constraint",namespace = Namespaces.OWS)
 
     public List<OwsDomain> getConstraint() {
         return constraint;
     }
 
+    /**
+     *
+     * @param constraint
+     */
     public void setConstraint(List<OwsDomain> constraint) {
         this.constraint = constraint;
     }

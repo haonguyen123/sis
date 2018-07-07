@@ -34,38 +34,71 @@ public class OwsOperation {
     private List<OwsDomain> parameter;
     private List<OwsDomain> constraint;
     private String name;
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="DCP",namespace = Namespaces.OWS)
     public DCP getDcp() {
         return dcp;
     }
 
+    /**
+     *
+     * @param dcp
+     */
     public void setDcp(DCP dcp) {
         this.dcp = dcp;
     }
     
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Parameter",namespace = Namespaces.OWS)   
     public List<OwsDomain> getParameter() {
         return parameter;
     }
 
+    /**
+     *
+     * @param parameter
+     */
     public void setParameter(List<OwsDomain> parameter) {
         this.parameter = parameter;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Constraint",namespace = Namespaces.OWS)    
     public List<OwsDomain> getConstraint() {
         return constraint;
     }
 
+    /**
+     *
+     * @param constraint
+     */
     public void setConstraint(List<OwsDomain> constraint) {
         this.constraint = constraint;
     }
     
+    /**
+     *
+     * @return
+     */
     @XmlAttribute
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }

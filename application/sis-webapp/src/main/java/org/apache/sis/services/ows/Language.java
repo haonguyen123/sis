@@ -18,7 +18,6 @@ package org.apache.sis.services.ows;
 
 import javax.xml.bind.annotation.*;
 import org.apache.sis.services.csw.common.Namespaces;
-import org.opengis.util.InternationalString;
 
 /**
  *
@@ -32,10 +31,18 @@ import org.opengis.util.InternationalString;
 public class Language {
     private String language;
     
+    /**
+     *
+     * @return
+     */
     public String getLanguage() {
         return language;
     }
 
+    /**
+     *
+     * @param language
+     */
     public void setLanguage(String language) {
         this.language = language;
     }

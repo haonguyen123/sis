@@ -18,7 +18,6 @@ package org.apache.sis.services.ows;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.*;
 import org.opengis.util.CodeList;
 
 /**
@@ -61,6 +60,12 @@ public final class Section extends CodeList<Section> {
     public Section[] family() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    /**
+     *
+     * @param code
+     * @return
+     */
     public static Section valueOf(String code) {
         return valueOf( Section.class, code);
     }

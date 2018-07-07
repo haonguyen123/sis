@@ -17,10 +17,7 @@
 package org.apache.sis.services.ows;
 
 import java.net.URI;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import org.opengis.metadata.citation.OnLineFunction;
-import org.opengis.util.InternationalString;
+import javax.xml.bind.annotation.*;
 
 /**
  *
@@ -29,19 +26,37 @@ import org.opengis.util.InternationalString;
 public class OnlineResource {
     private String type;
     private URI href;
+
+    /**
+     *
+     * @return
+     */
     @XmlAttribute(name="xlink:type")
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param type
+     */
     public void setType(String type) {
         this.type = type;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlAttribute(name="xlink:href")
     public URI getHref() {
         return href;
     }
 
+    /**
+     *
+     * @param href
+     */
     public void setHref(URI href) {
         this.href = href;
     }

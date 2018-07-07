@@ -22,6 +22,14 @@ package org.apache.sis.services.catalog;
  */
 import java.util.Collection;
 import org.apache.sis.internal.jaxb.TypeRegistration;
+import org.apache.sis.services.csw.discovery.AbstractRecord;
+import org.apache.sis.services.csw.discovery.FederatedException;
+import org.apache.sis.services.csw.discovery.FederatedSearchResult;
+import org.apache.sis.services.csw.discovery.FederatedSearchResultBase;
+import org.apache.sis.services.csw.discovery.GetRecordsResponse;
+import org.apache.sis.services.csw.discovery.RequestStatus;
+import org.apache.sis.services.csw.discovery.RequestStatusType;
+import org.apache.sis.services.csw.discovery.SearchResults;
 import org.apache.sis.services.csw.ogcservice.Capabilities;
 import org.apache.sis.services.ows.Address;
 import org.apache.sis.services.ows.AllowedValues;
@@ -41,6 +49,10 @@ import org.apache.sis.services.ows.ResponsiblePartySubset;
 import org.apache.sis.services.ows.Telephone;
 import org.apache.sis.services.ows.UnNamedDomain;
 
+/**
+ *
+ * @author haonguyen
+ */
 public class CatalogTypes extends TypeRegistration {
     @Override
     protected void getTypes(final Collection<Class<?>> addTo) {
@@ -62,6 +74,13 @@ public class CatalogTypes extends TypeRegistration {
         addTo.add(OwsDomain.class);
         addTo.add(UnNamedDomain.class);
         addTo.add(AllowedValues.class);
-        // Continue avec tous les nouveaux types ajoutés par tes classes.
+        addTo.add(RequestStatus.class);
+        addTo.add(SearchResults.class);
+        addTo.add(RequestStatusType.class);
+        addTo.add(AbstractRecord.class);
+        addTo.add(FederatedSearchResultBase.class);
+        addTo.add(FederatedException.class);
+        addTo.add(FederatedSearchResult.class);
+        addTo.add(GetRecordsResponse.class);
     }
 }

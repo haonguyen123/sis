@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.measure.Unit;
 import javax.measure.UnitConverter;
 import javax.measure.IncommensurableException;
@@ -79,6 +81,7 @@ import ucar.nc2.constants.CDM;
 import ucar.nc2.constants.CF;
 
 import static java.util.Collections.singleton;
+import java.util.Locale;
 import static org.apache.sis.storage.netcdf.AttributeNames.*;
 import static org.apache.sis.internal.util.CollectionsExt.first;
 
@@ -579,7 +582,7 @@ split:  while ((start = CharSequences.skipLeadingWhitespaces(value, start, lengt
      *
      * @return the name of all publishers, or {@code null} if none.
      */
-    private Set<InternationalString> addCitation() {
+    private Set<InternationalString> addCitation() throws ParseException {
         String title = stringValue(TITLE);
         if (title == null) {
             title = stringValue("full_name");   // THREDDS attribute documented in TITLE javadoc.
@@ -593,7 +596,7 @@ split:  while ((start = CharSequences.skipLeadingWhitespaces(value, start, lengt
         addTitle(title);
         addEdition(stringValue(PRODUCT_VERSION));
         addOtherCitationDetails(stringValue(REFERENCES));
-        addCitationDate(decoder.dateValue(METADATA_CREATION), DateType.CREATION,    Scope.ALL);
+        addCitationDate(dateInHistory(stringValue(HISTORY)), DateType.CREATION,    Scope.ALL);
         addCitationDate(decoder.dateValue(METADATA_MODIFIED), DateType.REVISION,    Scope.ALL);
         addCitationDate(decoder.dateValue(DATE_CREATED),      DateType.CREATION,    Scope.RESOURCE);
         addCitationDate(decoder.dateValue(DATE_MODIFIED),     DateType.REVISION,    Scope.RESOURCE);
@@ -685,6 +688,9 @@ split:  while ((start = CharSequences.skipLeadingWhitespaces(value, start, lengt
         addKeywords(keywords,  KeywordType.THEME,       stringValue(KEYWORDS.VOCABULARY));
         addKeywords(project,   KeywordType.PROJECT,     null);
         addKeywords(publisher, KeywordType.DATA_CENTRE, null);
+        addResourceFormat("NetCDF");
+        addTopicCategory(TopicCategory.BIOTA);
+        addSpatialRepresentation(SpatialRepresentationType.GRID);
         /*
          * Add geospatial bounds as a geometric object. This optional operation requires
          * an external library (ESRI or JTS) to be present on the classpath.
@@ -695,7 +701,25 @@ split:  while ((start = CharSequences.skipLeadingWhitespaces(value, start, lengt
                     stringValue(GEOSPATIAL_BOUNDS + "_crs"), stringValue(GEOSPATIAL_BOUNDS + "_vertical_crs")));
         }
     }
-
+    /*
+    * Get date created in history tag
+    * Example: "created 12/2013 from data provided by JRA."
+    * @return Date created
+    */
+    public Date dateInHistory(final String history) throws ParseException{
+        String[] splited = history.split("\\s+");
+        Date date = new Date() ;
+        if (splited[1].split("/").length == 2) {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/yyyy");
+            date = formatter.parse(splited[1]);
+        }
+        else if (splited[1].split("/").length == 3) {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/mm/dd");
+            date = formatter.parse(splited[1]);
+        }
+        return date;
+        
+    }
     /**
      * Adds information about axes and cell geometry.
      * This is the {@code <gmd:spatialRepresentationInfo>} element in XML.
@@ -1022,7 +1046,7 @@ split:  while ((start = CharSequences.skipLeadingWhitespaces(value, start, lengt
      * @throws IOException if an I/O operation was necessary but failed.
      * @throws DataStoreException if a logical error occurred.
      */
-    public Metadata read() throws IOException, DataStoreException {
+    public Metadata read() throws IOException, DataStoreException, ParseException {
         addResourceScope(ScopeCode.DATASET, null);
         Set<InternationalString> publisher = addCitation();
         addIdentificationInfo(publisher);
@@ -1046,6 +1070,7 @@ split:  while ((start = CharSequences.skipLeadingWhitespaces(value, start, lengt
             }
         }
         addFileIdentifier();
+        addLanguage(Locale.ENGLISH, MetadataBuilder.Scope.METADATA);
         /*
          * Add history in Metadata.dataQualityInfo.lineage.statement as specified by UnidataDD2MI.xsl.
          * However Metadata.resourceLineage.statement could be a more appropriate place.

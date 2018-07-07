@@ -18,8 +18,11 @@ package org.apache.sis.storage.netcdf;
 
 import java.io.IOException;
 import java.net.URI;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.opengis.metadata.Metadata;
 import org.opengis.parameter.ParameterValueGroup;
 import org.apache.sis.storage.DataStore;
@@ -119,6 +122,8 @@ public class NetcdfStore extends DataStore implements Aggregate {
             }
         } catch (IOException e) {
             throw new DataStoreException(e);
+        } catch (ParseException ex) {
+            Logger.getLogger(NetcdfStore.class.getName()).log(Level.SEVERE, null, ex);
         }
         return metadata;
     }

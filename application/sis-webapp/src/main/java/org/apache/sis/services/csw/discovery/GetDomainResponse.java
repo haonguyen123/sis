@@ -20,6 +20,6 @@ package org.apache.sis.services.csw.discovery;
  *
  * @author haonguyen
  */
-class GetDomainResponse {
+public class GetDomainResponse {
     
 }

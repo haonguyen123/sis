@@ -33,35 +33,71 @@ public class ResponsiblePartySubset {
     private String positionName;
     private OwsContact contactInfo;
     private String role;
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="IndividualName",namespace = Namespaces.OWS,required = true)
     public String getIndividualName() {
         return individualName;
     }
 
+    /**
+     *
+     * @param individualName
+     */
     public void setIndividualName(String individualName) {
         this.individualName = individualName;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="PositionName",namespace = Namespaces.OWS)
     public String getPositionName() {
         return positionName;
     }
 
+    /**
+     *
+     * @param positionName
+     */
     public void setPositionName(String positionName) {
         this.positionName = positionName;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="ContactInfo",namespace = Namespaces.OWS)
     public OwsContact getContactInfo() {
         return contactInfo;
     }
 
+    /**
+     *
+     * @param contactInfo
+     */
     public void setContactInfo(OwsContact contactInfo) {
         this.contactInfo = contactInfo;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Role",namespace = Namespaces.OWS)
     public String getRole() {
         return role;
     }
 
+    /**
+     *
+     * @param role
+     */
     public void setRole(String role) {
         this.role = role;
     }

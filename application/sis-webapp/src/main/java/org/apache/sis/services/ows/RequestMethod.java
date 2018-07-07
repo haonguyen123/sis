@@ -28,11 +28,20 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name="RequestMethod",namespace=Namespaces.OWS)
 public class RequestMethod extends OnlineResource{
     private OwsDomain contraint;
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Contraint",namespace=Namespaces.OWS)
     public OwsDomain getContraint() {
         return contraint;
     }
 
+    /**
+     *
+     * @param contraint
+     */
     public void setContraint(OwsDomain contraint) {
         this.contraint = contraint;
     }

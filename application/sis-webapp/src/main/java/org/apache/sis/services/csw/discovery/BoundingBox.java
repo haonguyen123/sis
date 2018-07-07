@@ -16,12 +16,14 @@
  */
 package org.apache.sis.services.csw.discovery;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlList;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import org.opengis.metadata.extent.GeographicBoundingBox;
 
 /**
  *
@@ -73,5 +75,16 @@ public class BoundingBox {
      */
     public void setUpperCorner(List<Double> upperCorner) {
             this.upperCorner = upperCorner;
-    }   
+    }  
+    BoundingBox() {
+    }
+    
+    BoundingBox(final GeographicBoundingBox bbox) {
+        lowerCorner = new ArrayList<>();
+        upperCorner = new ArrayList<>();
+        lowerCorner.add(bbox.getWestBoundLongitude());
+        lowerCorner.add(bbox.getSouthBoundLatitude());
+        upperCorner.add(bbox.getEastBoundLongitude());
+        upperCorner.add(bbox.getNorthBoundLatitude());
+    }
 }

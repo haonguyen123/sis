@@ -30,19 +30,37 @@ import javax.xml.bind.annotation.*;
 public class Telephone {
     private String voice;
     private String facsimile;
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Voice",namespace = Namespaces.OWS)
     public String getVoice() {
         return voice;
     }
 
+    /**
+     *
+     * @param voice
+     */
     public void setVoice(String voice) {
         this.voice = voice;
     }
+
+    /**
+     *
+     * @return
+     */
     @XmlElement(name="Facsimile",namespace = Namespaces.OWS)
     public String getFacsimile() {
         return facsimile;
     }
 
+    /**
+     *
+     * @param facsimile
+     */
     public void setFacsimile(String facsimile) {
         this.facsimile = facsimile;
     }

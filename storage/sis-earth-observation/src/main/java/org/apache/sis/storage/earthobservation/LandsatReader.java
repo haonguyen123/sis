@@ -30,6 +30,7 @@ import java.time.OffsetDateTime;
 import java.time.OffsetTime;
 import java.time.DateTimeException;
 import java.time.temporal.Temporal;
+import java.util.Collection;
 
 import org.opengis.metadata.Metadata;
 import org.opengis.metadata.citation.DateType;
@@ -50,7 +51,6 @@ import org.apache.sis.metadata.iso.citation.Citations;
 import org.apache.sis.metadata.iso.content.DefaultAttributeGroup;
 import org.apache.sis.metadata.iso.content.DefaultBand;
 import org.apache.sis.metadata.iso.content.DefaultCoverageDescription;
-import org.apache.sis.metadata.sql.MetadataStoreException;
 import org.apache.sis.referencing.CRS;
 import org.apache.sis.referencing.CommonCRS;
 import org.apache.sis.storage.DataStore;
@@ -72,6 +72,11 @@ import org.apache.sis.internal.util.Constants;
 import org.apache.sis.internal.util.Utilities;
 
 import static org.apache.sis.internal.util.CollectionsExt.singletonOrNull;
+import org.apache.sis.metadata.iso.lineage.DefaultLineage;
+import org.apache.sis.metadata.iso.lineage.DefaultSource;
+import org.apache.sis.metadata.iso.quality.DefaultDataQuality;
+import org.opengis.metadata.identification.TopicCategory;
+import org.opengis.metadata.spatial.SpatialRepresentationType;
 
 
 /**
@@ -269,7 +274,11 @@ final class LandsatReader {
      * @see #band(String, int)
      */
     private final DefaultBand[] bands;
-
+    /*
+    * Add source in Metadata.dataQualityInfo.lineage.sources .
+    * However Metadata.resourceLineage.sources could be a more appropriate place.
+    */
+    private final DefaultDataQuality quality;
     /**
      * The enumeration for the {@code "DATUM"} element, to be used for creating the Coordinate Reference System.
      */
@@ -300,6 +309,7 @@ final class LandsatReader {
         this.bands     = new DefaultBand[BAND_NAMES.length];
         this.gridSizes = new int[NUM_GROUPS * DIM];
         this.corners   = new double[GEOGRAPHIC + (4*DIM)];      // GEOGRAPHIC is the last group of corners to store.
+        this.quality   = new DefaultDataQuality(ScopeCode.DATASET);
         Arrays.fill(corners, Double.NaN);
     }
 
@@ -405,7 +415,7 @@ final class LandsatReader {
     private void parseGridSize(final int index, final String value) throws NumberFormatException {
         gridSizes[index] = Integer.parseInt(value);
     }
-
+    
     /**
      * Invoked for every key-value pairs found in the file.
      * Leading and trailing spaces, if any, have been removed.
@@ -497,25 +507,26 @@ final class LandsatReader {
              * The identifier to inform the user of the product type.
              * Value can be "L1T" or "L1GT".
              */
-// TODO     case "DATA_TYPE":
+            case "DATA_TYPE": {
+                metadata.addSpatialRepresentation(SpatialRepresentationType.valueOf(value));
+                break;
+            }
+            
             /*
              * Indicates the source of the DEM used in the correction process.
              * Value can be "GLS2000", "RAMP" or "GTOPO30".
              */
-// TODO     case "ELEVATION_SOURCE":
+            case "ELEVATION_SOURCE": { 
+                DefaultLineage lineage = new DefaultLineage();
+                addIfAbsent(lineage.getSources(), new DefaultSource(value));
+                quality.setLineage(lineage);
+            }
             /*
              * The output format of the image.
              * Value is "GEOTIFF".
              */
             case "OUTPUT_FORMAT": {
-                if (Constants.GEOTIFF.equalsIgnoreCase(value)) {
-                    value = Constants.GEOTIFF;              // Because 'metadata.setFormat(…)' is case-sensitive.
-                }
-                try {
-                    metadata.setFormat(value);
-                } catch (MetadataStoreException e) {
-                    warning(key, null, e);
-                }
+                metadata.addResourceFormat(value);
                 break;
             }
             /*
@@ -888,6 +899,8 @@ final class LandsatReader {
     final Metadata getMetadata() throws FactoryException {
         metadata.addLanguage(Locale.ENGLISH, MetadataBuilder.Scope.METADATA);
         metadata.addResourceScope(ScopeCode.COVERAGE, null);
+        metadata.addTopicCategory(TopicCategory.ELEVATION);
+               
         try {
             flushSceneTime();
         } catch (DateTimeException e) {
@@ -966,7 +979,9 @@ final class LandsatReader {
                     }
                 }
             }
+            
             result.setMetadataStandards(Citations.ISO_19115);
+            addIfAbsent(result.getDataQualityInfo(),quality);
             result.freeze();
         }
         return result;
@@ -1004,7 +1019,16 @@ final class LandsatReader {
         }
         listeners.warning(key, e);
     }
-
+    /**
+     * Adds the given element in the given collection if the element is not already present in the collection.
+     * We define this method because the metadata API uses collections while the SIS implementation uses lists.
+     * The lists are usually very short (typically 0 or 1 element).
+     */
+    private static <T> void addIfAbsent(final Collection<T> collection, final T element) {
+        if (!collection.contains(element)) {
+            collection.add(element);
+        }
+    }
     /**
      * Returns the resources to use for formatting error messages.
      */

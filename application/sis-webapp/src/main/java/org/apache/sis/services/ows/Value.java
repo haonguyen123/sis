@@ -16,7 +16,6 @@
  */
 package org.apache.sis.services.ows;
 
-import javax.xml.bind.annotation.*;
 
 /**
  *
@@ -25,10 +24,18 @@ import javax.xml.bind.annotation.*;
 public class Value {
     private String value;
     
+    /**
+     *
+     * @return
+     */
     public String getValue() {
         return value;
     }
 
+    /**
+     *
+     * @param value
+     */
     public void setValue(String value) {
         this.value = value;
     }
