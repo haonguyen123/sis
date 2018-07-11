@@ -2624,6 +2624,27 @@ parse:      for (int i = 0; i < length;) {
     }
 
     /**
+     * Adds a general explanation of the data producer's knowledge about the lineage of a dataset.
+     * If a statement already exists, the new one will be appended after a new line.
+     * Storage location is:
+     *
+     * <ul>
+     *   <li>{@code metadata/resourceLineage/statement}</li>
+     * </ul>
+     *
+     * @param statement  explanation of the data producer's knowledge about the lineage, or {@code null} for no-operation.
+     *
+     * @see #addProcessDescription(CharSequence)
+     */
+    public final void addLineage(final CharSequence statement) {
+        final InternationalString i18n = trim(statement);
+        if (i18n != null) {
+            final DefaultLineage lineage = lineage();
+            lineage.setStatement(append(lineage.getStatement(), i18n));
+        }
+    }
+
+    /**
      * Adds information about a source of data used for producing the resource.
      * Storage location is:
      *
@@ -2634,7 +2655,7 @@ parse:      for (int i = 0; i < length;) {
      * </ul>
      *
      * <div class="note"><b>Example:</b>
-     * if a Landsat image use the "GTOPO30" digital elevation model, thne it can declare the source
+     * if a Landsat image uses the "GTOPO30" digital elevation model, then it can declare the source
      * with "GTOPO30" description, {@link ScopeCode#MODEL} and feature "Digital Elevation Model".</div>
      *
      * @param  description  a detailed description of the level of the source data, or {@code null} if none.
@@ -2752,6 +2773,7 @@ parse:      for (int i = 0; i < length;) {
      *
      * @see #addProcessing(CharSequence, String)
      * @see #addSource(CharSequence, ScopeCode, CharSequence)
+     * @see #addLineage(CharSequence)
      */
     public final void addProcessDescription(final CharSequence description) {
         final InternationalString i18n = trim(description);
@@ -2850,6 +2872,7 @@ parse:      for (int i = 0; i < length;) {
         newCoverage(false);
         newAcquisition();
         newDistribution();
+        newLineage();
         final DefaultMetadata md = metadata;
         metadata = null;
         if (freeze && md != null) {

@@ -154,7 +154,6 @@ public final strictfp class MetadataReaderTest extends TestCase {
             "contentInfo[0].attributeGroup[0].attribute[0].offset",                    -1.85,
             "contentInfo[0].attributeGroup[0].attribute[0].units",                     "°C",
 
-            "dataQualityInfo[0].lineage.statement", "Decimated and modified by GeoAPI for inclusion in conformance test suite.",
-            "dataQualityInfo[0].scope.level",       ScopeCode.DATASET);
+            "resourceLineage[0].statement", "Decimated and modified by GeoAPI for inclusion in conformance test suite.");
     }
 }

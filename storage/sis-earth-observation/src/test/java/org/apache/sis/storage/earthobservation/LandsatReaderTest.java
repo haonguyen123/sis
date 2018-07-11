@@ -267,6 +267,8 @@ public class LandsatReaderTest extends TestCase {
             "spatialRepresentationInfo[0].transformationParameterAvailability",      false,
             "spatialRepresentationInfo[1].transformationParameterAvailability",      false,
             "spatialRepresentationInfo[0].checkPointAvailability",                   false,
-            "spatialRepresentationInfo[1].checkPointAvailability",                   false);
+            "spatialRepresentationInfo[1].checkPointAvailability",                   false,
+
+            "resourceLineage[0].source[0].description", "Pseudo GLS");
     }
 }
