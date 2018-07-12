@@ -53,29 +53,248 @@
       <version>2.5.1</version>
     </dependency>
     <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>4.3.14.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+        <version>4.3.14.RELEASE</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.glassfish.jersey.media</groupId>
       <artifactId>jersey-media-moxy</artifactId>
       <version>2.5.1</version>
     </dependency>
     <dependency>
+        <groupId>org.apache.neethi</groupId>
+        <artifactId>neethi</artifactId>
+        <version>3.1.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.woodstox/woodstox-core -->
+    <dependency>
+        <groupId>com.fasterxml.woodstox</groupId>
+        <artifactId>woodstox-core</artifactId>
+        <version>5.0.3</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.codehaus.woodstox/stax2-api -->
+    <dependency>
+        <groupId>org.codehaus.woodstox</groupId>
+        <artifactId>stax2-api</artifactId>
+        <version>3.1.4</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.mina</groupId>
+        <artifactId>mina-core</artifactId>
+        <version>2.0.15</version>
+    </dependency>
+    
+
+    <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-rt-frontend-jaxrs</artifactId>
-      <version>3.1.15</version>
+      <version>3.2.4</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-frontend-simple -->
+    <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-frontend-simple</artifactId>
+        <version>3.2.4</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-ws-rm -->
+    <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-ws-rm</artifactId>
+        <version>3.2.4</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-bindings-soap -->
+    <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-bindings-soap</artifactId>
+        <version>3.2.4</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-databinding-jaxb -->
+    <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-databinding-jaxb</artifactId>
+        <version>3.2.4</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-frontend-jaxws -->
+    <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-frontend-jaxws</artifactId>
+        <version>3.2.4</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-transports-udp -->
+    <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-transports-udp</artifactId>
+        <version>3.2.4</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-ws-addr -->
+    <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-ws-addr</artifactId>
+        <version>3.2.4</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-ws-policy -->
+    <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-ws-policy</artifactId>
+        <version>3.2.4</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-wsdl -->
+    <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-wsdl</artifactId>
+        <version>3.2.4</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.cxf.services.ws-discovery/cxf-services-ws-discovery-service -->
+    <dependency>
+        <groupId>org.apache.cxf.services.ws-discovery</groupId>
+        <artifactId>cxf-services-ws-discovery-service</artifactId>
+        <version>3.2.4</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.cxf.services.ws-discovery/cxf-services-ws-discovery-api -->
+    <dependency>
+        <groupId>org.apache.cxf.services.ws-discovery</groupId>
+        <artifactId>cxf-services-ws-discovery-api</artifactId>
+        <version>3.2.4</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
+    <dependency>
+        <groupId>javax.ws.rs</groupId>
+        <artifactId>javax.ws.rs-api</artifactId>
+        <version>2.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-security -->
+    <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-security</artifactId>
+        <version>9.4.8.v20171121</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-http -->
+    <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-http</artifactId>
+        <version>9.4.8.v20171121</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-io -->
+    <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-io</artifactId>
+        <version>9.4.8.v20171121</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server -->
+    <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-server</artifactId>
+        <version>9.4.8.v20171121</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-util -->
+    <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-util</artifactId>
+        <version>9.4.8.v20171121</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.25</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-jdk14 -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-jdk14</artifactId>
+        <version>1.7.25</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-expression -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-expression</artifactId>
+        <version>4.3.14.RELEASE</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.ws.xmlschema/xmlschema-core -->
+    <dependency>
+        <groupId>org.apache.ws.xmlschema</groupId>
+        <artifactId>xmlschema-core</artifactId>
+        <version>2.2.3</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.santuario/xmlsec -->
+    <dependency>
+        <groupId>org.apache.santuario</groupId>
+        <artifactId>xmlsec</artifactId>
+        <version>2.1.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-core -->
+    <dependency>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-core</artifactId>
+        <version>2.2.11</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-xjc -->
+    <dependency>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-xjc</artifactId>
+        <version>2.2.11</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl -->
+    <dependency>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-impl</artifactId>
+        <version>2.2.11</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jcl-over-slf4j</artifactId>
+        <version>1.7.25</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/wsdl4j/wsdl4j -->
+    <dependency>
+        <groupId>wsdl4j</groupId>
+        <artifactId>wsdl4j</artifactId>
+        <version>1.6.3</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.wss4j/wss4j-bindings -->
+    <dependency>
+        <groupId>org.apache.wss4j</groupId>
+        <artifactId>wss4j-bindings</artifactId>
+        <version>2.2.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.wss4j/wss4j-policy -->
+    <dependency>
+        <groupId>org.apache.wss4j</groupId>
+        <artifactId>wss4j-policy</artifactId>
+        <version>2.2.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>3.1.0</version>
+        <scope>provided</scope>
+    </dependency>
+
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-rt-transports-http-jetty</artifactId>
-      <version>3.1.15</version>
+      <version>3.2.4</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
-      <version>4.5.2</version>
+      <version>4.5.5</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
-      <artifactId>spring</artifactId>
-      <version>2.5.2</version>
+      <artifactId>spring-core</artifactId>
+      <version>4.3.14.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.apache.sis.non-free</groupId>        <!-- TODO: need to omit in release, for legal reasons. -->
