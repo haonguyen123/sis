@@ -19,11 +19,8 @@ package org.apache.sis.services.catalog;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
-import org.apache.sis.metadata.iso.identification.DefaultServiceIdentification;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
 
 /**
  *
@@ -37,13 +34,9 @@ public class RunServer {
      * @param args
      */
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext(new String[] {           
-            "org/apache/sis/services/catalog/restapp.xml"         
-        });
-        System.out.println(appContext.getBeanFactory());;
-        GetCapabilitiesService categoryService = (GetCapabilitiesService) appContext.getBean("categoryService");      // Service instance      
         JAXRSServerFactoryBean restServer = new JAXRSServerFactoryBean();
-        restServer.setServiceBean(categoryService);
+        restServer.setResourceClasses(GetCapabilitiesService.class);
+        restServer.setResourceProvider(new SingletonResourceProvider(new GetCapabilitiesService()));
         restServer.setAddress("http://localhost:9000/");
         restServer.create();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
