@@ -21,26 +21,41 @@ package org.apache.sis.services.csw.discovery;
  *
  * @author haonguyen
  */
-public interface Discovery {
+public class FilterFesKvp {
+    private String q;
+    private String recordIds;
+    private String bbox;
+    private String time;
+    public String getQ() {
+        return q;
+    }
 
-    /**
-     *
-     * @param getRecord
-     * @return
-     */
-    public GetRecordsResponse getRecords(GetRecords getRecord);
-    public GetRecordsResponse getRecords(GetRecords getRecord,FilterFesKvp fes);
-    /**
-     *
-     * @param getRecordById
-     * @return
-     */
-    public AbstractRecord getRecordById(GetRecordById getRecordById);
+    public void setQ(String q) {
+        this.q = q;
+    }
 
-    /**
-     *
-     * @param getDomain
-     * @return
-     */
-    public GetDomainResponse getDomain(GetDomain getDomain);
+    public String getRecordIds() {
+        return recordIds;
+    }
+
+    public void setRecordIds(String recordIds) {
+        this.recordIds = recordIds;
+    }
+
+    public String getBbox() {
+        return bbox;
+    }
+
+    public void setBbox(String bbox) {
+        this.bbox = bbox;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+    
 }

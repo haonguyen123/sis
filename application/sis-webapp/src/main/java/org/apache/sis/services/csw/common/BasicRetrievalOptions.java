@@ -24,8 +24,8 @@ import javax.xml.bind.annotation.*;
 public class BasicRetrievalOptions {
     private String outputFormat="application/xml";
     private String outputSchema = "http://www.opengis.net/cat/csw/3.0";
-    private int startPosition=1;
-    private int maxRecords=10;
+    private int startPosition;
+    private int maxRecords;
 
     /**
      *

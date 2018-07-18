@@ -1,4 +1,4 @@
-/*
+                           /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -22,15 +22,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import javax.xml.bind.JAXBException;
-import org.apache.sis.services.csw.discovery.AbstractRecord;
-import org.apache.sis.services.csw.discovery.GetRecordsResponse;
+import org.apache.sis.services.catalog.CatalogueProperties;
 import org.apache.sis.services.csw.discovery.Record;
-import org.apache.sis.services.csw.discovery.SearchResults;
 import org.apache.sis.storage.DataStore;
 import org.apache.sis.storage.DataStoreException;
 import org.apache.sis.storage.DataStores;
-import org.apache.sis.xml.XML;
 import org.opengis.metadata.Metadata;
 
 /**
@@ -38,13 +34,13 @@ import org.opengis.metadata.Metadata;
  * @author haonguyen
  */
 public class DiscoveryDAO {
+
     private List<Metadata> metadata;
 
     /**
      *
      */
-    public Map<String, AbstractRecord> record;
-
+    public Map<String, Record> record;
     /**
      *
      * @throws DataStoreException
@@ -54,25 +50,43 @@ public class DiscoveryDAO {
         this.record = new HashMap<>();
         allRecords();
     }
-    
     /**
      *
      * @throws DataStoreException
      */
-    public void allRecords() throws DataStoreException{
-        DataStore ds = DataStores.open(new File("/home/haonguyen/data/air_mon_1981-2010_ltm.nc"));
-        DataStore ds1 = DataStores.open(new File("/home/haonguyen/data/LC081260462017073101T1-SC20170831010609/LC08_L1TP_126046_20170731_20170811_01_T1_MTL.txt"));
-        DataStore ds2 = DataStores.open(new File("/home/haonguyen/data/LT051260462011101901T1-SC20170906064225/LT05_L1TP_126046_20111019_20161005_01_T1_MTL.txt"));
-        DataStore ds3 = DataStores.open(new File("/home/haonguyen/data/icec.wkmean.1990-present.nc"));
-        DataStore ds4 = DataStores.open(new File("/home/haonguyen/data/sst_mon_ltm_1981-2010.nc"));
-        metadata.add(ds.getMetadata());
-        metadata.add(ds1.getMetadata());
-        metadata.add(ds2.getMetadata());
-        metadata.add(ds3.getMetadata());
-        metadata.add(ds4.getMetadata());
-        for( final Metadata meta : metadata){
-            Record re = new Record(meta,Locale.ENGLISH);
-            record.put(re.getIdentifier(),re);
+    public void allRecords() throws DataStoreException {
+        CatalogueProperties catalog = new CatalogueProperties();
+        File directory = new File(catalog.getPathdata());
+        File[] folder = directory.listFiles();
+        for (File a : folder) {
+            if (a.getName().toLowerCase().contains("landsat")) {
+                for (File landsat : a.listFiles()) {
+                    for (File txt : landsat.listFiles()) {
+                        if (txt.getName().contains("_MTL.txt")) {
+                            DataStore ds = DataStores.open(new File(txt.getAbsolutePath()));
+                            Record re = new Record(ds.getMetadata(), Locale.ENGLISH);
+                            record.put(re.getIdentifier(), re);
+                        }
+                    }
+                }
+            }
+            if (a.getName().toLowerCase().contains("netcdf")) {
+                for (File netcdf : a.listFiles()) {
+                    DataStore ds = DataStores.open(new File(netcdf.getAbsolutePath()));
+                    Record re = new Record(ds.getMetadata(), Locale.ENGLISH);
+                    record.put(re.getIdentifier(), re);
+                }
+            }
         }
     }
+//    public static void main(String[] args) throws DataStoreException, ParseException {
+//        FiqlParser<Record> parser = new FiqlParser(Record.class);
+//        DiscoveryDAO a = new DiscoveryDAO();
+//        SearchCondition<Record> condition4 = parser.parse("title==*LC*");
+//        System.out.println(condition4.findAll(record.values()).size());
+//        Geometry geom = rdr.read("POLYGON ((0 0, 0 340, 320 340, 320 0, 120 0, 180 100, 60 100, 120 0, 0 0),   (80 300, 80 180, 200 180, 200 240, 280 200, 280 280, 200 240, 200 300, 80 300))");
+//        Geometry geom2 = rdr.read("POLYGON ((0 0, 0 340, 320 340, 320 0, 120 0, 0 0),   (120 0, 180 100, 60 100, 120 0),   (80 300, 80 180, 200 180, 200 240, 200 300, 80 300),  (200 240, 280 200, 280 280, 200 240))");
+//        System.out.println(geom.intersects(geom2));
+//    }
+     
 }

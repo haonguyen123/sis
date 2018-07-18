@@ -87,4 +87,10 @@ public class BoundingBox {
         upperCorner.add(bbox.getEastBoundLongitude());
         upperCorner.add(bbox.getNorthBoundLatitude());
     }
+
+    @Override
+    public String toString() {
+        return "BoundingBox{" + "lowerCorner=" + lowerCorner + ", upperCorner=" + upperCorner + ", crs=" + crs + ", dimensions=" + dimensions + '}';
+    }
+    
 }

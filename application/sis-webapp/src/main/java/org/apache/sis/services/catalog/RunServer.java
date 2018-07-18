@@ -20,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
+import org.apache.cxf.jaxrs.ext.search.SearchContextProvider;
 import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
 
 /**
@@ -35,6 +36,7 @@ public class RunServer {
      */
     public static void main(String[] args) {
         JAXRSServerFactoryBean restServer = new JAXRSServerFactoryBean();
+        restServer.setProvider(new SearchContextProvider());
         restServer.setResourceClasses(GetCapabilitiesService.class);
         restServer.setResourceProvider(new SingletonResourceProvider(new GetCapabilitiesService()));
         restServer.setAddress("http://localhost:9000/");

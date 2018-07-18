@@ -16,6 +16,7 @@
  */
 package org.apache.sis.services.csw.discovery;
 
+import java.net.URI;
 import javax.xml.bind.annotation.*;
 import org.apache.sis.services.csw.common.AbstractQuery;
 import org.apache.sis.services.csw.common.BasicRetrievalOptions;
@@ -34,7 +35,7 @@ public class GetRecords extends RequestBase {
     private DistributedSearch distributedSearch;
     private String responseHandler;
     private Object query;
-    private String requestId;
+    private URI requestId;
     private BasicRetrievalOptions basicRetrievalOptions;
 
     /**
@@ -93,7 +94,7 @@ public class GetRecords extends RequestBase {
      * @return
      */
     @XmlAttribute
-    public String getRequestId() {
+    public URI getRequestId() {
         return requestId;
     }
 
@@ -101,7 +102,7 @@ public class GetRecords extends RequestBase {
      *
      * @param requestId
      */
-    public void setRequestId(String requestId) {
+    public void setRequestId(URI requestId) {
         this.requestId = requestId;
     }
 

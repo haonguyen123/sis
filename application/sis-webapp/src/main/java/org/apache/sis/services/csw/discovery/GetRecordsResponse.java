@@ -16,6 +16,7 @@
  */
 package org.apache.sis.services.csw.discovery;
 
+import java.net.URI;
 import javax.xml.bind.annotation.*;
 
 /**
@@ -29,7 +30,7 @@ import javax.xml.bind.annotation.*;
 })
 @XmlRootElement(name = "GetRecords", namespace = Namespaces.CSW)
 public class GetRecordsResponse {
-    private String requestID;
+    private URI requestID;
     private RequestStatus searchStatus;
     private SearchResults searchResults;
 //    private 
@@ -39,7 +40,7 @@ public class GetRecordsResponse {
      * @return
      */
     @XmlElement(name = "RequestID",namespace=Namespaces.CSW)
-    public String getRequestID() {
+    public URI getRequestID() {
         return requestID;
     }
 
@@ -47,7 +48,7 @@ public class GetRecordsResponse {
      *
      * @param requestID
      */
-    public void setRequestID(String requestID) {
+    public void setRequestID(URI requestID) {
         this.requestID = requestID;
     }
 

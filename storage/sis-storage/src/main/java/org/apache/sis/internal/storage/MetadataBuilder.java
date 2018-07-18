@@ -125,6 +125,7 @@ import org.apache.sis.measure.Units;
 
 import static java.util.Collections.singleton;
 import static org.apache.sis.internal.util.StandardDateFormat.MILLISECONDS_PER_DAY;
+import org.apache.sis.util.iso.SimpleInternationalString;
 
 // Branch-dependent imports
 import org.opengis.feature.FeatureType;
@@ -2850,6 +2851,7 @@ parse:      for (int i = 0; i < length;) {
         newCoverage(false);
         newAcquisition();
         newDistribution();
+        newLineage();
         final DefaultMetadata md = metadata;
         metadata = null;
         if (freeze && md != null) {
