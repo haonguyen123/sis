@@ -17,6 +17,8 @@
 package org.apache.sis.services.csw.common;
 
 import javax.xml.bind.annotation.*;
+import org.apache.sis.services.csw.fes.DefaultSortBy;
+import org.opengis.filter.sort.SortBy;
 
 /**
  *
@@ -75,7 +77,7 @@ public class Query extends AbstractQuery{
      *
      * @return
      */
-    @XmlElement(name="SortBy",namespace=Namespaces.CSW)
+    @XmlElement(name="SortBy",namespace=Namespaces.FES,type = DefaultSortBy.class)
     public SortBy getSortBy() {
         return sortBy;
     }

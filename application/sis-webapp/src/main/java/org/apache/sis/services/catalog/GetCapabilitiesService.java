@@ -19,6 +19,7 @@ package org.apache.sis.services.catalog;
 import java.net.URI;
 import java.util.UUID;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBException;
 import org.apache.sis.services.csw.DAO.OGCServiceDAO;
 import org.apache.sis.services.csw.common.BasicRetrievalOptions;
@@ -29,9 +30,15 @@ import org.apache.sis.services.csw.discovery.FilterFesKvp;
 import org.apache.sis.services.csw.discovery.GetRecordById;
 import org.apache.sis.services.csw.discovery.GetRecords;
 import org.apache.sis.services.csw.discovery.GetRecordsResponse;
+import org.apache.sis.services.csw.fes.DefaultPropertyName;
+import org.apache.sis.services.csw.fes.DefaultSortBy;
 import org.apache.sis.services.csw.impl.DiscoveryImpl;
 import org.apache.sis.storage.DataStoreException;
 import org.apache.sis.xml.XML;
+import org.opengis.filter.expression.ExpressionVisitor;
+import org.opengis.filter.expression.PropertyName;
+import org.opengis.filter.sort.SortBy;
+import org.opengis.filter.sort.SortOrder;
 
 /**
  *
@@ -73,11 +80,19 @@ public class GetCapabilitiesService {
 
         @GET
         @Consumes("application/xml")
-        public String getRecordById(@QueryParam("Id") String id) throws JAXBException, DataStoreException {
+        public Response getRecordById(@QueryParam("Id") String id) throws JAXBException, DataStoreException {
             Discovery discovery = new DiscoveryImpl();
             GetRecordById getRecordById = new GetRecordById();
             getRecordById.setId(id);
-            return XML.marshal(discovery.getRecordById(getRecordById));
+            return Response
+                    .status(200)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                    .header("Access-Control-Allow-Credentials", "true")
+                    .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                    .header("Access-Control-Max-Age", "1209600")
+                    .entity(XML.marshal(discovery.getRecordById(getRecordById)))
+                    .build();
         }
     }
 
@@ -85,10 +100,10 @@ public class GetCapabilitiesService {
 
         @GET
         @Consumes("application/xml")
-        public String getRecords(   @QueryParam("requestid") URI requestId,
+        public Response getRecords(   @QueryParam("requestid") URI requestId,
                                     @QueryParam("startposition") @DefaultValue("1") int startPosition,
-                                    @QueryParam("maxrecords") @DefaultValue("4") int maxRecords,
-                                    //                                    @QueryParam("sortby") String sortby,
+                                    @QueryParam("maxrecords") @DefaultValue("10") int maxRecords,
+                                    @QueryParam("sortby") String sortby,
                                     @QueryParam("q") String q,
                                     @QueryParam("recordids") String recordids,
                                     @QueryParam("bbox") String bbox,
@@ -109,10 +124,31 @@ public class GetCapabilitiesService {
             if (requestId == null) {
                 params.setRequestId(URI.create("" + UUID.randomUUID() + ""));
             }
+            
             BasicRetrievalOptions option = new BasicRetrievalOptions();
             option.setMaxRecords(maxRecords);
+            
             option.setStartPosition(startPosition);
             params.setBasicRetrievalOptions(option);
+            Query query = new Query ();
+            if (sortby != null) {
+                String[] element = sortby.split(":");
+                if (element.length == 2) {
+                    DefaultSortBy sort = new DefaultSortBy();
+                    DefaultPropertyName name = new DefaultPropertyName();
+                    name.setPropertyName(element[0]);
+                    sort.setPropertyName(name);
+                    if ("A".equals(element[1]) ) {
+                        sort.setSortOrder(SortOrder.ASCENDING);
+                    }
+                    if ("D".equals(element[1]) ) {
+                        sort.setSortOrder(SortOrder.DESCENDING);
+                    }
+                    query.setSortBy(sort);
+                    params.setQuery(query);
+                }
+                
+            }
             if (q != null || recordids != null || bbox != null || time !=null) {
                 FilterFesKvp fes = new FilterFesKvp();
                 if (q != null) {
@@ -129,13 +165,15 @@ public class GetCapabilitiesService {
                 }
                 record = discovery.getRecords(params, fes);
             }
+            
             if (constraint != null && "FIQL".equals(constraintlanguage)) {
                 Constraint cons = new Constraint();
                 cons.setSearch(constraint);
-                Query query = new Query ();
+                
                 query.setConstraint(cons);
                 params.setQuery(query);
             }
+            
             
 //            System.out.println(constraint);
 //            long elapsedTime = System.currentTimeMillis() - start;
@@ -144,7 +182,15 @@ public class GetCapabilitiesService {
                 record = discovery.getRecords(params);
             }
 //            record.getSearchResults().setElapsedTime(elapsedTime);
-            return XML.marshal(record);
+            return Response
+                    .status(200)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                    .header("Access-Control-Allow-Credentials", "true")
+                    .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                    .header("Access-Control-Max-Age", "1209600")
+                    .entity(XML.marshal(record))
+                    .build();
         }
     }
 

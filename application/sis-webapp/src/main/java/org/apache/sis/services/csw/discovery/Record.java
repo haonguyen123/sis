@@ -17,6 +17,7 @@
 package org.apache.sis.services.csw.discovery;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -519,4 +520,58 @@ public class Record extends AbstractRecord {
     public String toString() {
         return "Record{" + "title=" + title + ", creator=" + creator + ", subject=" + subject + ", description=" + description + ", publisher=" + publisher + ", contributor=" + contributor + ", date=" + date + ", type=" + type + ", format=" + format + ", identifier=" + identifier + ", source=" + source + ", language=" + language + ", relation=" + relation + ", coverage=" + coverage + ", rights=" + rights + '}';
     } 
+    public static Comparator<Record> dateComparatorA = new Comparator<Record>() {
+
+//	public int compare(Student s1, Student s2) {
+//	   String StudentName1 = s1.getStudentname().toUpperCase();
+//	   String StudentName2 = s2.getStudentname().toUpperCase();
+//
+//	   //ascending order
+//	   return StudentName1.compareTo(StudentName2);
+//
+//	   //descending order
+//	   //return StudentName2.compareTo(StudentName1);
+//    }
+
+        @Override
+        public int compare(Record o1, Record o2) {
+           Date date1 = o1.getDate();
+           Date date2 = o2.getDate();
+           //ascending order
+           if (date1 == null) {
+                return (date2 == null) ? 0 : -1;
+            }
+            if (date2 == null) {
+                return 1;
+           }
+           return date1.compareTo(date2);
+        }
+    };
+    public static Comparator<Record> dateComparatorD = new Comparator<Record>() {
+
+//	public int compare(Student s1, Student s2) {
+//	   String StudentName1 = s1.getStudentname().toUpperCase();
+//	   String StudentName2 = s2.getStudentname().toUpperCase();
+//
+//	   //ascending order
+//	   return StudentName1.compareTo(StudentName2);
+//
+//	   //descending order
+//	   //return StudentName2.compareTo(StudentName1);
+//    }
+
+        @Override
+        public int compare(Record o1, Record o2) {
+           Date date1 = o1.getDate();
+           Date date2 = o2.getDate();
+           //ascending order
+           if (date1 == null) {
+                return (date2 == null) ? 0 : 1;
+            }
+            if (date2 == null) {
+                return -1;
+           }
+           return date2.compareTo(date1);
+        }
+    };
 }

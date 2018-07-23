@@ -19,6 +19,7 @@ package org.apache.sis.services.csw.impl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -65,8 +66,8 @@ public class DiscoveryImpl implements Discovery {
         listrecord = discovery.record;
     }
 
-    public List<AbstractRecord> filterRecordKVP(FilterFesKvp fes) throws ParseException {
-        List<AbstractRecord> abRecord = new ArrayList<>();
+    public List<Record> filterRecordKVP(FilterFesKvp fes) throws ParseException {
+        List<Record> abRecord = new ArrayList<>();
         List<Record> records = new ArrayList<>();
         if (fes.getRecordIds() != null) {
             String [] keys = fes.getRecordIds().split(",");
@@ -80,24 +81,24 @@ public class DiscoveryImpl implements Discovery {
         }
         if (fes.getQ() != null) {
             records = records.stream()
-                    .filter(record -> record.toString().toLowerCase().contains(fes.getQ()))
+                    .filter(record -> record.toString().toLowerCase().contains(fes.getQ().toLowerCase()))
                     .collect(Collectors.toList());
         }
         if (fes.getBbox() != null) {
             String bbox = fes.getBbox();
             String[] coord = bbox.split(",");
             List<Record> rm = new ArrayList<>();
-            Envelope geos1= new Envelope(   Double.parseDouble(coord[0]), 
-                                            Double.parseDouble(coord[1]), 
-                                            Double.parseDouble(coord[2]), 
+            Envelope geos1= new Envelope(   Double.parseDouble(coord[0]),                 
+                                            Double.parseDouble(coord[2]),
+                                            Double.parseDouble(coord[1]),
                                             Double.parseDouble(coord[3]));
             for (Record record : records) {
                 if (record.getCoverage() != null) {
-                    Envelope geos2= new Envelope(   record.getCoverage().getLowerCorner().get(0), 
-                                                    record.getCoverage().getLowerCorner().get(1), 
+                    Envelope geos2= new Envelope(   record.getCoverage().getLowerCorner().get(0),            
                                                     record.getCoverage().getUpperCorner().get(0), 
+                                                    record.getCoverage().getLowerCorner().get(1),
                                                     record.getCoverage().getUpperCorner().get(1));
-                    if (geos2.intersects(geos1) == false) {
+                    if (geos1.intersects(geos2) == false ) {
                         rm.add(record);
                     }
                 }
@@ -140,6 +141,16 @@ public class DiscoveryImpl implements Discovery {
         abRecord = new ArrayList(records);
         return abRecord;
     }
+    public List<Record>  sortBy(Query query,List<Record> records){
+        List<Record> record = records;
+        if ("modified".equals(query.getSortBy().getPropertyName().getPropertyName()) && "ASCENDING".equals(query.getSortBy().getSortOrder().name())) {
+            Collections.sort(record, Record.dateComparatorA);
+            }
+        if ("modified".equals(query.getSortBy().getPropertyName().getPropertyName()) && "DESCENDING".equals(query.getSortBy().getSortOrder().name())) {
+            Collections.sort(record, Record.dateComparatorD);
+            }
+        return record;
+    }
     public List<AbstractRecord> filterRecord(String constraint) {
         List<AbstractRecord> abRecord = new ArrayList<>();
         System.out.println("filter record");
@@ -151,20 +162,26 @@ public class DiscoveryImpl implements Discovery {
         SearchResults searchResults = new SearchResults();
         Query query = new Query();
         query = (Query) getRecord.getQuery();
-        if (query.getConstraint().getSearch() != null) {
-            System.out.println(query.getConstraint().getSearch());
-        }
-        List<AbstractRecord> list = new ArrayList(listrecord.values());
+        List<Record> records = new ArrayList(listrecord.values());
+        if (query != null && query.getSortBy() != null) {
+            records = sortBy(query,records);
+        }   
+        List<AbstractRecord> list = new ArrayList(records);
         int maxRecord = getRecord.getBasicRetrievalOptions().getMaxRecords();
         int startRecord = getRecord.getBasicRetrievalOptions().getStartPosition();
         searchResults.setNextRecord(startRecord + maxRecord);
         searchResults.setNumberOfRecordsMatched(list.size());
         searchResults.setNumberOfRecordsReturned(maxRecord);
-        int toRecord = maxRecord + startRecord - 1;
-        if (toRecord >= list.size()) {
-            searchResults.setAbstractRecord(list.subList(startRecord - 1, list.size()));
-        } else if (toRecord < list.size()) {
-            searchResults.setAbstractRecord(list.subList(startRecord - 1, toRecord));
+        int toRecord = maxRecord*startRecord - 1;
+        if (toRecord >= list.size() && maxRecord*(startRecord - 1) <= list.size() ) {
+            searchResults.setAbstractRecord(list.subList(maxRecord*(startRecord - 1), list.size()));
+        } 
+        else if (toRecord < list.size()) {
+            searchResults.setAbstractRecord(list.subList((startRecord - 1)*maxRecord, toRecord));
+        }
+        else if (maxRecord*(startRecord - 1) > list.size()) {
+            list.clear();
+            searchResults.setAbstractRecord(list);
         }
         record.setSearchResults(searchResults);
         record.setRequestID(getRecord.getRequestId());
@@ -185,19 +202,29 @@ public class DiscoveryImpl implements Discovery {
     public GetRecordsResponse getRecords(GetRecords getRecord, FilterFesKvp fes) {
         GetRecordsResponse record = new GetRecordsResponse();
         try {
-            
+            Query query = new Query();
+            query = (Query) getRecord.getQuery();
             SearchResults searchResults = new SearchResults();
-            List<AbstractRecord> list = filterRecordKVP(fes);
+            List<Record> records = new ArrayList(filterRecordKVP(fes));
+            if (query != null && query.getSortBy() != null) {
+                records = sortBy(query,records);
+            }   
+            List<AbstractRecord> list = new ArrayList(records);
             int maxRecord = getRecord.getBasicRetrievalOptions().getMaxRecords();
             int startRecord = getRecord.getBasicRetrievalOptions().getStartPosition();
             searchResults.setNextRecord(startRecord + maxRecord);
             searchResults.setNumberOfRecordsMatched(list.size());
             searchResults.setNumberOfRecordsReturned(maxRecord);
-            int toRecord = maxRecord + startRecord - 1;
-            if (toRecord >= list.size()) {
-                searchResults.setAbstractRecord(list.subList(startRecord - 1, list.size()));
-            } else if (toRecord < list.size()) {
-                searchResults.setAbstractRecord(list.subList(startRecord - 1, toRecord));
+            int toRecord = maxRecord*startRecord - 1;
+            if (toRecord >= list.size() && maxRecord*(startRecord - 1) <= list.size()) {
+                searchResults.setAbstractRecord(list.subList(maxRecord*(startRecord - 1), list.size()));
+            } 
+            else if (toRecord < list.size()) {
+                searchResults.setAbstractRecord(list.subList((startRecord - 1)*maxRecord, toRecord));
+            }
+            else if (maxRecord*(startRecord - 1) > list.size()) {
+                list.clear();
+                searchResults.setAbstractRecord(list);
             }
             record.setSearchResults(searchResults);
             record.setRequestID(getRecord.getRequestId());
@@ -207,11 +234,12 @@ public class DiscoveryImpl implements Discovery {
         }
         return record;
     }
-//    public static void main(String[] args) throws DataStoreException, ParseException {
-//        DiscoveryImpl a = new DiscoveryImpl();
-//        List<String> id = new ArrayList<>();
-//        FilterFesKvp fes = new FilterFesKvp();
-//        fes.setTime("2016-10-17");
-//        System.out.println(a.filterRecordKVP(fes).size());
-//    }
+    public static void main(String[] args) throws DataStoreException, ParseException {
+        DiscoveryImpl a = new DiscoveryImpl();
+        List<String> id = new ArrayList<>();
+        FilterFesKvp fes = new FilterFesKvp();
+//        fes.setBbox("89.658721,22.689607,90.493351,23.476758");
+//        fes.setBbox("105.942440,20.437593,106.453925,20.777734");
+        System.out.println(a.filterRecordKVP(fes).size());
+    }
 }

@@ -30,6 +30,8 @@ import org.apache.sis.services.csw.discovery.GetRecordsResponse;
 import org.apache.sis.services.csw.discovery.RequestStatus;
 import org.apache.sis.services.csw.discovery.RequestStatusType;
 import org.apache.sis.services.csw.discovery.SearchResults;
+import org.apache.sis.services.csw.fes.DefaultPropertyName;
+import org.apache.sis.services.csw.fes.DefaultSortBy;
 import org.apache.sis.services.csw.ogcservice.Capabilities;
 import org.apache.sis.services.ows.Address;
 import org.apache.sis.services.ows.AllowedValues;
@@ -82,5 +84,8 @@ public class CatalogTypes extends TypeRegistration {
         addTo.add(FederatedException.class);
         addTo.add(FederatedSearchResult.class);
         addTo.add(GetRecordsResponse.class);
+        addTo.add(DefaultSortBy.class);
+        addTo.add(DefaultPropertyName.class);
+        
     }
 }

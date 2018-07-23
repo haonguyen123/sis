@@ -39,7 +39,7 @@ public class RunServer {
         restServer.setProvider(new SearchContextProvider());
         restServer.setResourceClasses(GetCapabilitiesService.class);
         restServer.setResourceProvider(new SingletonResourceProvider(new GetCapabilitiesService()));
-        restServer.setAddress("http://localhost:9000/");
+        restServer.setAddress("http://192.168.1.9:9000/");
         restServer.create();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         try {
