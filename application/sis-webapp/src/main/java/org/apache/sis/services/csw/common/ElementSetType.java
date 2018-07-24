@@ -22,9 +22,9 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-
-@XmlType(name="ElementSetType")
+@XmlType(name = "ElementSetType")
 public class ElementSetType {
+
     private String value;
 
     /**
@@ -43,5 +43,5 @@ public class ElementSetType {
     public void setValue(String value) {
         this.value = value;
     }
-    
+
 }

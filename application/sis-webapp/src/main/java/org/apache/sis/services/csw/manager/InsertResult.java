@@ -1,4 +1,5 @@
 package org.apache.sis.services.csw.manager;
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -26,14 +27,14 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author haonguyen
  */
-@XmlType(name = "InsertResultType", namespace = Namespaces.CSW, propOrder = {    
-    "briefRecord",
-})
+@XmlType(name = "InsertResultType", namespace = Namespaces.CSW, propOrder = {
+    "briefRecord",})
 @XmlRootElement(name = "InsertResult")
 public class InsertResult {
+
     private BriefRecord briefRecord;
     private String handleRef;
-    
+
     /**
      *
      * @return
@@ -67,5 +68,5 @@ public class InsertResult {
     public void setHandleRef(String handleRef) {
         this.handleRef = handleRef;
     }
-    
+
 }

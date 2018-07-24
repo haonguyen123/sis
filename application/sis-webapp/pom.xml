@@ -128,76 +128,56 @@
  
         <!-- If working with OData -->
         
-       <dependency>
+        <dependency>
             <groupId>org.apache.olingo</groupId>
             <artifactId>olingo-odata2-core-incubating</artifactId>
             <version>1.1.0</version> 
-       </dependency>
-
+        </dependency>
+        <dependency>
+            <groupId>org.locationtech.jts</groupId>
+            <artifactId>jts-core</artifactId>
+            <version>1.15.0</version>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/config.properties</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.1</version>
                 <executions>
                     <execution>
-                        <id>reserve-ports</id>
-                        <phase>pre-integration-test</phase>
                         <goals>
-                            <goal>reserve-network-port</goal>
+                            <goal>java</goal>
                         </goals>
-                        <configuration>
-                            <portNames>
-                                <portName>jettyPort</portName>
-                                <portName>stopPort</portName>
-                            </portNames>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <mainClass>org.apache.sis.services.catalog.RunServer</mainClass>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <configuration>
-                    <stopKey>stopJetty</stopKey>
-                    <stopPort>${stopPort}</stopPort>
-                    <stopWait>4</stopWait>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>start-jetty</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>start</goal>
-                        </goals>
-                        <configuration>
-                            <httpConnector>
-                                <port>${jettyPort}</port>
-                            </httpConnector>
-                            <scanIntervalSeconds>0</scanIntervalSeconds>
-                            <daemon>true</daemon>
-                            <systemProperties>
-                                <systemProperty>
-                                    <name>org.apache.commons.logging.Log</name>
-                                    <value>org.apache.commons.logging.impl.Jdk14Logger</value>
-                                </systemProperty>
-                                <systemProperty>
-                                    <name>java.util.logging.config.file</name>
-                                    <value>./src/test/resources/logging.properties</value>
-                                </systemProperty>
-                            </systemProperties>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>stop-jetty</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>stop</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <version>9.4.5.v20180619</version>
             </plugin>
         </plugins>
     </build>

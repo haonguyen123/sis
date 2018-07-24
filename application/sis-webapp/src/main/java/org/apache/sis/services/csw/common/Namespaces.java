@@ -16,12 +16,14 @@
  */
 package org.apache.sis.services.csw.common;
 
-
 /**
  *
  * @author haonguyen
  */
-public class Namespaces {
+public final class Namespaces {
+
+    private Namespaces() {
+    }
 
     /**
      *

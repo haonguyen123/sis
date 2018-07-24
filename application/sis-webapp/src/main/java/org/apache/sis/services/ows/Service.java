@@ -23,8 +23,9 @@ import javax.xml.bind.annotation.XmlValue;
  * @author haonguyen
  */
 public class Service {
-    private String service ;
-    
+
+    private String service;
+
     /**
      *
      * @param service
@@ -49,5 +50,5 @@ public class Service {
     public void setService(String service) {
         this.service = service;
     }
-    
+
 }

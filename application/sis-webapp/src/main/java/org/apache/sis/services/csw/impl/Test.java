@@ -16,7 +16,6 @@
  */
 package org.apache.sis.services.csw.impl;
 
-
 /**
  *
  * @author haonguyen
@@ -30,11 +29,10 @@ public class Test {
 ////        String schemaLanguage = XMLConstants.W3C_XML_SCHEMA_NS_URI;
 ////        SchemaFactory sf = SchemaFactory.newInstance(schemaLanguage);
 ////        File f = new File("build/classes/org/apache/sis/services/catalog/schema/record.xsd");
-// 
 //         // create new schema
 ////        Schema schema = sf.newSchema(f);
 //        Marshaller m = ctx.createMarshaller();
 //        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 //        m.marshal(root, System.out);
-//    }   
+//    }
 }

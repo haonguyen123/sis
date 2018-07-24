@@ -17,12 +17,14 @@
 package org.apache.sis.services.csw.common;
 
 import javax.xml.bind.annotation.*;
+
 /**
  *
  * @author haonguyen
  */
 public class BasicRetrievalOptions {
-    private String outputFormat="application/xml";
+
+    private String outputFormat = "application/xml";
     private String outputSchema = "http://www.opengis.net/cat/csw/3.0";
     private int startPosition;
     private int maxRecords;
@@ -94,5 +96,5 @@ public class BasicRetrievalOptions {
     public void setMaxRecords(int maxRecords) {
         this.maxRecords = maxRecords;
     }
-    
+
 }

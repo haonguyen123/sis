@@ -1,11 +1,7 @@
 package org.apache.sis.services.csw.ogcservice;
 
-import java.io.Serializable;
 import javax.xml.bind.annotation.*;
-import org.apache.sis.metadata.iso.identification.DefaultServiceIdentification;
 import org.apache.sis.services.ows.CapabilitiesBase;
-import org.opengis.filter.capability.FilterCapabilities;
-import org.opengis.metadata.identification.ServiceIdentification;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -23,14 +19,13 @@ import org.opengis.metadata.identification.ServiceIdentification;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  *
  * @author haonguyen
  */
-@XmlType(name="CapabilitiesType",namespace=Namespaces.CSW)
-@XmlRootElement(name="Capabilities",namespace=Namespaces.CSW)
-public class Capabilities extends CapabilitiesBase{
+@XmlType(name = "CapabilitiesType", namespace = Namespaces.CSW)
+@XmlRootElement(name = "Capabilities", namespace = Namespaces.CSW)
+public class Capabilities extends CapabilitiesBase {
 //    private FilterCapabilities filterCapabilities;
 //     /**
 //     *

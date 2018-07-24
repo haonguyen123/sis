@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "RequestBaseType", namespace = Namespaces.OWS)
 @XmlRootElement(name = "RequestBase", namespace = Namespaces.OWS)
 public abstract class RequestBase {
+
     private Service service;
     private Version version;
 
@@ -64,5 +65,5 @@ public abstract class RequestBase {
      */
     public void setVersion(Version version) {
         this.version = version;
-    }  
+    }
 }

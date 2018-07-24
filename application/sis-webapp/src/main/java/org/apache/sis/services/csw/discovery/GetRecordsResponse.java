@@ -23,23 +23,22 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name = "GetRecordsType", namespace = Namespaces.CSW, propOrder = {    
+@XmlType(name = "GetRecordsType", namespace = Namespaces.CSW, propOrder = {
     "requestID",
     "searchStatus",
-    "searchResults",
-})
+    "searchResults",})
 @XmlRootElement(name = "GetRecords", namespace = Namespaces.CSW)
 public class GetRecordsResponse {
+
     private URI requestID;
     private RequestStatus searchStatus;
     private SearchResults searchResults;
-//    private 
 
     /**
      *
      * @return
      */
-    @XmlElement(name = "RequestID",namespace=Namespaces.CSW)
+    @XmlElement(name = "RequestID", namespace = Namespaces.CSW)
     public URI getRequestID() {
         return requestID;
     }
@@ -56,7 +55,7 @@ public class GetRecordsResponse {
      *
      * @return
      */
-    @XmlElement(name = "SearchStatus",namespace=Namespaces.CSW)
+    @XmlElement(name = "SearchStatus", namespace = Namespaces.CSW)
     public RequestStatus getSearchStatus() {
         return searchStatus;
     }
@@ -73,7 +72,7 @@ public class GetRecordsResponse {
      *
      * @return
      */
-    @XmlElement(name = "SearchResults",namespace=Namespaces.CSW)
+    @XmlElement(name = "SearchResults", namespace = Namespaces.CSW)
     public SearchResults getSearchResults() {
         return searchResults;
     }
@@ -85,5 +84,5 @@ public class GetRecordsResponse {
     public void setSearchResults(SearchResults searchResults) {
         this.searchResults = searchResults;
     }
-    
+
 }

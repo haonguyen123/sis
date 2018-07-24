@@ -33,14 +33,15 @@ import org.opengis.metadata.Metadata;
  *
  * @author haonguyen
  */
-public class DiscoveryDAO {
+public final class DiscoveryDAO {
 
-    private List<Metadata> metadata;
+    private final List<Metadata> metadata;
 
     /**
      *
      */
     public Map<String, Record> record;
+    public Map<String, File> pathfile;
     /**
      *
      * @throws DataStoreException
@@ -48,6 +49,7 @@ public class DiscoveryDAO {
     public DiscoveryDAO() throws DataStoreException {
         this.metadata = new ArrayList<>();
         this.record = new HashMap<>();
+        this.pathfile = new HashMap<>();
         allRecords();
     }
     /**
@@ -66,6 +68,7 @@ public class DiscoveryDAO {
                             DataStore ds = DataStores.open(new File(txt.getAbsolutePath()));
                             Record re = new Record(ds.getMetadata(), Locale.ENGLISH);
                             record.put(re.getIdentifier(), re);
+                            pathfile.put(re.getIdentifier(),new File(txt.getParent()+"/"+landsat.getName()+".tar.gz") );
                         }
                     }
                 }
@@ -75,18 +78,21 @@ public class DiscoveryDAO {
                     DataStore ds = DataStores.open(new File(netcdf.getAbsolutePath()));
                     Record re = new Record(ds.getMetadata(), Locale.ENGLISH);
                     record.put(re.getIdentifier(), re);
+                    pathfile.put(re.getIdentifier(), new File(netcdf.getPath()));
                 }
             }
         }
     }
-//    public static void main(String[] args) throws DataStoreException, ParseException {
-//        FiqlParser<Record> parser = new FiqlParser(Record.class);
+//    public static void main(String[] args) throws DataStoreException {
+////        FiqlParser<Record> parser = new FiqlParser(Record.class);
 //        DiscoveryDAO a = new DiscoveryDAO();
-//        SearchCondition<Record> condition4 = parser.parse("title==*LC*");
-//        System.out.println(condition4.findAll(record.values()).size());
-//        Geometry geom = rdr.read("POLYGON ((0 0, 0 340, 320 340, 320 0, 120 0, 180 100, 60 100, 120 0, 0 0),   (80 300, 80 180, 200 180, 200 240, 280 200, 280 280, 200 240, 200 300, 80 300))");
-//        Geometry geom2 = rdr.read("POLYGON ((0 0, 0 340, 320 340, 320 0, 120 0, 0 0),   (120 0, 180 100, 60 100, 120 0),   (80 300, 80 180, 200 180, 200 240, 200 300, 80 300),  (200 240, 280 200, 280 280, 200 240))");
-//        System.out.println(geom.intersects(geom2));
+////        a.allRecords();
+//        System.out.println(a.pathfile);
+////        SearchCondition<Record> condition4 = parser.parse("title==*LC*");
+////        System.out.println(condition4.findAll(record.values()).size());
+////        Geometry geom = rdr.read("POLYGON ((0 0, 0 340, 320 340, 320 0, 120 0, 180 100, 60 100, 120 0, 0 0),   (80 300, 80 180, 200 180, 200 240, 280 200, 280 280, 200 240, 200 300, 80 300))");
+////        Geometry geom2 = rdr.read("POLYGON ((0 0, 0 340, 320 340, 320 0, 120 0, 0 0),   (120 0, 180 100, 60 100, 120 0),   (80 300, 80 180, 200 180, 200 240, 200 300, 80 300),  (200 240, 280 200, 280 280, 200 240))");
+////        System.out.println(geom.intersects(geom2));
+//        
 //    }
-     
 }

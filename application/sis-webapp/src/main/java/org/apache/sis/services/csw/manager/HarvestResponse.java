@@ -22,9 +22,10 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="HarvestResponseType",namespace=Namespaces.CSW)
-@XmlRootElement(name="HarvestResponse",namespace=Namespaces.CSW)
+@XmlType(name = "HarvestResponseType", namespace = Namespaces.CSW)
+@XmlRootElement(name = "HarvestResponse", namespace = Namespaces.CSW)
 public class HarvestResponse {
+
     private Object choice;
 
     /**
@@ -32,7 +33,7 @@ public class HarvestResponse {
      * @return
      */
     @XmlElements({
-        @XmlElement(name="TransactionResponse",type=TransactionResponse.class)
+        @XmlElement(name = "TransactionResponse", type = TransactionResponse.class)
     })
     public Object getChoice() {
         return choice;
@@ -45,5 +46,5 @@ public class HarvestResponse {
     public void setChoice(Object choice) {
         this.choice = choice;
     }
-    
+
 }

@@ -24,10 +24,12 @@ import javax.xml.namespace.QName;
  *
  * @author haonguyen
  */
-@XmlType(name="TypeNameListType", namespace=Namespaces.CSW)
-@XmlRootElement(name="TypeNameList",namespace = Namespaces.CSW)
+@XmlType(name = "TypeNameListType", namespace = Namespaces.CSW)
+@XmlRootElement(name = "TypeNameList", namespace = Namespaces.CSW)
 class TypeNameList {
+
     private List<QName> name;
+
     @XmlValue
     @XmlList
     public List<QName> getName() {
@@ -37,5 +39,5 @@ class TypeNameList {
     public void setName(List<QName> name) {
         this.name = name;
     }
-    
+
 }

@@ -24,13 +24,14 @@ import org.opengis.filter.sort.SortBy;
  *
  * @author haonguyen
  */
-@XmlType(name="QueryType", namespace =Namespaces.CSW,propOrder = {    
+@XmlType(name = "QueryType", namespace = Namespaces.CSW, propOrder = {
     "elementName",
     "constraint",
     "sortBy"
 })
-@XmlRootElement(name="Query", namespace =Namespaces.CSW)
-public class Query extends AbstractQuery{
+@XmlRootElement(name = "Query", namespace = Namespaces.CSW)
+public class Query extends AbstractQuery {
+
     private Object elementName;
     private Constraint constraint;
     private SortBy sortBy;
@@ -40,14 +41,13 @@ public class Query extends AbstractQuery{
      *
      * @return
      */
-    @XmlElements(value = { 
-            @XmlElement(name="ElementSetName",type=ElementSetName.class),
-            @XmlElement(name="ElementName",type=String.class),
-    })
+    @XmlElements(value = {
+        @XmlElement(name = "ElementSetName", type = ElementSetName.class),
+        @XmlElement(name = "ElementName", type = String.class),})
     public Object getElementName() {
         return elementName;
     }
-    
+
     /**
      *
      * @param elementName
@@ -60,7 +60,7 @@ public class Query extends AbstractQuery{
      *
      * @return
      */
-    @XmlElement(name="Constraint",namespace=Namespaces.CSW)
+    @XmlElement(name = "Constraint", namespace = Namespaces.CSW)
     public Constraint getConstraint() {
         return constraint;
     }
@@ -77,7 +77,7 @@ public class Query extends AbstractQuery{
      *
      * @return
      */
-    @XmlElement(name="SortBy",namespace=Namespaces.FES,type = DefaultSortBy.class)
+    @XmlElement(name = "SortBy", namespace = Namespaces.FES, type = DefaultSortBy.class)
     public SortBy getSortBy() {
         return sortBy;
     }
@@ -106,5 +106,5 @@ public class Query extends AbstractQuery{
     public void setTypeNameList(TypeNameList typeNameList) {
         this.typeNameList = typeNameList;
     }
-    
+
 }

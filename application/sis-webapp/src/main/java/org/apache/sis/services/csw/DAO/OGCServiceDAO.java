@@ -46,13 +46,15 @@ import org.apache.sis.services.ows.Version;
  * @author haonguyen
  */
 public class OGCServiceDAO {
-    private static Map<String,Object> properties(final String name) {
-        final Map<String,Object> properties = new HashMap<>(4);
+
+    private static Map<String, Object> properties(final String name) {
+        final Map<String, Object> properties = new HashMap<>(4);
         properties.put(DefaultParameterDescriptor.NAME_KEY, name);
         return properties;
     }
+
     static <T> DefaultParameterDescriptor<T> create(final String name, final Class<T> type,
-        final T[] validValues, final T defaultValue){
+            final T[] validValues, final T defaultValue) {
         return new DefaultParameterDescriptor<>(properties(name), 1, 1, type, null, validValues, defaultValue);
     }
 
@@ -60,7 +62,7 @@ public class OGCServiceDAO {
      *
      * @return
      */
-    private OwsServiceIdentification serviceIdentification(){
+    private OwsServiceIdentification serviceIdentification() {
         OwsServiceIdentification service = new OwsServiceIdentification();
         service.setServiceType("CSW");
         service.setServiceTypeVersion(new Version("3.0.0"));
@@ -79,7 +81,8 @@ public class OGCServiceDAO {
         service.setKeywords(keywords);
         return service;
     }
-    private OwsServiceProvider serviceProvider(){
+
+    private OwsServiceProvider serviceProvider() {
         OwsServiceProvider service = new OwsServiceProvider();
         service.setProviderName("Apache SIS");
         OnlineResource site = new OnlineResource();
@@ -109,7 +112,8 @@ public class OGCServiceDAO {
         service.setServiceContact(party);
         return service;
     }
-    private OwsOperationsMetadata operationsMetadata(){
+
+    private OwsOperationsMetadata operationsMetadata() {
         OwsOperationsMetadata operations = new OwsOperationsMetadata();
         List<OwsOperation> listoperation = new ArrayList<>();
         OwsOperation getCapabilities = new OwsOperation();
@@ -122,7 +126,7 @@ public class OGCServiceDAO {
         capaDCP.setHttp(capaHTTP);
         getCapabilities.setDcp(capaDCP);
         listoperation.add(getCapabilities);
-        operations.setOperation(listoperation);   
+        operations.setOperation(listoperation);
         List<OwsDomain> parameters = new ArrayList<>();
         OwsDomain parameter = new OwsDomain();
         AllowedValues allow = new AllowedValues();
@@ -133,7 +137,7 @@ public class OGCServiceDAO {
         allow.setValue(values);
         parameter.setName("AcceptVersions");
         parameter.setAllowedValues(allow);
-        parameters.add(parameter);  
+        parameters.add(parameter);
         List<OwsDomain> constraints = new ArrayList<>();
         OwsDomain constraint = new OwsDomain();
         AllowedValues allowconstraint = new AllowedValues();
@@ -154,8 +158,8 @@ public class OGCServiceDAO {
      *
      * @return
      */
-    public  Capabilities capa(){
-        Capabilities capabilities =new Capabilities();
+    public Capabilities capa() {
+        Capabilities capabilities = new Capabilities();
         capabilities.setOperationsMetadata(operationsMetadata());
         capabilities.setServiceIdentification(serviceIdentification());
         capabilities.setServiceProvider(serviceProvider());

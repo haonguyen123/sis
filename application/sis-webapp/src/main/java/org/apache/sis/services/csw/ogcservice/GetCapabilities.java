@@ -2,7 +2,6 @@ package org.apache.sis.services.csw.ogcservice;
 
 import javax.xml.bind.annotation.*;
 import org.apache.sis.services.ows.Service;
-import org.opengis.filter.capability.FilterCapabilities;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -20,15 +19,14 @@ import org.opengis.filter.capability.FilterCapabilities;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 /**
  *
  * @author haonguyen
  */
-@XmlType(name="GetCapabilitiesType",namespace=Namespaces.CSW)
-@XmlRootElement(name="GetCapabilities",namespace=Namespaces.CSW)
-public class GetCapabilities extends org.apache.sis.services.ows.GetCapabilities{
+@XmlType(name = "GetCapabilitiesType", namespace = Namespaces.CSW)
+@XmlRootElement(name = "GetCapabilities", namespace = Namespaces.CSW)
+public class GetCapabilities extends org.apache.sis.services.ows.GetCapabilities {
+
     private Service service;
 
     /**
@@ -46,5 +44,5 @@ public class GetCapabilities extends org.apache.sis.services.ows.GetCapabilities
      */
     public void setService(Service service) {
         this.service = service;
-    }   
+    }
 }

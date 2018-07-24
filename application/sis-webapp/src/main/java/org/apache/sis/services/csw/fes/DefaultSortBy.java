@@ -25,10 +25,9 @@ import org.opengis.filter.sort.SortOrder;
  *
  * @author haonguyen
  */
-@XmlType(name="DefaultSortByType", namespace =Namespaces.FES,propOrder = {    
+@XmlType(name="DefaultSortByType", namespace =Namespaces.FES,propOrder = {
     "propertyName",
-    "sortOrder",
-})
+    "sortOrder",})
 @XmlRootElement(name="DefaultSortBy", namespace =Namespaces.FES)
 public class DefaultSortBy implements SortBy {
     private PropertyName propertyName;
@@ -46,9 +45,7 @@ public class DefaultSortBy implements SortBy {
     public SortOrder getSortOrder() {
         return sortOrder;
     }
-
     public void setSortOrder(SortOrder sortOrder) {
         this.sortOrder = sortOrder;
     }
-    
 }

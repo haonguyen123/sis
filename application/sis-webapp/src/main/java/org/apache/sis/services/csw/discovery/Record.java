@@ -519,19 +519,8 @@ public class Record extends AbstractRecord {
     @Override
     public String toString() {
         return "Record{" + "title=" + title + ", creator=" + creator + ", subject=" + subject + ", description=" + description + ", publisher=" + publisher + ", contributor=" + contributor + ", date=" + date + ", type=" + type + ", format=" + format + ", identifier=" + identifier + ", source=" + source + ", language=" + language + ", relation=" + relation + ", coverage=" + coverage + ", rights=" + rights + '}';
-    } 
+    }
     public static Comparator<Record> dateComparatorA = new Comparator<Record>() {
-
-//	public int compare(Student s1, Student s2) {
-//	   String StudentName1 = s1.getStudentname().toUpperCase();
-//	   String StudentName2 = s2.getStudentname().toUpperCase();
-//
-//	   //ascending order
-//	   return StudentName1.compareTo(StudentName2);
-//
-//	   //descending order
-//	   //return StudentName2.compareTo(StudentName1);
-//    }
 
         @Override
         public int compare(Record o1, Record o2) {
@@ -548,17 +537,6 @@ public class Record extends AbstractRecord {
         }
     };
     public static Comparator<Record> dateComparatorD = new Comparator<Record>() {
-
-//	public int compare(Student s1, Student s2) {
-//	   String StudentName1 = s1.getStudentname().toUpperCase();
-//	   String StudentName2 = s2.getStudentname().toUpperCase();
-//
-//	   //ascending order
-//	   return StudentName1.compareTo(StudentName2);
-//
-//	   //descending order
-//	   //return StudentName2.compareTo(StudentName1);
-//    }
 
         @Override
         public int compare(Record o1, Record o2) {

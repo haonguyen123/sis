@@ -21,5 +21,5 @@ package org.apache.sis.services.csw.manager;
  * @author haonguyen
  */
 class Constraint {
-    
+
 }

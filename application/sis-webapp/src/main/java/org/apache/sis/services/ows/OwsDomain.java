@@ -22,8 +22,9 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="DomainType", namespace=Namespaces.OWS)
-public class OwsDomain extends UnNamedDomain{
+@XmlType(name = "DomainType", namespace = Namespaces.OWS)
+public class OwsDomain extends UnNamedDomain {
+
     private String name;
 
     /**
@@ -42,5 +43,5 @@ public class OwsDomain extends UnNamedDomain{
     public void setName(String name) {
         this.name = name;
     }
-    
+
 }

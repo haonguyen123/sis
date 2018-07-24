@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author haonguyen
  */
-@XmlType(name="AbstractQueryType",namespace=Namespaces.CSW)
+@XmlType(name = "AbstractQueryType", namespace = Namespaces.CSW)
 public abstract class AbstractQuery {
-    
+
 }

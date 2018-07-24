@@ -22,10 +22,12 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="UpdateSequenceType",namespace = Namespaces.OWS)
-@XmlRootElement(name="UpdateSequence",namespace = Namespaces.OWS)
+@XmlType(name = "UpdateSequenceType", namespace = Namespaces.OWS)
+@XmlRootElement(name = "UpdateSequence", namespace = Namespaces.OWS)
 class UpdateSequence {
+
     private String value;
+
     @XmlValue
     public String getValue() {
         return value;
@@ -34,5 +36,5 @@ class UpdateSequence {
     public void setValue(String value) {
         this.value = value;
     }
-    
+
 }

@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.*;
  * @author haonguyen
  */
 public class OnlineResource {
+
     private String type;
     private URI href;
 
@@ -31,7 +32,7 @@ public class OnlineResource {
      *
      * @return
      */
-    @XmlAttribute(name="xlink:type")
+    @XmlAttribute(name = "xlink:type")
     public String getType() {
         return type;
     }
@@ -48,7 +49,7 @@ public class OnlineResource {
      *
      * @return
      */
-    @XmlAttribute(name="xlink:href")
+    @XmlAttribute(name = "xlink:href")
     public URI getHref() {
         return href;
     }
@@ -60,5 +61,5 @@ public class OnlineResource {
     public void setHref(URI href) {
         this.href = href;
     }
-    
+
 }

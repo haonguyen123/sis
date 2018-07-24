@@ -22,10 +22,12 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="OutputFormatType",namespace = Namespaces.OWS)
-@XmlRootElement(name="OutputFormat",namespace = Namespaces.OWS)
+@XmlType(name = "OutputFormatType", namespace = Namespaces.OWS)
+@XmlRootElement(name = "OutputFormat", namespace = Namespaces.OWS)
 class OutputFormat {
+
     private String value;
+
     @XmlValue
     public String getValue() {
         return value;
@@ -34,5 +36,5 @@ class OutputFormat {
     public void setValue(String value) {
         this.value = value;
     }
-    
+
 }

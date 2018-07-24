@@ -24,13 +24,15 @@ import javax.xml.bind.annotation.*;
  */
 @XmlRootElement
 public class Test {
+
     private ElementSetType elementSetType;
 
     /**
      *
      * @return
      */
-    @XmlElements({@XmlElement(name="test",type=String.class)})
+    @XmlElements({
+        @XmlElement(name = "test", type = String.class)})
     public ElementSetType getElementSetType() {
         return elementSetType;
     }
@@ -42,5 +44,4 @@ public class Test {
     public void setElementSetType(ElementSetType elementSetType) {
         this.elementSetType = elementSetType;
     }
-    
 }

@@ -24,11 +24,12 @@ import org.opengis.filter.expression.PropertyName;
  *
  * @author haonguyen
  */
-@XmlType(name="DefaultPropertyNameType", namespace =Namespaces.FES)
-@XmlRootElement(name="PropertyName", namespace =Namespaces.FES)
+@XmlType(name = "DefaultPropertyNameType", namespace = Namespaces.FES)
+@XmlRootElement(name = "PropertyName", namespace = Namespaces.FES)
 public class DefaultPropertyName implements PropertyName {
- 
+
     private String propertyName;
+
     @XmlValue
     @Override
     public String getPropertyName() {
@@ -53,5 +54,4 @@ public class DefaultPropertyName implements PropertyName {
     public Object accept(ExpressionVisitor visitor, Object extraData) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

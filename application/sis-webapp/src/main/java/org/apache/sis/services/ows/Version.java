@@ -23,7 +23,8 @@ import javax.xml.bind.annotation.XmlValue;
  * @author haonguyen
  */
 public class Version {
-    private String version ;
+
+    private String version;
 
     /**
      *
@@ -49,5 +50,5 @@ public class Version {
     public void setVersion(String version) {
         this.version = version;
     }
-    
+
 }

@@ -22,12 +22,13 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="HTTP", namespace=Namespaces.OWS, propOrder = {
+@XmlType(name = "HTTP", namespace = Namespaces.OWS, propOrder = {
     "get",
     "post"
 })
-@XmlRootElement(name="HTTP",namespace=Namespaces.OWS)
+@XmlRootElement(name = "HTTP", namespace = Namespaces.OWS)
 public class HTTP {
+
     private RequestMethod get;
     private RequestMethod post;
 
@@ -35,7 +36,7 @@ public class HTTP {
      *
      * @return
      */
-    @XmlElement(name="Get",namespace = Namespaces.OWS)
+    @XmlElement(name = "Get", namespace = Namespaces.OWS)
     public RequestMethod getGet() {
         return get;
     }
@@ -52,7 +53,7 @@ public class HTTP {
      *
      * @return
      */
-    @XmlElement(name="Post",namespace = Namespaces.OWS)
+    @XmlElement(name = "Post", namespace = Namespaces.OWS)
     public RequestMethod getPost() {
         return post;
     }
@@ -64,5 +65,5 @@ public class HTTP {
     public void setPost(RequestMethod post) {
         this.post = post;
     }
-    
+
 }

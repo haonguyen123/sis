@@ -23,15 +23,17 @@ import org.apache.sis.services.csw.common.FederatedCatalogue;
  *
  * @author haonguyen
  */
-@XmlType(name="DistributedSearchType", namespace=Namespaces.CSW)
-@XmlRootElement(name=" DistributedSearch",namespace=Namespaces.CSW)
-class DistributedSearch {   
+@XmlType(name = "DistributedSearchType", namespace = Namespaces.CSW)
+@XmlRootElement(name = " DistributedSearch", namespace = Namespaces.CSW)
+class DistributedSearch {
+
     private FederatedCatalogue federatedCatalogues;
-    private int hopCount =2;
+    private int hopCount = 2;
     private String clientId;
     private String distributedSearchId;
     private long distributedSearchIdTimout;
-    @XmlElement(name="federatedCatalogues",namespace=Namespaces.CSW)
+
+    @XmlElement(name = "federatedCatalogues", namespace = Namespaces.CSW)
     public FederatedCatalogue getFederatedCatalogues() {
         return federatedCatalogues;
     }
@@ -39,6 +41,7 @@ class DistributedSearch {
     public void setFederatedCatalogues(FederatedCatalogue federatedCatalogues) {
         this.federatedCatalogues = federatedCatalogues;
     }
+
     @XmlAttribute
     public int getHopCount() {
         return hopCount;
@@ -47,6 +50,7 @@ class DistributedSearch {
     public void setHopCount(int hopCount) {
         this.hopCount = hopCount;
     }
+
     @XmlAttribute
     public String getClientId() {
         return clientId;
@@ -55,6 +59,7 @@ class DistributedSearch {
     public void setClientId(String clientId) {
         this.clientId = clientId;
     }
+
     @XmlAttribute
     public String getDistributedSearchId() {
         return distributedSearchId;
@@ -63,6 +68,7 @@ class DistributedSearch {
     public void setDistributedSearchId(String distributedSearchId) {
         this.distributedSearchId = distributedSearchId;
     }
+
     @XmlAttribute
     public long getDistributedSearchIdTimout() {
         return distributedSearchIdTimout;
@@ -71,5 +77,5 @@ class DistributedSearch {
     public void setDistributedSearchIdTimout(long distributedSearchIdTimout) {
         this.distributedSearchIdTimout = distributedSearchIdTimout;
     }
-    
+
 }

@@ -25,10 +25,9 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author haonguyen
  */
-@XmlType(name = "TransactionResponseType", namespace = Namespaces.CSW, propOrder = {    
+@XmlType(name = "TransactionResponseType", namespace = Namespaces.CSW, propOrder = {
     "transactionSummary",
-    "insertResult",
-})
+    "insertResult",})
 @XmlRootElement(name = "TransactionResponse")
 public class TransactionResponse {
     private TransactionSummary transactionSummary;
@@ -85,5 +84,4 @@ public class TransactionResponse {
     public void setVersion(String version) {
         this.version = version;
     }
-    
 }

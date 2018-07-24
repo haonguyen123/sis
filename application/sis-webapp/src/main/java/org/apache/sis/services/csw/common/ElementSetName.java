@@ -22,9 +22,10 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="ElementSetName",namespace=Namespaces.CSW)
-@XmlRootElement(name="ElementSetName")
-public class ElementSetName extends ElementSetType{
+@XmlType(name = "ElementSetName", namespace = Namespaces.CSW)
+@XmlRootElement(name = "ElementSetName")
+public class ElementSetName extends ElementSetType {
+
     private TypeNameList typeNames;
 
     /**
@@ -43,5 +44,5 @@ public class ElementSetName extends ElementSetType{
     public void setTypeNames(TypeNameList typeNames) {
         this.typeNames = typeNames;
     }
-    
+
 }

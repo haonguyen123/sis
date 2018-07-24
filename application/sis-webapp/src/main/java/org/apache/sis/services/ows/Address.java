@@ -22,16 +22,16 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="AddressType", namespace=Namespaces.OWS, propOrder = {
+@XmlType(name = "AddressType", namespace = Namespaces.OWS, propOrder = {
     "deliveryPoint",
     "city",
     "administrativeArea",
     "postalCode",
     "country",
-    "electronicMailAddress",
-})
-@XmlRootElement(name="Address",namespace=Namespaces.OWS)
+    "electronicMailAddress",})
+@XmlRootElement(name = "Address", namespace = Namespaces.OWS)
 public class Address {
+
     private String deliveryPoint;
     private String city;
     private String administrativeArea;
@@ -43,7 +43,7 @@ public class Address {
      *
      * @return
      */
-    @XmlElement(name="DeliveryPoint",namespace = Namespaces.OWS)
+    @XmlElement(name = "DeliveryPoint", namespace = Namespaces.OWS)
     public String getDeliveryPoint() {
         return deliveryPoint;
     }
@@ -60,7 +60,7 @@ public class Address {
      *
      * @return
      */
-    @XmlElement(name="City",namespace = Namespaces.OWS)
+    @XmlElement(name = "City", namespace = Namespaces.OWS)
     public String getCity() {
         return city;
     }
@@ -77,7 +77,7 @@ public class Address {
      *
      * @return
      */
-    @XmlElement(name="AdministrativeArea",namespace = Namespaces.OWS)
+    @XmlElement(name = "AdministrativeArea", namespace = Namespaces.OWS)
 
     public String getAdministrativeArea() {
         return administrativeArea;
@@ -95,7 +95,7 @@ public class Address {
      *
      * @return
      */
-    @XmlElement(name="PostalCode",namespace = Namespaces.OWS)
+    @XmlElement(name = "PostalCode", namespace = Namespaces.OWS)
     public String getPostalCode() {
         return postalCode;
     }
@@ -112,7 +112,7 @@ public class Address {
      *
      * @return
      */
-    @XmlElement(name="Country",namespace = Namespaces.OWS)
+    @XmlElement(name = "Country", namespace = Namespaces.OWS)
     public String getCountry() {
         return country;
     }
@@ -129,7 +129,7 @@ public class Address {
      *
      * @return
      */
-    @XmlElement(name="ElectronicMailAddress",namespace = Namespaces.OWS)
+    @XmlElement(name = "ElectronicMailAddress", namespace = Namespaces.OWS)
     public String getElectronicMailAddress() {
         return electronicMailAddress;
     }
@@ -141,5 +141,5 @@ public class Address {
     public void setElectronicMailAddress(String electronicMailAddress) {
         this.electronicMailAddress = electronicMailAddress;
     }
-    
+
 }

@@ -21,5 +21,5 @@ package org.apache.sis.services.csw.impl;
  * @author haonguyen
  */
 public class OGCServiceImpl {
-    
+
 }

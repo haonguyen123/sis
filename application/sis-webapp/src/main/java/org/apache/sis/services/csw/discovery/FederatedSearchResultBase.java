@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "FederatedSearchResultBaseType", namespace = Namespaces.CSW)
 @XmlRootElement(name = "FederatedSearchResultBase", namespace = Namespaces.CSW)
 public abstract class FederatedSearchResultBase {
+
     private String catalogueURL;
 
     /**

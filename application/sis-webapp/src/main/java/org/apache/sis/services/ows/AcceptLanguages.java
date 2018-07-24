@@ -23,11 +23,13 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="AcceptLanguagesType",namespace = Namespaces.OWS)
-@XmlRootElement(name="AcceptLanguages",namespace = Namespaces.OWS)
+@XmlType(name = "AcceptLanguagesType", namespace = Namespaces.OWS)
+@XmlRootElement(name = "AcceptLanguages", namespace = Namespaces.OWS)
 class AcceptLanguages {
+
     private List<Language> language;
-    @XmlElement(name="Language")
+
+    @XmlElement(name = "Language")
     public List<Language> getLanguage() {
         return language;
     }
@@ -35,6 +37,5 @@ class AcceptLanguages {
     public void setLanguage(List<Language> language) {
         this.language = language;
     }
-    
-    
+
 }
