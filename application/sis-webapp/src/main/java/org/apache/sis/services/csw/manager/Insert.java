@@ -23,11 +23,13 @@ import javax.xml.namespace.QName;
  *
  * @author haonguyen
  */
-@XmlType(name="InsertType",namespace = Namespaces.CSW)
-@XmlRootElement(name="Insert",namespace=Namespaces.CSW)
+@XmlType(name = "InsertType", namespace = Namespaces.CSW)
+@XmlRootElement(name = "Insert", namespace = Namespaces.CSW)
 class Insert {
+
     private QName typName;
     private String id;
+
     @XmlAttribute
     public QName getTypName() {
         return typName;
@@ -36,6 +38,7 @@ class Insert {
     public void setTypName(QName typName) {
         this.typName = typName;
     }
+
     @XmlAttribute
     public String getId() {
         return id;
@@ -44,5 +47,5 @@ class Insert {
     public void setId(String id) {
         this.id = id;
     }
-    
+
 }

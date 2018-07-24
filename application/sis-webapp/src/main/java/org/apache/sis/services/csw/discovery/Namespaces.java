@@ -21,7 +21,10 @@ package org.apache.sis.services.csw.discovery;
  *
  * @author haonguyen
  */
-public class Namespaces {
+public final class Namespaces {
+
+    private Namespaces() {
+    }
 
     /**
      *

@@ -16,34 +16,33 @@
  */
 package org.apache.sis.services.ows;
 
-import java.util.List;
 import javax.xml.bind.annotation.*;
-import org.apache.sis.metadata.iso.identification.DefaultOperationMetadata;
 import org.apache.sis.services.csw.common.Namespaces;
 
 /**
  *
  * @author haonguyen
  */
-@XmlType(name="CapabilitiesBaseType", namespace=Namespaces.OWS, propOrder = {
+@XmlType(name = "CapabilitiesBaseType", namespace = Namespaces.OWS, propOrder = {
     "serviceIdentification",
     "serviceProvider",
     "operationsMetadata"
 })
-@XmlRootElement(name="CapabilitiesBase",namespace=Namespaces.OWS)
+@XmlRootElement(name = "CapabilitiesBase", namespace = Namespaces.OWS)
 public class CapabilitiesBase {
+
     private OwsServiceIdentification serviceIdentification;
     private OwsServiceProvider serviceProvider;
     private OwsOperationsMetadata operationsMetadata;
-//    private List<Language> languages; 
+//    private List<Language> languages;
 //    private List<Metadata> content;
 
     /**
      *
      * @return
      */
-    @XmlElement(name="ServiceIdentification",namespace = Namespaces.OWS)
-    
+    @XmlElement(name = "ServiceIdentification", namespace = Namespaces.OWS)
+
     public OwsServiceIdentification getServiceIdentification() {
         return serviceIdentification;
     }
@@ -60,8 +59,8 @@ public class CapabilitiesBase {
      *
      * @return
      */
-    @XmlElement(name="ServiceProvider",namespace = Namespaces.OWS)
-   
+    @XmlElement(name = "ServiceProvider", namespace = Namespaces.OWS)
+
     public OwsServiceProvider getServiceProvider() {
         return serviceProvider;
     }
@@ -73,11 +72,12 @@ public class CapabilitiesBase {
     public void setServiceProvider(OwsServiceProvider serviceProvider) {
         this.serviceProvider = serviceProvider;
     }
+
     /**
      *
      * @return
      */
-    @XmlElement(name="OperationsMetadata",namespace = Namespaces.OWS)
+    @XmlElement(name = "OperationsMetadata", namespace = Namespaces.OWS)
 
     public OwsOperationsMetadata getOperationsMetadata() {
         return operationsMetadata;
@@ -91,7 +91,6 @@ public class CapabilitiesBase {
         this.operationsMetadata = operationsMetadata;
     }
 
-    
 //
 //    /**
 //     *
@@ -109,7 +108,6 @@ public class CapabilitiesBase {
 //    public void setLanguages(List<Language> languages) {
 //        this.languages = languages;
 //    }
-
     /**
      *
      * @return
@@ -126,5 +124,4 @@ public class CapabilitiesBase {
 //    public void setContent(List<Metadata> content) {
 //        this.content = content;
 //    }
-    
 }

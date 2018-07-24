@@ -1,3 +1,7 @@
+package org.apache.sis.services.catalog;
+
+
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -14,7 +18,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sis.services.catalog;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,8 +31,11 @@ import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
  *
  * @author haonguyen
  */
+public final class RunServer {
 
-public class RunServer {
+    private RunServer() {
+    }
+
 
     /**
      *
@@ -45,8 +52,8 @@ public class RunServer {
         try {
             br.readLine();
         } catch (IOException e) {
+            System.out.println("Server Stopped");
         }
-        System.out.println("Server Stopped");
         System.exit(0);
     }
 }

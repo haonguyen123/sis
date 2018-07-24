@@ -22,12 +22,12 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="TelephoneType", namespace=Namespaces.OWS, propOrder = {
+@XmlType(name = "TelephoneType", namespace = Namespaces.OWS, propOrder = {
     "voice",
-    "facsimile",
-})
-@XmlRootElement(name="Telephone ",namespace=Namespaces.OWS)
+    "facsimile",})
+@XmlRootElement(name = "Telephone ", namespace = Namespaces.OWS)
 public class Telephone {
+
     private String voice;
     private String facsimile;
 
@@ -35,7 +35,7 @@ public class Telephone {
      *
      * @return
      */
-    @XmlElement(name="Voice",namespace = Namespaces.OWS)
+    @XmlElement(name = "Voice", namespace = Namespaces.OWS)
     public String getVoice() {
         return voice;
     }
@@ -52,7 +52,7 @@ public class Telephone {
      *
      * @return
      */
-    @XmlElement(name="Facsimile",namespace = Namespaces.OWS)
+    @XmlElement(name = "Facsimile", namespace = Namespaces.OWS)
     public String getFacsimile() {
         return facsimile;
     }
@@ -64,5 +64,5 @@ public class Telephone {
     public void setFacsimile(String facsimile) {
         this.facsimile = facsimile;
     }
-    
+
 }

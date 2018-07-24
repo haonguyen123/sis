@@ -16,14 +16,14 @@
  */
 package org.apache.sis.services.ows;
 
-
 /**
  *
  * @author haonguyen
  */
 public class Value {
+
     private String value;
-    
+
     /**
      *
      * @return
@@ -39,5 +39,5 @@ public class Value {
     public void setValue(String value) {
         this.value = value;
     }
-    
+
 }

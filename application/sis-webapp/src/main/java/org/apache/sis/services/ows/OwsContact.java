@@ -22,13 +22,14 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="ContactType", namespace=Namespaces.OWS, propOrder = {
+@XmlType(name = "ContactType", namespace = Namespaces.OWS, propOrder = {
     "address",
     "phone",
     "onlineResource"
 })
-@XmlRootElement(name="ContactInfo",namespace=Namespaces.OWS)
+@XmlRootElement(name = "ContactInfo", namespace = Namespaces.OWS)
 public class OwsContact {
+
     private Address address;
     private Telephone phone;
     private OnlineResource onlineResource;
@@ -37,7 +38,7 @@ public class OwsContact {
      *
      * @return
      */
-    @XmlElement(name="Address",namespace = Namespaces.OWS)
+    @XmlElement(name = "Address", namespace = Namespaces.OWS)
     public Address getAddress() {
         return address;
     }
@@ -54,7 +55,7 @@ public class OwsContact {
      *
      * @return
      */
-    @XmlElement(name="Phone",namespace = Namespaces.OWS)
+    @XmlElement(name = "Phone", namespace = Namespaces.OWS)
     public Telephone getPhone() {
         return phone;
     }
@@ -71,7 +72,7 @@ public class OwsContact {
      *
      * @return
      */
-    @XmlElement(name="OnlineResource",namespace = Namespaces.OWS)
+    @XmlElement(name = "OnlineResource", namespace = Namespaces.OWS)
     public OnlineResource getOnlineResource() {
         return onlineResource;
     }
@@ -83,5 +84,5 @@ public class OwsContact {
     public void setOnlineResource(OnlineResource onlineResource) {
         this.onlineResource = onlineResource;
     }
-    
+
 }

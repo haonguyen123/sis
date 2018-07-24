@@ -22,18 +22,19 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="RequestMethodType", namespace=Namespaces.OWS, propOrder = {
+@XmlType(name = "RequestMethodType", namespace = Namespaces.OWS, propOrder = {
     "contraint"
 })
-@XmlRootElement(name="RequestMethod",namespace=Namespaces.OWS)
-public class RequestMethod extends OnlineResource{
+@XmlRootElement(name = "RequestMethod", namespace = Namespaces.OWS)
+public class RequestMethod extends OnlineResource {
+
     private OwsDomain contraint;
 
     /**
      *
      * @return
      */
-    @XmlElement(name="Contraint",namespace=Namespaces.OWS)
+    @XmlElement(name = "Contraint", namespace = Namespaces.OWS)
     public OwsDomain getContraint() {
         return contraint;
     }
@@ -45,5 +46,5 @@ public class RequestMethod extends OnlineResource{
     public void setContraint(OwsDomain contraint) {
         this.contraint = contraint;
     }
-    
+
 }

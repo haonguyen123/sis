@@ -17,19 +17,17 @@
 package org.apache.sis.services.ows;
 
 import javax.xml.bind.annotation.*;
-import org.apache.sis.metadata.iso.identification.DefaultServiceIdentification;
-
 
 /**
  *
  * @author haonguyen
  */
-@XmlType(name="ServiceIdentificationType", namespace=Namespaces.OWS, propOrder = {
+@XmlType(name = "ServiceIdentificationType", namespace = Namespaces.OWS, propOrder = {
     "serviceType",
-    "serviceTypeVersion",
-})
-@XmlRootElement(name="ServiceIdentification",namespace=Namespaces.OWS)
-public class OwsServiceIdentification extends Description{
+    "serviceTypeVersion",})
+@XmlRootElement(name = "ServiceIdentification", namespace = Namespaces.OWS)
+public class OwsServiceIdentification extends Description {
+
     private String serviceType;
     private Version serviceTypeVersion;
 
@@ -37,7 +35,7 @@ public class OwsServiceIdentification extends Description{
      *
      * @return
      */
-    @XmlElement(name="ServiceType",namespace = Namespaces.OWS)
+    @XmlElement(name = "ServiceType", namespace = Namespaces.OWS)
     public String getServiceType() {
         return serviceType;
     }
@@ -54,7 +52,7 @@ public class OwsServiceIdentification extends Description{
      *
      * @return
      */
-    @XmlElement(name="ServiceTypeVersion",namespace = Namespaces.OWS)
+    @XmlElement(name = "ServiceTypeVersion", namespace = Namespaces.OWS)
     public Version getServiceTypeVersion() {
         return serviceTypeVersion;
     }
@@ -66,6 +64,5 @@ public class OwsServiceIdentification extends Description{
     public void setServiceTypeVersion(Version serviceTypeVersion) {
         this.serviceTypeVersion = serviceTypeVersion;
     }
-    
-    
+
 }

@@ -15,16 +15,15 @@
  * limitations under the License.
  */
 @XmlSchema(
-    elementFormDefault=XmlNsForm.QUALIFIED,
-    namespace="http://www.opengis.net/cat/csw/3.0",
-    xmlns={
-        @XmlNs(prefix="csw30",namespaceURI=Namespaces.CSW),
-        @XmlNs(prefix="dc", namespaceURI=Namespaces.DC),
-        @XmlNs(prefix="dct",namespaceURI=Namespaces.DCT),
-        @XmlNs(prefix="ows20",namespaceURI=Namespaces.OWS),
-        @XmlNs(prefix="fes",namespaceURI=Namespaces.FES),
-        @XmlNs(prefix="gml",namespaceURI=Namespaces.GML),
-    }
+        elementFormDefault = XmlNsForm.QUALIFIED,
+        namespace = "http://www.opengis.net/cat/csw/3.0",
+        xmlns = {
+            @XmlNs(prefix = "csw30", namespaceURI = Namespaces.CSW),
+            @XmlNs(prefix = "dc", namespaceURI = Namespaces.DC),
+            @XmlNs(prefix = "dct", namespaceURI = Namespaces.DCT),
+            @XmlNs(prefix = "ows20", namespaceURI = Namespaces.OWS),
+            @XmlNs(prefix = "fes", namespaceURI = Namespaces.FES),
+            @XmlNs(prefix = "gml", namespaceURI = Namespaces.GML),}
 )
 package org.apache.sis.services.csw.manager;
 

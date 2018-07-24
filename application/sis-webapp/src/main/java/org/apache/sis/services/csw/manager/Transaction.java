@@ -23,11 +23,12 @@ import org.apache.sis.services.csw.common.RequestBase;
  *
  * @author haonguyen
  */
-@XmlType(name="TransactionType",namespace=Namespaces.CSW)
-@XmlRootElement(name="Transaction",namespace=Namespaces.CSW)
-public class Transaction extends RequestBase{
+@XmlType(name = "TransactionType", namespace = Namespaces.CSW)
+@XmlRootElement(name = "Transaction", namespace = Namespaces.CSW)
+public class Transaction extends RequestBase {
+
     private Object choice;
-    private boolean verboseResponse = false;
+    private boolean verboseResponse;
     private String requestId;
 
     /**
@@ -35,11 +36,9 @@ public class Transaction extends RequestBase{
      * @return
      */
     @XmlElements({
-        @XmlElement(name="Insert",type=Insert.class),
-        @XmlElement(name="Update",type=Update.class),
-        @XmlElement(name="Delete",type=Delete.class)
-    
-    })
+        @XmlElement(name = "Insert", type = Insert.class),
+        @XmlElement(name = "Update", type = Update.class),
+        @XmlElement(name = "Delete", type = Delete.class)})
     public Object getChoice() {
         return choice;
     }
@@ -85,5 +84,5 @@ public class Transaction extends RequestBase{
     public void setRequestId(String requestId) {
         this.requestId = requestId;
     }
-    
+
 }

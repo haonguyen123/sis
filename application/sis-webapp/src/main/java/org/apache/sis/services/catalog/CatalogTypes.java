@@ -86,6 +86,5 @@ public class CatalogTypes extends TypeRegistration {
         addTo.add(GetRecordsResponse.class);
         addTo.add(DefaultSortBy.class);
         addTo.add(DefaultPropertyName.class);
-        
     }
 }

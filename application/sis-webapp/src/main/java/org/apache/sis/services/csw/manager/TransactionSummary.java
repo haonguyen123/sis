@@ -24,13 +24,13 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author haonguyen
  */
-@XmlType(name = "TransactionSummaryType", namespace = Namespaces.CSW, propOrder = {    
+@XmlType(name = "TransactionSummaryType", namespace = Namespaces.CSW, propOrder = {
     "totalInserted",
     "totalUpdated",
-    "totalDeleted",
-})
+    "totalDeleted",})
 @XmlRootElement(name = "TransactionSummary")
 public class TransactionSummary {
+
     private int totalInserted;
     private int totalUpdated;
     private int totalDeleted;
@@ -85,5 +85,5 @@ public class TransactionSummary {
     public void setTotalDeleted(int totalDeleted) {
         this.totalDeleted = totalDeleted;
     }
-    
+
 }

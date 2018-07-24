@@ -1,3 +1,5 @@
+package org.apache.sis.services.catalog;
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -14,8 +16,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sis.services.catalog;
 
+
+import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.util.UUID;
 import javax.ws.rs.*;
@@ -35,9 +39,6 @@ import org.apache.sis.services.csw.fes.DefaultSortBy;
 import org.apache.sis.services.csw.impl.DiscoveryImpl;
 import org.apache.sis.storage.DataStoreException;
 import org.apache.sis.xml.XML;
-import org.opengis.filter.expression.ExpressionVisitor;
-import org.opengis.filter.expression.PropertyName;
-import org.opengis.filter.sort.SortBy;
 import org.opengis.filter.sort.SortOrder;
 
 /**
@@ -63,7 +64,6 @@ public class GetCapabilitiesService {
         } else {
             return null;
         }
-
     }
 
     public class O_GetCapabilities {
@@ -100,20 +100,20 @@ public class GetCapabilitiesService {
 
         @GET
         @Consumes("application/xml")
-        public Response getRecords(   @QueryParam("requestid") URI requestId,
-                                    @QueryParam("startposition") @DefaultValue("1") int startPosition,
-                                    @QueryParam("maxrecords") @DefaultValue("10") int maxRecords,
-                                    @QueryParam("sortby") String sortby,
-                                    @QueryParam("q") String q,
-                                    @QueryParam("recordids") String recordids,
-                                    @QueryParam("bbox") String bbox,
-        //                                    @QueryParam("geometry") String geometry,
-        //                                    @QueryParam("relation") String relation,
-                                    @QueryParam("time") String time,
-        //                                    @QueryParam("trelation") String trelation,
-                                    @QueryParam("constraintlanguage") String constraintlanguage,
-                                    @QueryParam("constraintlanguageversion") String constraintlanguageversion,
-                                    @QueryParam("constraint") String constraint
+        public Response getRecords(@QueryParam("requestid") URI requestId,
+                @QueryParam("startposition") @DefaultValue("1") int startPosition,
+                @QueryParam("maxrecords") @DefaultValue("10") int maxRecords,
+                @QueryParam("sortby") String sortby,
+                @QueryParam("q") String q,
+                @QueryParam("recordids") String recordids,
+                @QueryParam("bbox") String bbox,
+                //                                    @QueryParam("geometry") String geometry,
+                //                                    @QueryParam("relation") String relation,
+                @QueryParam("time") String time,
+                //                                    @QueryParam("trelation") String trelation,
+                @QueryParam("constraintlanguage") String constraintlanguage,
+                @QueryParam("constraintlanguageversion") String constraintlanguageversion,
+                @QueryParam("constraint") String constraint
         ) throws JAXBException, DataStoreException {
             GetRecordsResponse record = new GetRecordsResponse();
             Discovery discovery = new DiscoveryImpl();
@@ -124,13 +124,11 @@ public class GetCapabilitiesService {
             if (requestId == null) {
                 params.setRequestId(URI.create("" + UUID.randomUUID() + ""));
             }
-            
             BasicRetrievalOptions option = new BasicRetrievalOptions();
             option.setMaxRecords(maxRecords);
-            
             option.setStartPosition(startPosition);
             params.setBasicRetrievalOptions(option);
-            Query query = new Query ();
+            Query query = new Query();
             if (sortby != null) {
                 String[] element = sortby.split(":");
                 if (element.length == 2) {
@@ -138,18 +136,17 @@ public class GetCapabilitiesService {
                     DefaultPropertyName name = new DefaultPropertyName();
                     name.setPropertyName(element[0]);
                     sort.setPropertyName(name);
-                    if ("A".equals(element[1]) ) {
+                    if ("A".equals(element[1])) {
                         sort.setSortOrder(SortOrder.ASCENDING);
                     }
-                    if ("D".equals(element[1]) ) {
+                    if ("D".equals(element[1])) {
                         sort.setSortOrder(SortOrder.DESCENDING);
                     }
                     query.setSortBy(sort);
                     params.setQuery(query);
                 }
-                
             }
-            if (q != null || recordids != null || bbox != null || time !=null) {
+            if (q != null || recordids != null || bbox != null || time != null) {
                 FilterFesKvp fes = new FilterFesKvp();
                 if (q != null) {
                     fes.setQ(q);
@@ -165,20 +162,15 @@ public class GetCapabilitiesService {
                 }
                 record = discovery.getRecords(params, fes);
             }
-            
             if (constraint != null && "FIQL".equals(constraintlanguage)) {
                 Constraint cons = new Constraint();
                 cons.setSearch(constraint);
-                
                 query.setConstraint(cons);
                 params.setQuery(query);
             }
-            
-            
 //            System.out.println(constraint);
 //            long elapsedTime = System.currentTimeMillis() - start;
-
-            if (q == null && recordids == null && bbox == null && time ==null) {
+            if (q == null && recordids == null && bbox == null && time == null) {
                 record = discovery.getRecords(params);
             }
 //            record.getSearchResults().setElapsedTime(elapsedTime);
@@ -195,18 +187,24 @@ public class GetCapabilitiesService {
     }
 
     public class O_GetDomain {
-
     }
 
     public class O_Harvest {
-
     }
 
     public class O_UnHarvest {
-
     }
 
     public class O_Transaction {
-
+    }
+    @GET
+    @Path("/download/{name}")
+    @Produces("text/plain")
+    public Response getFile(@PathParam("name") String name) throws DataStoreException  {
+        Discovery discovery = new DiscoveryImpl();
+        File file = discovery.getPath(name);
+        Response.ResponseBuilder response = Response.ok((Object) file);
+        response.header("Content-Disposition", "attachment; filename=" + file.getName());
+        return response.build();
     }
 }

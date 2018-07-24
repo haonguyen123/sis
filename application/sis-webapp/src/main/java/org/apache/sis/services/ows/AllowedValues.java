@@ -23,15 +23,16 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlRootElement(name="AllowedValues",namespace=Namespaces.OWS)
+@XmlRootElement(name = "AllowedValues", namespace = Namespaces.OWS)
 public class AllowedValues {
+
     private List<Value> value;
 
     /**
      *
      * @return
      */
-    @XmlElement(name="Value",namespace = Namespaces.OWS)
+    @XmlElement(name = "Value", namespace = Namespaces.OWS)
     public List<Value> getValue() {
         return value;
     }
@@ -43,5 +44,5 @@ public class AllowedValues {
     public void setValue(List<Value> value) {
         this.value = value;
     }
-    
+
 }

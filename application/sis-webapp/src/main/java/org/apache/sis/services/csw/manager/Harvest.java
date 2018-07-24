@@ -24,20 +24,21 @@ import org.apache.sis.services.csw.common.RequestBase;
  *
  * @author haonguyen
  */
-@XmlType(name="HarvestType",namespace = Namespaces.CSW)
-@XmlRootElement(name="Harvest",namespace = Namespaces.CSW)
-public class Harvest extends RequestBase{
+@XmlType(name = "HarvestType", namespace = Namespaces.CSW)
+@XmlRootElement(name = "Harvest", namespace = Namespaces.CSW)
+public class Harvest extends RequestBase {
+
     private String source;
     private String resourceType;
     private String resourceFormat = "application/xml";
-    private Duration duration ;
+    private Duration duration;
     private String responseHandler;
 
     /**
      *
      * @return
      */
-    @XmlElement(name="Source")
+    @XmlElement(name = "Source")
     public String getSource() {
         return source;
     }
@@ -54,7 +55,7 @@ public class Harvest extends RequestBase{
      *
      * @return
      */
-    @XmlElement(name="ResourceType")
+    @XmlElement(name = "ResourceType")
     public String getResourceType() {
         return resourceType;
     }
@@ -71,7 +72,7 @@ public class Harvest extends RequestBase{
      *
      * @return
      */
-    @XmlElement(name="ResourceFormat")
+    @XmlElement(name = "ResourceFormat")
     public String getResourceFormat() {
         return resourceFormat;
     }
@@ -88,7 +89,7 @@ public class Harvest extends RequestBase{
      *
      * @return
      */
-    @XmlElement(name="duration")
+    @XmlElement(name = "duration")
     public Duration getDuration() {
         return duration;
     }
@@ -105,7 +106,7 @@ public class Harvest extends RequestBase{
      *
      * @return
      */
-    @XmlElement(name="ResponseHandler")
+    @XmlElement(name = "ResponseHandler")
     public String getResponseHandler() {
         return responseHandler;
     }
@@ -117,5 +118,5 @@ public class Harvest extends RequestBase{
     public void setResponseHandler(String responseHandler) {
         this.responseHandler = responseHandler;
     }
-    
+
 }

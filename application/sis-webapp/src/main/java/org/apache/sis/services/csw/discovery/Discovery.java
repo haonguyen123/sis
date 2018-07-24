@@ -16,6 +16,8 @@
  */
 package org.apache.sis.services.csw.discovery;
 
+import java.io.File;
+
 
 /**
  *
@@ -43,4 +45,5 @@ public interface Discovery {
      * @return
      */
     public GetDomainResponse getDomain(GetDomain getDomain);
+    public File getPath(String name);
 }

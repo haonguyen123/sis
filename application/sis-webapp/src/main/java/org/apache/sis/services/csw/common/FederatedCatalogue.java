@@ -24,9 +24,10 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author haonguyen
  */
-@XmlType(name=" FederatedCatalogueType")
-@XmlRootElement(name="FederatedCatalogue",namespace=Namespaces.CSW)
+@XmlType(name = " FederatedCatalogueType")
+@XmlRootElement(name = "FederatedCatalogue", namespace = Namespaces.CSW)
 public class FederatedCatalogue {
+
     private String catalogueURL;
     private long timeout;
 
@@ -63,5 +64,5 @@ public class FederatedCatalogue {
     public void setTimeout(long timeout) {
         this.timeout = timeout;
     }
-    
+
 }

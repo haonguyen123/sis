@@ -21,17 +21,18 @@ import javax.xml.bind.annotation.*;
 import org.apache.sis.services.csw.common.AbstractQuery;
 import org.apache.sis.services.csw.common.BasicRetrievalOptions;
 import org.apache.sis.services.csw.common.RequestBase;
+
 /**
  *
  * @author haonguyen
  */
-@XmlType(name="GetRecordsType",namespace=Namespaces.CSW,propOrder = {    
+@XmlType(name = "GetRecordsType", namespace = Namespaces.CSW, propOrder = {
     "distributedSearch",
     "responseHandler",
-    "query",
-})
-@XmlRootElement(name="GetRecords",namespace = Namespaces.CSW)
+    "query",})
+@XmlRootElement(name = "GetRecords", namespace = Namespaces.CSW)
 public class GetRecords extends RequestBase {
+
     private DistributedSearch distributedSearch;
     private String responseHandler;
     private Object query;
@@ -42,7 +43,7 @@ public class GetRecords extends RequestBase {
      *
      * @return
      */
-    @XmlElement(name="DistributedSearch",namespace=Namespaces.CSW)
+    @XmlElement(name = "DistributedSearch", namespace = Namespaces.CSW)
     public DistributedSearch getDistributedSearch() {
         return distributedSearch;
     }
@@ -59,7 +60,7 @@ public class GetRecords extends RequestBase {
      *
      * @return
      */
-    @XmlElement(name="ResponseHandler",namespace=Namespaces.CSW)
+    @XmlElement(name = "ResponseHandler", namespace = Namespaces.CSW)
     public String getResponseHandler() {
         return responseHandler;
     }
@@ -76,7 +77,8 @@ public class GetRecords extends RequestBase {
      *
      * @return
      */
-    @XmlElements({@XmlElement(name = "AbstractQuery",type = AbstractQuery.class)})
+    @XmlElements({
+        @XmlElement(name = "AbstractQuery", type = AbstractQuery.class)})
     public Object getQuery() {
         return query;
     }
@@ -122,5 +124,4 @@ public class GetRecords extends RequestBase {
     public void setBasicRetrievalOptions(BasicRetrievalOptions basicRetrievalOptions) {
         this.basicRetrievalOptions = basicRetrievalOptions;
     }
-    
 }

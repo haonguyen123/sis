@@ -22,14 +22,15 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="ServiceProviderType", namespace=Namespaces.OWS, propOrder = {
+@XmlType(name = "ServiceProviderType", namespace = Namespaces.OWS, propOrder = {
     "providerName",
     "providerSite",
     "serviceContact"
 })
-@XmlRootElement(name="ServiceProvider",namespace=Namespaces.OWS)
+@XmlRootElement(name = "ServiceProvider", namespace = Namespaces.OWS)
 public class OwsServiceProvider {
-    private String  providerName;
+
+    private String providerName;
     private OnlineResource providerSite;
     private ResponsiblePartySubset serviceContact;
 
@@ -37,7 +38,7 @@ public class OwsServiceProvider {
      *
      * @return
      */
-    @XmlElement(name="ProviderName",namespace = Namespaces.OWS)
+    @XmlElement(name = "ProviderName", namespace = Namespaces.OWS)
     public String getProviderName() {
         return providerName;
     }
@@ -54,7 +55,7 @@ public class OwsServiceProvider {
      *
      * @return
      */
-    @XmlElement(name="ProviderSite",namespace = Namespaces.OWS)
+    @XmlElement(name = "ProviderSite", namespace = Namespaces.OWS)
     public OnlineResource getProviderSite() {
         return providerSite;
     }
@@ -71,7 +72,7 @@ public class OwsServiceProvider {
      *
      * @return
      */
-    @XmlElement(name="ServiceContact",namespace = Namespaces.OWS)
+    @XmlElement(name = "ServiceContact", namespace = Namespaces.OWS)
     public ResponsiblePartySubset getServiceContact() {
         return serviceContact;
     }
@@ -83,5 +84,5 @@ public class OwsServiceProvider {
     public void setServiceContact(ResponsiblePartySubset serviceContact) {
         this.serviceContact = serviceContact;
     }
-    
+
 }

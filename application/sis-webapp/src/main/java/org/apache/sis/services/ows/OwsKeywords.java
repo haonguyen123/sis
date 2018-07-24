@@ -23,18 +23,18 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="KeywordsType", namespace=Namespaces.OWS, propOrder = {
-    "keyword",
-})
-@XmlRootElement(name="Keywords",namespace=Namespaces.OWS)
+@XmlType(name = "KeywordsType", namespace = Namespaces.OWS, propOrder = {
+    "keyword",})
+@XmlRootElement(name = "Keywords", namespace = Namespaces.OWS)
 public class OwsKeywords {
-    private List<String> keyword ;
+
+    private List<String> keyword;
 
     /**
      *
      * @return
      */
-    @XmlElement(name="Keyword",namespace = Namespaces.OWS)
+    @XmlElement(name = "Keyword", namespace = Namespaces.OWS)
     public List<String> getKeyword() {
         return keyword;
     }
@@ -46,5 +46,5 @@ public class OwsKeywords {
     public void setKeyword(List<String> keyword) {
         this.keyword = keyword;
     }
-    
+
 }

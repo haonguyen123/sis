@@ -23,9 +23,10 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="AcceptVersionsType",namespace = Namespaces.OWS)
-@XmlRootElement(name="AcceptVersions",namespace = Namespaces.OWS)
+@XmlType(name = "AcceptVersionsType", namespace = Namespaces.OWS)
+@XmlRootElement(name = "AcceptVersions", namespace = Namespaces.OWS)
 public class AcceptVersions {
+
     private List<Version> value;
 
     /**

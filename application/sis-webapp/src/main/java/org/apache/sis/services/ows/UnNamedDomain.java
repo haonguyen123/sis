@@ -22,18 +22,19 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="UnNamedDomainType", namespace=Namespaces.OWS, propOrder = {
+@XmlType(name = "UnNamedDomainType", namespace = Namespaces.OWS, propOrder = {
     "allowedValues"
 })
-@XmlRootElement(name="UnNamedDomain",namespace=Namespaces.OWS)
+@XmlRootElement(name = "UnNamedDomain", namespace = Namespaces.OWS)
 public class UnNamedDomain {
+
     private AllowedValues allowedValues;
 
     /**
      *
      * @return
      */
-    @XmlElement(name="AllowedValues",namespace = Namespaces.OWS)
+    @XmlElement(name = "AllowedValues", namespace = Namespaces.OWS)
 
     public AllowedValues getAllowedValues() {
         return allowedValues;
@@ -46,6 +47,5 @@ public class UnNamedDomain {
     public void setAllowedValues(AllowedValues allowedValues) {
         this.allowedValues = allowedValues;
     }
-    
-    
+
 }

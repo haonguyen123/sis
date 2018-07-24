@@ -29,12 +29,10 @@ public enum RequiredElementSetNamesType {
      *
      */
     brief,
-
     /**
      *
      */
     summary,
-
     /**
      *
      */
