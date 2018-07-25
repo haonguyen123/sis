@@ -23,13 +23,14 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="DescriptionType", namespace=Namespaces.OWS, propOrder = {
+@XmlType(name = "DescriptionType", namespace = Namespaces.OWS, propOrder = {
     "title",
     "abstracts",
     "keywords"
 })
-@XmlRootElement(name="Description",namespace=Namespaces.OWS)
+@XmlRootElement(name = "Description", namespace = Namespaces.OWS)
 public class Description {
+
     private String title;
     private String abstracts;
     private List<OwsKeywords> keywords;
@@ -38,11 +39,11 @@ public class Description {
      *
      * @return
      */
-    @XmlElement(name="Title",namespace = Namespaces.OWS)
+    @XmlElement(name = "Title", namespace = Namespaces.OWS)
     public String getTitle() {
         return title;
     }
-    
+
     /**
      *
      * @param title
@@ -55,8 +56,8 @@ public class Description {
      *
      * @return
      */
-    @XmlElement(name="Abstract",namespace = Namespaces.OWS)
-     public String getAbstracts() {
+    @XmlElement(name = "Abstract", namespace = Namespaces.OWS)
+    public String getAbstracts() {
         return abstracts;
     }
 
@@ -72,7 +73,7 @@ public class Description {
      *
      * @return
      */
-    @XmlElement(name="Keywords",namespace = Namespaces.OWS)
+    @XmlElement(name = "Keywords", namespace = Namespaces.OWS)
     public List<OwsKeywords> getKeywords() {
         return keywords;
     }
@@ -84,6 +85,5 @@ public class Description {
     public void setKeywords(List<OwsKeywords> keywords) {
         this.keywords = keywords;
     }
-    
-    
+
 }

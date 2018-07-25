@@ -17,6 +17,7 @@
 package org.apache.sis.services.csw.discovery;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -43,9 +44,9 @@ import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.metadata.extent.GeographicExtent;
 import org.opengis.metadata.identification.Identification;
 import org.opengis.metadata.identification.TopicCategory;
+import org.opengis.metadata.lineage.Lineage;
 import org.opengis.metadata.lineage.Source;
 import org.opengis.metadata.maintenance.ScopeCode;
-import org.opengis.metadata.quality.DataQuality;
 import org.opengis.util.InternationalString;
 
 /**
@@ -56,23 +57,22 @@ import org.opengis.util.InternationalString;
     "title",
     "creator",
     "subject",
-    "description",             
+    "description",
     "publisher",
     "contributor",
     "date",
     "type",
     "format",
     "identifier",
-    "source",     
+    "source",
     "language",
     "relation",
     "rights",
-    "coverage",
-    
-})
+    "coverage",})
 @XmlRootElement(name = "Record", namespace = Namespaces.CSW)
 
-public class Record extends AbstractRecord{
+public class Record extends AbstractRecord {
+
     private String title;
     private String creator;
     private String subject;
@@ -93,7 +93,7 @@ public class Record extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "title",namespace=Namespaces.DC)
+    @XmlElement(name = "title", namespace = Namespaces.DC)
     public String getTitle() {
         return title;
     }
@@ -110,7 +110,7 @@ public class Record extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "creator",namespace=Namespaces.DC)
+    @XmlElement(name = "creator", namespace = Namespaces.DC)
     public String getCreator() {
         return creator;
     }
@@ -127,7 +127,7 @@ public class Record extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "subject",namespace=Namespaces.DC)
+    @XmlElement(name = "subject", namespace = Namespaces.DC)
     public String getSubject() {
         return subject;
     }
@@ -144,7 +144,7 @@ public class Record extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "abstract",namespace=Namespaces.DCT)
+    @XmlElement(name = "abstract", namespace = Namespaces.DCT)
     public String getDescription() {
         return description;
     }
@@ -161,7 +161,7 @@ public class Record extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "publisher",namespace=Namespaces.DC)
+    @XmlElement(name = "publisher", namespace = Namespaces.DC)
     public String getPublisher() {
         return publisher;
     }
@@ -178,7 +178,7 @@ public class Record extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "contributor",namespace=Namespaces.DC)
+    @XmlElement(name = "contributor", namespace = Namespaces.DC)
     public String getContributor() {
         return contributor;
     }
@@ -195,7 +195,7 @@ public class Record extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "modified",namespace=Namespaces.DCT)
+    @XmlElement(name = "modified", namespace = Namespaces.DCT)
     public Date getDate() {
         return date;
     }
@@ -212,7 +212,7 @@ public class Record extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "type",namespace=Namespaces.DC)
+    @XmlElement(name = "type", namespace = Namespaces.DC)
     public String getType() {
         return type;
     }
@@ -229,7 +229,7 @@ public class Record extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "format",namespace=Namespaces.DC)
+    @XmlElement(name = "format", namespace = Namespaces.DC)
     public String getFormat() {
         return format;
     }
@@ -246,7 +246,7 @@ public class Record extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "identifier",namespace=Namespaces.DC)
+    @XmlElement(name = "identifier", namespace = Namespaces.DC)
     public String getIdentifier() {
         return identifier;
     }
@@ -263,7 +263,7 @@ public class Record extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "source",namespace=Namespaces.DC)
+    @XmlElement(name = "source", namespace = Namespaces.DC)
     public String getSource() {
         return source;
     }
@@ -280,7 +280,7 @@ public class Record extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "language",namespace=Namespaces.DC)
+    @XmlElement(name = "language", namespace = Namespaces.DC)
     public String getLanguage() {
         return language;
     }
@@ -297,7 +297,7 @@ public class Record extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "relation",namespace=Namespaces.DC)
+    @XmlElement(name = "relation", namespace = Namespaces.DC)
     public String getRelation() {
         return relation;
     }
@@ -314,7 +314,7 @@ public class Record extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "BoundingBox",namespace=Namespaces.OWS)
+    @XmlElement(name = "BoundingBox", namespace = Namespaces.OWS)
     public BoundingBox getCoverage() {
         return coverage;
     }
@@ -331,7 +331,7 @@ public class Record extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "rights",namespace=Namespaces.DC)
+    @XmlElement(name = "rights", namespace = Namespaces.DC)
     public String getRights() {
         return rights;
     }
@@ -342,13 +342,13 @@ public class Record extends AbstractRecord{
      */
     public void setRights(String rights) {
         this.rights = rights;
-    } 
+    }
 
     /**
      *
      */
-    public Record(){
-        
+    public Record() {
+
     }
 
     /**
@@ -385,12 +385,12 @@ public class Record extends AbstractRecord{
                     if (i18n != null) {
                         titles.add(i18n.toString(locale));
                     }
-                    if(creator == null) {
+                    if (creator == null) {
                         for (final Responsibility responsibility : citation.getCitedResponsibleParties()) {
-                            for( final Party party : responsibility.getParties()){
+                            for (final Party party : responsibility.getParties()) {
                                 creator = party.getName().toString();
                                 if (creator != null) {
-                                    break;                      
+                                    break;
                                 }
                             }
                         }
@@ -404,14 +404,14 @@ public class Record extends AbstractRecord{
                         }
                     }
                     if (format == null) {
-                        for (final Format form : identification.getResourceFormats()){
-                            for (final InternationalString name : form.getFormatSpecificationCitation().getAlternateTitles()){
-                                format = name.toString();
-                            }
+                        for (final Format form : identification.getResourceFormats()) {
+//                            for (final Citation name : form.getFormatSpecificationCitation()){
+                            format = form.getFormatSpecificationCitation().getTitle().toString();
+//                            }
                         }
                     }
-                    if (subject == null ){
-                        for(final TopicCategory topic : identification.getTopicCategories()){
+                    if (subject == null) {
+                        for (final TopicCategory topic : identification.getTopicCategories()) {
                             subject = topic.toString();
                         }
                     }
@@ -438,15 +438,15 @@ public class Record extends AbstractRecord{
         if (bbox != null) {
             coverage = new BoundingBox(bbox);
         }
-        if( language == null) {
-            for( final Locale local :metadata.getLanguages() ){
-                language =  local.toString();
+        if (language == null) {
+            for (final Locale local : metadata.getLanguages()) {
+                language = local.toString();
             }
-            
+
         }
         title = toString(titles, System.lineSeparator());
         titles.clear();
-        
+
         // Collect all formats, ignoring duplicated values.
         for (final Distribution distribution : metadata.getDistributionInfo()) {
             for (final Format df : distribution.getDistributionFormats()) {
@@ -473,15 +473,16 @@ public class Record extends AbstractRecord{
             code = ScopeCode.DATASET;       // Default value specified by OGC 07-045.
         }
         if (source == null) {
-            for (final DataQuality dataquality : metadata.getDataQualityInfo()){
-                for(final Source sou : dataquality.getLineage().getSources()){
+            for (final Lineage ligne : metadata.getResourceLineages()) {
+                for (final Source sou : ligne.getSources()) {
                     source = sou.getDescription().toString();
                 }
             }
         }
-        
+
         type = Types.getCodeName(code);
     }
+
     private static String toString(final Set<String> items, final String separator) {
         items.remove(null);         // Safety in case the user metadata contains null elements.
         final Iterator<String> it = items.iterator();
@@ -498,6 +499,7 @@ public class Record extends AbstractRecord{
         }
         return buffer.toString();
     }
+
     private void setModified(final Collection<? extends CitationDate> dates) {
         if (dates != null) {                            // Paranoiac check.
             for (final CitationDate date1 : dates) {
@@ -513,4 +515,41 @@ public class Record extends AbstractRecord{
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "Record{" + "title=" + title + ", creator=" + creator + ", subject=" + subject + ", description=" + description + ", publisher=" + publisher + ", contributor=" + contributor + ", date=" + date + ", type=" + type + ", format=" + format + ", identifier=" + identifier + ", source=" + source + ", language=" + language + ", relation=" + relation + ", coverage=" + coverage + ", rights=" + rights + '}';
+    }
+    public static Comparator<Record> dateComparatorA = new Comparator<Record>() {
+
+        @Override
+        public int compare(Record o1, Record o2) {
+           Date date1 = o1.getDate();
+           Date date2 = o2.getDate();
+           //ascending order
+           if (date1 == null) {
+                return (date2 == null) ? 0 : -1;
+            }
+            if (date2 == null) {
+                return 1;
+           }
+           return date1.compareTo(date2);
+        }
+    };
+    public static Comparator<Record> dateComparatorD = new Comparator<Record>() {
+
+        @Override
+        public int compare(Record o1, Record o2) {
+           Date date1 = o1.getDate();
+           Date date2 = o2.getDate();
+           //ascending order
+           if (date1 == null) {
+                return (date2 == null) ? 0 : 1;
+            }
+            if (date2 == null) {
+                return -1;
+           }
+           return date2.compareTo(date1);
+        }
+    };
 }

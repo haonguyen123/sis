@@ -31,56 +31,21 @@ import org.opengis.metadata.Metadata;
  * @author haonguyen
  */
 public class Read {
+
     private static MetadataWriter source;
-    private void write()  throws MetadataStoreException, DataStoreException, IOException{
+
+    private void write() throws MetadataStoreException, DataStoreException, IOException {
 //        DefaultCitation citation = new DefaultCitation();
 //        citation.setTitle(new SimpleInternationalString("haonguyen"));
 //        source.add(citation);
-          Metadata meta = new DefaultMetadata();
-          DataStore ds = DataStores.open(new File("/home/haonguyen/data/air_mon_1981-2010_ltm.nc"));
-          DataStore ds1 = DataStores.open(new File("/home/haonguyen/data/LC081260462017073101T1-SC20170831010609/LC08_L1TP_126046_20170731_20170811_01_T1_MTL.txt"));
-          meta=ds1.getMetadata();
-          System.out.println(ds.getMetadata());
-          System.out.println(ds1.getMetadata());
-
-
+        Metadata meta = new DefaultMetadata();
+        DataStore ds = DataStores.open(new File("/home/haonguyen/data/NetCDF/sst_ltm_1961-1990.nc"));
+//          DataStore ds1 = DataStores.open(new File("/home/haonguyen/data/LC081260462017073101T1-SC20170831010609/LC08_L1TP_126046_20170731_20170811_01_T1_MTL.txt"));
+//          meta=ds1.getMetadata();
+        System.out.println(ds.getMetadata());
+//          System.out.println(ds1.getMetadata());
 //          String id = source.add(meta);
 //          System.out.println(id);
 //        source.add(HardCodedCitations.SIS);
     }
-
-    /**
-     *
-     * @param args
-     * @throws DataStoreException
-     * @throws MetadataStoreException
-     * @throws SQLException
-     * @throws IOException
-     */
-//    public static void main(String[] args) throws DataStoreException, MetadataStoreException, SQLException, IOException {
-//        Read read = new Read();
-//        final  PGSimpleDataSource ds = new  PGSimpleDataSource();
-//        ds.setServerName("localhost");
-//        ds.setDatabaseName("csw");
-//        ds.setUser("postgres");
-//        ds.setPassword("1234");
-//        source = new MetadataWriter(MetadataStandard.ISO_19115, ds, null, null);
-////        MetadataSource metadata = source.getProvided();
-////        Metadata format = source.lookup(Metadata.class, "LC81260462017212LGN00");
-////          System.out.println(format.getAcquisitionInformation().);
-////        DataStore ds = DataStores.open(new File("/home/haonguyen/data/2005092200_sst_21-24.en.nc"));
-////
-////            Metadata a = source.lookup(Metadata.class,"fd");
-////            System.out.println(format);
-////        AbstractMetadata
-//        try {
-//            read.write();
-//
-//        } finally {
-//            source.close();
-//        }
-//        // Registration assuming that a JNDI implementation is available
-////        Context env = (Context) InitialContext.doLookup("java:comp/env");
-////        env.bind("jdbc/SpatialMetadata", ds);
-//    }
 }

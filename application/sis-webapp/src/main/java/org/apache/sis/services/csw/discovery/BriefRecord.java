@@ -24,15 +24,15 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author haonguyen
  */
-@XmlType(name = "BriefRecordType", namespace = Namespaces.CSW, propOrder = {    
+@XmlType(name = "BriefRecordType", namespace = Namespaces.CSW, propOrder = {
     "identifier",
     "title",
     "type",
-    "boundingBox",
-})
+    "boundingBox",})
 @XmlRootElement(name = "BriefRecord", namespace = Namespaces.CSW)
 
 public class BriefRecord extends AbstractRecord {
+
     private String title;
     private String type;
     private String identifier;
@@ -42,7 +42,7 @@ public class BriefRecord extends AbstractRecord {
      *
      * @return
      */
-    @XmlElement(name = "title",namespace=Namespaces.DC)
+    @XmlElement(name = "title", namespace = Namespaces.DC)
     public String getTitle() {
         return title;
     }
@@ -59,7 +59,7 @@ public class BriefRecord extends AbstractRecord {
      *
      * @return
      */
-    @XmlElement(name = "type",namespace=Namespaces.DC)
+    @XmlElement(name = "type", namespace = Namespaces.DC)
     public String getType() {
         return type;
     }
@@ -76,7 +76,7 @@ public class BriefRecord extends AbstractRecord {
      *
      * @return
      */
-    @XmlElement(name = "identifier",namespace=Namespaces.DC)
+    @XmlElement(name = "identifier", namespace = Namespaces.DC)
     public String getIdentifier() {
         return identifier;
     }
@@ -93,7 +93,7 @@ public class BriefRecord extends AbstractRecord {
      *
      * @return
      */
-    @XmlElement(name = "BoundingBox",namespace=Namespaces.OWS)
+    @XmlElement(name = "BoundingBox", namespace = Namespaces.OWS)
     public BoundingBox getBoundingBox() {
         return boundingBox;
     }
@@ -105,5 +105,4 @@ public class BriefRecord extends AbstractRecord {
     public void setBoundingBox(BoundingBox boundingBox) {
         this.boundingBox = boundingBox;
     }
-    
 }

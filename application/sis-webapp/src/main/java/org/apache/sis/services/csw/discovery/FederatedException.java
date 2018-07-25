@@ -23,18 +23,18 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name = "FederatedExceptionType", namespace = Namespaces.CSW, propOrder = {    
-    "exceptionReport",
-})
+@XmlType(name = "FederatedExceptionType", namespace = Namespaces.CSW, propOrder = {
+    "exceptionReport",})
 @XmlRootElement(name = "FederatedException", namespace = Namespaces.CSW)
 public class FederatedException extends FederatedSearchResultBase {
+
     private List<String> exceptionReport;
 
     /**
      *
      * @return
      */
-    @XmlElement(name = "ExceptionReport",namespace=Namespaces.OWS)
+    @XmlElement(name = "ExceptionReport", namespace = Namespaces.OWS)
     public List<String> getExceptionReport() {
         return exceptionReport;
     }
@@ -46,5 +46,5 @@ public class FederatedException extends FederatedSearchResultBase {
     public void setExceptionReport(List<String> exceptionReport) {
         this.exceptionReport = exceptionReport;
     }
-    
+
 }

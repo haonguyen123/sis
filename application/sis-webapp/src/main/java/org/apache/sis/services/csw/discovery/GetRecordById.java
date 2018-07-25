@@ -99,5 +99,4 @@ public class GetRecordById extends RequestBase{
     public void setOutputSchema(String outputSchema) {
         this.outputSchema = outputSchema;
     }
-    
 }

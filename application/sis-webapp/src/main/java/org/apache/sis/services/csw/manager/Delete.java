@@ -23,13 +23,15 @@ import javax.xml.namespace.QName;
  *
  * @author haonguyen
  */
-@XmlType(name="UpdateType",namespace = Namespaces.CSW)
-@XmlRootElement(name="Update",namespace=Namespaces.CSW)
+@XmlType(name = "UpdateType", namespace = Namespaces.CSW)
+@XmlRootElement(name = "Update", namespace = Namespaces.CSW)
 class Delete {
+
     private Constraint constraint;
     private QName typName;
     private String id;
-    @XmlElement(name="Constraint",namespace=Namespaces.CSW)
+
+    @XmlElement(name = "Constraint", namespace = Namespaces.CSW)
     public Constraint getConstraint() {
         return constraint;
     }
@@ -37,7 +39,7 @@ class Delete {
     public void setConstraint(Constraint constraint) {
         this.constraint = constraint;
     }
-    
+
     @XmlAttribute
     public QName getTypName() {
         return typName;
@@ -46,6 +48,7 @@ class Delete {
     public void setTypName(QName typName) {
         this.typName = typName;
     }
+
     @XmlAttribute
     public String getId() {
         return id;

@@ -23,9 +23,10 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="GetCapabilitiesType",namespace=Namespaces.OWS)
-@XmlRootElement(name="GetCapabilities",namespace=Namespaces.OWS)
+@XmlType(name = "GetCapabilitiesType", namespace = Namespaces.OWS)
+@XmlRootElement(name = "GetCapabilities", namespace = Namespaces.OWS)
 public class GetCapabilities {
+
     private AcceptVersions acceptVersions;
     private Sections sections;
     private AcceptFormats acceptFormats;
@@ -36,7 +37,7 @@ public class GetCapabilities {
      *
      * @return
      */
-    @XmlElement(name="AcceptVersions")
+    @XmlElement(name = "AcceptVersions")
     public AcceptVersions getAcceptVersions() {
         return acceptVersions;
     }
@@ -53,7 +54,7 @@ public class GetCapabilities {
      *
      * @return
      */
-    @XmlElement(name="Sections")
+    @XmlElement(name = "Sections")
     public Sections getSections() {
         return sections;
     }
@@ -70,7 +71,7 @@ public class GetCapabilities {
      *
      * @return
      */
-    @XmlElement(name="AcceptFormats")
+    @XmlElement(name = "AcceptFormats")
     public AcceptFormats getAcceptFormats() {
         return acceptFormats;
     }
@@ -87,7 +88,7 @@ public class GetCapabilities {
      *
      * @return
      */
-    @XmlElement(name="AcceptLanguages")
+    @XmlElement(name = "AcceptLanguages")
     public List<Language> getAcceptLanguages() {
         return AcceptLanguages;
     }
@@ -104,7 +105,7 @@ public class GetCapabilities {
      *
      * @return
      */
-    @XmlElement(name="UpdateSequence")
+    @XmlElement(name = "UpdateSequence")
     public UpdateSequence getUpdateSequence() {
         return updateSequence;
     }
@@ -116,5 +117,5 @@ public class GetCapabilities {
     public void setUpdateSequence(UpdateSequence updateSequence) {
         this.updateSequence = updateSequence;
     }
-    
+
 }

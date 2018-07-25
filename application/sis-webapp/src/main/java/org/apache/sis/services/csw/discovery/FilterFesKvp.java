@@ -14,28 +14,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sis.services.csw.common;
+package org.apache.sis.services.csw.discovery;
 
-import javax.xml.bind.annotation.XmlEnum;
 
 /**
  *
  * @author haonguyen
  */
-@XmlEnum
-public enum RequiredElementSetNamesType {
+public class FilterFesKvp {
+    private String q;
+    private String recordIds;
+    private String bbox;
+    private String time;
+    public String getQ() {
+        return q;
+    }
 
-    /**
-     *
-     */
-    brief,
-    /**
-     *
-     */
-    summary,
-    /**
-     *
-     */
-    full;
+    public void setQ(String q) {
+        this.q = q;
+    }
 
+    public String getRecordIds() {
+        return recordIds;
+    }
+
+    public void setRecordIds(String recordIds) {
+        this.recordIds = recordIds;
+    }
+
+    public String getBbox() {
+        return bbox;
+    }
+
+    public void setBbox(String bbox) {
+        this.bbox = bbox;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 }

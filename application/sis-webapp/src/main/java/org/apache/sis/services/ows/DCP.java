@@ -22,18 +22,19 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="DCP", namespace=Namespaces.OWS, propOrder = {
+@XmlType(name = "DCP", namespace = Namespaces.OWS, propOrder = {
     "http"
 })
-@XmlRootElement(name="DCP",namespace=Namespaces.OWS)
+@XmlRootElement(name = "DCP", namespace = Namespaces.OWS)
 public class DCP {
+
     private HTTP http;
 
     /**
      *
      * @return
      */
-    @XmlElement(name="HTTP",namespace = Namespaces.OWS)
+    @XmlElement(name = "HTTP", namespace = Namespaces.OWS)
     public HTTP getHttp() {
         return http;
     }
@@ -45,5 +46,5 @@ public class DCP {
     public void setHttp(HTTP http) {
         this.http = http;
     }
-    
+
 }

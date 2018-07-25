@@ -14,28 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sis.services.csw.common;
+@XmlSchema(
+    elementFormDefault=XmlNsForm.QUALIFIED,
+    namespace="http://www.opengis.net/cat/csw/3.0",
+    xmlns={
+        @XmlNs(prefix="csw30",namespaceURI=Namespaces.CSW),
+        @XmlNs(prefix="dc", namespaceURI=Namespaces.DC),
+        @XmlNs(prefix="dct",namespaceURI=Namespaces.DCT),
+        @XmlNs(prefix="ows20",namespaceURI=Namespaces.OWS),
+        @XmlNs(prefix="fes",namespaceURI=Namespaces.FES),
+        @XmlNs(prefix="gml",namespaceURI=Namespaces.GML),
+    }
+)
+package org.apache.sis.services.csw.fes;
 
-import javax.xml.bind.annotation.XmlEnum;
-
-/**
- *
- * @author haonguyen
- */
-@XmlEnum
-public enum RequiredElementSetNamesType {
-
-    /**
-     *
-     */
-    brief,
-    /**
-     *
-     */
-    summary,
-    /**
-     *
-     */
-    full;
-
-}
+import javax.xml.bind.annotation.XmlNs;
+import javax.xml.bind.annotation.XmlNsForm;
+import javax.xml.bind.annotation.XmlSchema;

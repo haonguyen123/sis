@@ -25,12 +25,12 @@ import org.opengis.util.CodeList;
  * @author haonguyen
  */
 public final class Section extends CodeList<Section> {
+
     private static final List<Section> VALUES = new ArrayList<>(5);
 
     /**
      *
      */
-
     public static final Section SERVICE_IDENTIFICATION = new Section("serviceIdentification");
 
     /**
@@ -52,6 +52,7 @@ public final class Section extends CodeList<Section> {
      *
      */
     public static final Section ALL = new Section("All");
+
     private Section(final String name) {
         super(name, VALUES);
     }
@@ -67,7 +68,7 @@ public final class Section extends CodeList<Section> {
      * @return
      */
     public static Section valueOf(String code) {
-        return valueOf( Section.class, code);
+        return valueOf(Section.class, code);
     }
-    
+
 }

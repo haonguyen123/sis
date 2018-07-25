@@ -125,6 +125,7 @@ import org.apache.sis.measure.Units;
 
 import static java.util.Collections.singleton;
 import static org.apache.sis.internal.util.StandardDateFormat.MILLISECONDS_PER_DAY;
+import org.apache.sis.util.iso.SimpleInternationalString;
 
 // Branch-dependent imports
 import org.opengis.feature.FeatureType;

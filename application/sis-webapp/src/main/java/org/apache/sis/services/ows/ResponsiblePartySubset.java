@@ -22,13 +22,14 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="ResponsiblePartySubsetType", namespace=Namespaces.OWS, propOrder = {
+@XmlType(name = "ResponsiblePartySubsetType", namespace = Namespaces.OWS, propOrder = {
     "individualName",
     "positionName",
     "contactInfo",
     "role"
 })
 public class ResponsiblePartySubset {
+
     private String individualName;
     private String positionName;
     private OwsContact contactInfo;
@@ -38,7 +39,7 @@ public class ResponsiblePartySubset {
      *
      * @return
      */
-    @XmlElement(name="IndividualName",namespace = Namespaces.OWS,required = true)
+    @XmlElement(name = "IndividualName", namespace = Namespaces.OWS, required = true)
     public String getIndividualName() {
         return individualName;
     }
@@ -55,7 +56,7 @@ public class ResponsiblePartySubset {
      *
      * @return
      */
-    @XmlElement(name="PositionName",namespace = Namespaces.OWS)
+    @XmlElement(name = "PositionName", namespace = Namespaces.OWS)
     public String getPositionName() {
         return positionName;
     }
@@ -72,7 +73,7 @@ public class ResponsiblePartySubset {
      *
      * @return
      */
-    @XmlElement(name="ContactInfo",namespace = Namespaces.OWS)
+    @XmlElement(name = "ContactInfo", namespace = Namespaces.OWS)
     public OwsContact getContactInfo() {
         return contactInfo;
     }
@@ -89,7 +90,7 @@ public class ResponsiblePartySubset {
      *
      * @return
      */
-    @XmlElement(name="Role",namespace = Namespaces.OWS)
+    @XmlElement(name = "Role", namespace = Namespaces.OWS)
     public String getRole() {
         return role;
     }
@@ -101,5 +102,5 @@ public class ResponsiblePartySubset {
     public void setRole(String role) {
         this.role = role;
     }
-    
+
 }

@@ -23,378 +23,163 @@
          xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0
                                http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>org.apache.sis</groupId>
-    <artifactId>application</artifactId>
-    <version>dev-1.0-SNAPSHOT</version>
-  </parent>
+    <parent>
+        <groupId>org.apache.sis</groupId>
+        <artifactId>application</artifactId>
+        <version>dev-1.0-SNAPSHOT</version>
+    </parent>
 
-  <groupId>org.apache.sis.application</groupId>
-  <artifactId>sis-webapp</artifactId>
-  <packaging>war</packaging>
-  <name>Apache SIS web services layer</name>
-  <url>http://sis.apache.org</url>
+    <groupId>org.apache.sis.application</groupId>
+    <artifactId>sis-webapp</artifactId>
+    <packaging>war</packaging>
+    <name>Apache SIS web services layer</name>
+    <url>http://sis.apache.org</url>
 
-  <dependencies>
-    <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.glassfish.jersey.containers</groupId>
-      <artifactId>jersey-container-servlet</artifactId>
-      <version>2.5.1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.glassfish.jersey.core</groupId>
-      <artifactId>jersey-client</artifactId>
-      <version>2.5.1</version>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context</artifactId>
-        <version>4.3.14.RELEASE</version>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-beans</artifactId>
-        <version>4.3.14.RELEASE</version>
-    </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-http -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-http</artifactId>
+            <version>9.4.8.v20171121</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-io -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-io</artifactId>
+            <version>9.4.8.v20171121</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>9.4.8.v20171121</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-util -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-util</artifactId>
+            <version>9.4.8.v20171121</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency> 
+            <groupId>org.apache.cxf</groupId> 
+            <artifactId>cxf-rt-frontend-jaxrs</artifactId> 
+            <version>3.2.4</version> 
+        </dependency> 
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http-jetty</artifactId>
+            <version>3.2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sis.non-free</groupId>        <!-- TODO: need to omit in release, for legal reasons. -->
+            <artifactId>sis-epsg</artifactId>
+            <version>${sis.non-free.version}</version>
+            <scope>runtime</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.opengis</groupId>
+                    <artifactId>geoapi</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>         
+            <artifactId>postgresql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.geonames</groupId>
+            <artifactId>georss-rome</artifactId>
+            <version>0.9.8</version>
+            <!-- We have to specify the version here because georss-rome is intentionally excluded from
+            the dependency management of the root pom.xml. The problem is that the artifact filename
+            is "georss-rome", but the <artifactId> element in its pom.xml declares "georss" without
+            the "-rome" suffix, which causes some environments to complain about this inconsistency.
+            Omitting the declaration from the root pom.xml limits the inconvenience to this "sis-webapp"
+            module only. -->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-extension-search</artifactId>
+            <version>3.2.4</version>
+        </dependency>
+ 
+        <!-- If working with OData -->
+        
+        <dependency>
+            <groupId>org.apache.olingo</groupId>
+            <artifactId>olingo-odata2-core-incubating</artifactId>
+            <version>1.1.0</version> 
+        </dependency>
+        <dependency>
+            <groupId>org.locationtech.jts</groupId>
+            <artifactId>jts-core</artifactId>
+            <version>1.15.0</version>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 
-    <dependency>
-      <groupId>org.glassfish.jersey.media</groupId>
-      <artifactId>jersey-media-moxy</artifactId>
-      <version>2.5.1</version>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.neethi</groupId>
-        <artifactId>neethi</artifactId>
-        <version>3.1.1</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/com.fasterxml.woodstox/woodstox-core -->
-    <dependency>
-        <groupId>com.fasterxml.woodstox</groupId>
-        <artifactId>woodstox-core</artifactId>
-        <version>5.0.3</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.codehaus.woodstox/stax2-api -->
-    <dependency>
-        <groupId>org.codehaus.woodstox</groupId>
-        <artifactId>stax2-api</artifactId>
-        <version>3.1.4</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.apache.mina</groupId>
-        <artifactId>mina-core</artifactId>
-        <version>2.0.15</version>
-    </dependency>
-    
-
-    <dependency>
-      <groupId>org.apache.cxf</groupId>
-      <artifactId>cxf-rt-frontend-jaxrs</artifactId>
-      <version>3.2.4</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-frontend-simple -->
-    <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-frontend-simple</artifactId>
-        <version>3.2.4</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-ws-rm -->
-    <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-ws-rm</artifactId>
-        <version>3.2.4</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-bindings-soap -->
-    <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-bindings-soap</artifactId>
-        <version>3.2.4</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-databinding-jaxb -->
-    <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-databinding-jaxb</artifactId>
-        <version>3.2.4</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-frontend-jaxws -->
-    <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-frontend-jaxws</artifactId>
-        <version>3.2.4</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-transports-udp -->
-    <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-transports-udp</artifactId>
-        <version>3.2.4</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-ws-addr -->
-    <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-ws-addr</artifactId>
-        <version>3.2.4</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-ws-policy -->
-    <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-ws-policy</artifactId>
-        <version>3.2.4</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-wsdl -->
-    <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-wsdl</artifactId>
-        <version>3.2.4</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.cxf.services.ws-discovery/cxf-services-ws-discovery-service -->
-    <dependency>
-        <groupId>org.apache.cxf.services.ws-discovery</groupId>
-        <artifactId>cxf-services-ws-discovery-service</artifactId>
-        <version>3.2.4</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.cxf.services.ws-discovery/cxf-services-ws-discovery-api -->
-    <dependency>
-        <groupId>org.apache.cxf.services.ws-discovery</groupId>
-        <artifactId>cxf-services-ws-discovery-api</artifactId>
-        <version>3.2.4</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
-    <dependency>
-        <groupId>javax.ws.rs</groupId>
-        <artifactId>javax.ws.rs-api</artifactId>
-        <version>2.1</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-security -->
-    <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-security</artifactId>
-        <version>9.4.8.v20171121</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-http -->
-    <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-http</artifactId>
-        <version>9.4.8.v20171121</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-io -->
-    <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-io</artifactId>
-        <version>9.4.8.v20171121</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server -->
-    <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-server</artifactId>
-        <version>9.4.8.v20171121</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-util -->
-    <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-util</artifactId>
-        <version>9.4.8.v20171121</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-    <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>1.7.25</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-jdk14 -->
-    <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-jdk14</artifactId>
-        <version>1.7.25</version>
-        <scope>test</scope>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.springframework/spring-expression -->
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-expression</artifactId>
-        <version>4.3.14.RELEASE</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.ws.xmlschema/xmlschema-core -->
-    <dependency>
-        <groupId>org.apache.ws.xmlschema</groupId>
-        <artifactId>xmlschema-core</artifactId>
-        <version>2.2.3</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.santuario/xmlsec -->
-    <dependency>
-        <groupId>org.apache.santuario</groupId>
-        <artifactId>xmlsec</artifactId>
-        <version>2.1.1</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-core -->
-    <dependency>
-        <groupId>com.sun.xml.bind</groupId>
-        <artifactId>jaxb-core</artifactId>
-        <version>2.2.11</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-xjc -->
-    <dependency>
-        <groupId>com.sun.xml.bind</groupId>
-        <artifactId>jaxb-xjc</artifactId>
-        <version>2.2.11</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl -->
-    <dependency>
-        <groupId>com.sun.xml.bind</groupId>
-        <artifactId>jaxb-impl</artifactId>
-        <version>2.2.11</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j -->
-    <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>jcl-over-slf4j</artifactId>
-        <version>1.7.25</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/wsdl4j/wsdl4j -->
-    <dependency>
-        <groupId>wsdl4j</groupId>
-        <artifactId>wsdl4j</artifactId>
-        <version>1.6.3</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.wss4j/wss4j-bindings -->
-    <dependency>
-        <groupId>org.apache.wss4j</groupId>
-        <artifactId>wss4j-bindings</artifactId>
-        <version>2.2.1</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.wss4j/wss4j-policy -->
-    <dependency>
-        <groupId>org.apache.wss4j</groupId>
-        <artifactId>wss4j-policy</artifactId>
-        <version>2.2.1</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-    <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>3.1.0</version>
-        <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.cxf</groupId>
-      <artifactId>cxf-rt-transports-http-jetty</artifactId>
-      <version>3.2.4</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpclient</artifactId>
-      <version>4.5.5</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-      <version>4.3.14.RELEASE</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.sis.non-free</groupId>        <!-- TODO: need to omit in release, for legal reasons. -->
-      <artifactId>sis-epsg</artifactId>
-      <version>${sis.non-free.version}</version>
-      <scope>runtime</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.opengis</groupId>
-          <artifactId>geoapi</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.derby</groupId>
-      <artifactId>derby</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>postgresql</groupId>         <!-- TODO: replace by org.postgresql dependency. -->
-      <artifactId>postgresql</artifactId>
-      <version>9.1-901-1.jdbc4</version>
-    </dependency>
-    <dependency>
-      <groupId>org.geonames</groupId>
-      <artifactId>georss-rome</artifactId>
-      <version>0.9.8</version>
-      <!-- We have to specify the version here because georss-rome is intentionally excluded from
-           the dependency management of the root pom.xml. The problem is that the artifact filename
-           is "georss-rome", but the <artifactId> element in its pom.xml declares "georss" without
-           the "-rome" suffix, which causes some environments to complain about this inconsistency.
-           Omitting the declaration from the root pom.xml limits the inconvenience to this "sis-webapp"
-           module only. -->
-    </dependency>
-  </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>reserve-ports</id>
-            <phase>pre-integration-test</phase>
-            <goals>
-              <goal>reserve-network-port</goal>
-            </goals>
-            <configuration>
-              <portNames>
-                <portName>jettyPort</portName>
-                <portName>stopPort</portName>
-              </portNames>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-maven-plugin</artifactId>
-        <configuration>
-          <stopKey>stopJetty</stopKey>
-          <stopPort>${stopPort}</stopPort>
-          <stopWait>4</stopWait>
-        </configuration>
-        <executions>
-          <execution>
-            <id>start-jetty</id>
-            <phase>pre-integration-test</phase>
-            <goals>
-              <goal>start</goal>
-            </goals>
-            <configuration>
-              <httpConnector>
-                <port>${jettyPort}</port>
-              </httpConnector>
-              <scanIntervalSeconds>0</scanIntervalSeconds>
-              <daemon>true</daemon>
-              <systemProperties>
-                <systemProperty>
-                  <name>org.apache.commons.logging.Log</name>
-                  <value>org.apache.commons.logging.impl.Jdk14Logger</value>
-                </systemProperty>
-                <systemProperty>
-                  <name>java.util.logging.config.file</name>
-                  <value>./src/test/resources/logging.properties</value>
-                </systemProperty>
-              </systemProperties>
-            </configuration>
-          </execution>
-          <execution>
-            <id>stop-jetty</id>
-            <phase>post-integration-test</phase>
-            <goals>
-              <goal>stop</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/config.properties</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>org.apache.sis.services.catalog.RunServer</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.5.v20180619</version>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

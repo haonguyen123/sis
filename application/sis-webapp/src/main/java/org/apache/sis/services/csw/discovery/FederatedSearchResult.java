@@ -25,13 +25,14 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "FederatedSearchResultType", namespace = Namespaces.CSW)
 @XmlRootElement(name = "FederatedSearchResult", namespace = Namespaces.CSW)
 public class FederatedSearchResult extends FederatedSearchResultBase {
+
     private SearchResults searchResult;
 
     /**
      *
      * @return
      */
-    @XmlElement(name = "searchResult",namespace=Namespaces.CSW)
+    @XmlElement(name = "searchResult", namespace = Namespaces.CSW)
     public SearchResults getSearchResult() {
         return searchResult;
     }
@@ -43,5 +44,4 @@ public class FederatedSearchResult extends FederatedSearchResultBase {
     public void setSearchResult(SearchResults searchResult) {
         this.searchResult = searchResult;
     }
-    
 }

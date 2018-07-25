@@ -21,5 +21,4 @@ package org.apache.sis.services.csw.discovery;
  * @author haonguyen
  */
 public class GetDomain {
-    
 }

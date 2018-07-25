@@ -23,18 +23,18 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name = "SummaryRecordType", namespace = Namespaces.CSW, propOrder = {    
+@XmlType(name = "SummaryRecordType", namespace = Namespaces.CSW, propOrder = {
     "identifier",
     "title",
     "type",
-    "subject",  
-    "date",    
+    "subject",
+    "date",
     "format",
-    "description",
-})
+    "description",})
 @XmlRootElement(name = "SummaryRecord", namespace = Namespaces.CSW)
 
-public class SummaryRecord extends AbstractRecord{
+public class SummaryRecord extends AbstractRecord {
+
     private String title;
     private String subject;
     private String description;
@@ -47,7 +47,7 @@ public class SummaryRecord extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "title",namespace=Namespaces.DC)
+    @XmlElement(name = "title", namespace = Namespaces.DC)
     public String getTitle() {
         return title;
     }
@@ -64,7 +64,7 @@ public class SummaryRecord extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "subject",namespace=Namespaces.DC)
+    @XmlElement(name = "subject", namespace = Namespaces.DC)
     public String getSubject() {
         return subject;
     }
@@ -81,7 +81,7 @@ public class SummaryRecord extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "abstract",namespace=Namespaces.DCT)
+    @XmlElement(name = "abstract", namespace = Namespaces.DCT)
     public String getDescription() {
         return description;
     }
@@ -98,7 +98,7 @@ public class SummaryRecord extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "modified",namespace=Namespaces.DCT)
+    @XmlElement(name = "modified", namespace = Namespaces.DCT)
     public Date getDate() {
         return date;
     }
@@ -115,7 +115,7 @@ public class SummaryRecord extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "type",namespace=Namespaces.DC)
+    @XmlElement(name = "type", namespace = Namespaces.DC)
     public String getType() {
         return type;
     }
@@ -132,7 +132,7 @@ public class SummaryRecord extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "format",namespace=Namespaces.DC)
+    @XmlElement(name = "format", namespace = Namespaces.DC)
     public String getFormat() {
         return format;
     }
@@ -149,7 +149,7 @@ public class SummaryRecord extends AbstractRecord{
      *
      * @return
      */
-    @XmlElement(name = "identifier",namespace=Namespaces.DC)
+    @XmlElement(name = "identifier", namespace = Namespaces.DC)
     public String getIdentifier() {
         return identifier;
     }

@@ -43,5 +43,4 @@ class RecordProperty {
     public void setValue(String value) {
         this.value = value;
     }
-    
 }

@@ -1,3 +1,7 @@
+package org.apache.sis.services.catalog;
+
+
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -14,44 +18,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sis.services.catalog;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
-import org.apache.sis.metadata.iso.identification.DefaultServiceIdentification;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.apache.cxf.jaxrs.ext.search.SearchContextProvider;
+import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
 
 /**
  *
  * @author haonguyen
  */
+public final class RunServer {
 
-public class RunServer {
+    private RunServer() {
+    }
+
 
     /**
      *
      * @param args
      */
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext(new String[] {           
-            "org/apache/sis/services/catalog/restapp.xml"         
-        });
-        System.out.println(appContext.getBeanFactory());;
-        GetCapabilitiesService categoryService = (GetCapabilitiesService) appContext.getBean("categoryService");      // Service instance      
         JAXRSServerFactoryBean restServer = new JAXRSServerFactoryBean();
-        restServer.setServiceBean(categoryService);
-        restServer.setAddress("http://localhost:9000/");
+        restServer.setProvider(new SearchContextProvider());
+        restServer.setResourceClasses(GetCapabilitiesService.class);
+        restServer.setResourceProvider(new SingletonResourceProvider(new GetCapabilitiesService()));
+        restServer.setAddress("http://192.168.1.9:9000/");
         restServer.create();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         try {
             br.readLine();
         } catch (IOException e) {
+            System.out.println("Server Stopped");
         }
-        System.out.println("Server Stopped");
         System.exit(0);
     }
 }

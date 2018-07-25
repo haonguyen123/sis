@@ -21,5 +21,5 @@ package org.apache.sis.services.csw.common;
  * @author haonguyen
  */
 public class Filter {
-    
+
 }

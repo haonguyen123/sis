@@ -23,15 +23,17 @@ import javax.xml.namespace.QName;
  *
  * @author haonguyen
  */
-@XmlType(name="UpdateType",namespace = Namespaces.CSW)
-@XmlRootElement(name="Update",namespace=Namespaces.CSW)
+@XmlType(name = "UpdateType", namespace = Namespaces.CSW)
+@XmlRootElement(name = "Update", namespace = Namespaces.CSW)
 class Update {
+
     private Object choice;
     private QName typName;
     private String id;
+
     @XmlElements({
-        @XmlElement(name="RecordProperty",type=RecordProperty.class),
-        @XmlElement(name="Constraint",type=Constraint.class)
+        @XmlElement(name = "RecordProperty", type = RecordProperty.class),
+        @XmlElement(name = "Constraint", type = Constraint.class)
     })
     public Object getChoice() {
         return choice;
@@ -40,7 +42,7 @@ class Update {
     public void setChoice(Object choice) {
         this.choice = choice;
     }
-    
+
     @XmlAttribute
     public QName getTypName() {
         return typName;
@@ -49,6 +51,7 @@ class Update {
     public void setTypName(QName typName) {
         this.typName = typName;
     }
+
     @XmlAttribute
     public String getId() {
         return id;
@@ -57,5 +60,5 @@ class Update {
     public void setId(String id) {
         this.id = id;
     }
-      
+
 }

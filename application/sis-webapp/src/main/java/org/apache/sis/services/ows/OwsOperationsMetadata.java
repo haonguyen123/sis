@@ -23,13 +23,14 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="OperationsMetadataType", namespace=Namespaces.OWS, propOrder = {
+@XmlType(name = "OperationsMetadataType", namespace = Namespaces.OWS, propOrder = {
     "operation",
     "parameter",
     "constraint"
 })
-@XmlRootElement(name="OperationsMetadata",namespace=Namespaces.OWS)
+@XmlRootElement(name = "OperationsMetadata", namespace = Namespaces.OWS)
 public class OwsOperationsMetadata {
+
     private List<OwsOperation> operation;
     private List<OwsDomain> parameter;
     private List<OwsDomain> constraint;
@@ -38,7 +39,7 @@ public class OwsOperationsMetadata {
      *
      * @return
      */
-    @XmlElement(name="Operation",namespace = Namespaces.OWS)
+    @XmlElement(name = "Operation", namespace = Namespaces.OWS)
 
     public List<OwsOperation> getOperation() {
         return operation;
@@ -56,8 +57,8 @@ public class OwsOperationsMetadata {
      *
      * @return
      */
-    @XmlElement(name="Parameter",namespace = Namespaces.OWS)
-    
+    @XmlElement(name = "Parameter", namespace = Namespaces.OWS)
+
     public List<OwsDomain> getParameter() {
         return parameter;
     }
@@ -74,7 +75,7 @@ public class OwsOperationsMetadata {
      *
      * @return
      */
-    @XmlElement(name="Constraint",namespace = Namespaces.OWS)
+    @XmlElement(name = "Constraint", namespace = Namespaces.OWS)
 
     public List<OwsDomain> getConstraint() {
         return constraint;
@@ -87,7 +88,5 @@ public class OwsOperationsMetadata {
     public void setConstraint(List<OwsDomain> constraint) {
         this.constraint = constraint;
     }
-    
-    
-    
+
 }

@@ -23,13 +23,14 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="OperationType", namespace=Namespaces.OWS, propOrder = {
+@XmlType(name = "OperationType", namespace = Namespaces.OWS, propOrder = {
     "dcp",
     "parameter",
     "constraint"
 })
-@XmlRootElement(name="Operation",namespace=Namespaces.OWS)
+@XmlRootElement(name = "Operation", namespace = Namespaces.OWS)
 public class OwsOperation {
+
     private DCP dcp;
     private List<OwsDomain> parameter;
     private List<OwsDomain> constraint;
@@ -39,7 +40,7 @@ public class OwsOperation {
      *
      * @return
      */
-    @XmlElement(name="DCP",namespace = Namespaces.OWS)
+    @XmlElement(name = "DCP", namespace = Namespaces.OWS)
     public DCP getDcp() {
         return dcp;
     }
@@ -51,12 +52,12 @@ public class OwsOperation {
     public void setDcp(DCP dcp) {
         this.dcp = dcp;
     }
-    
+
     /**
      *
      * @return
      */
-    @XmlElement(name="Parameter",namespace = Namespaces.OWS)   
+    @XmlElement(name = "Parameter", namespace = Namespaces.OWS)
     public List<OwsDomain> getParameter() {
         return parameter;
     }
@@ -73,7 +74,7 @@ public class OwsOperation {
      *
      * @return
      */
-    @XmlElement(name="Constraint",namespace = Namespaces.OWS)    
+    @XmlElement(name = "Constraint", namespace = Namespaces.OWS)
     public List<OwsDomain> getConstraint() {
         return constraint;
     }
@@ -85,7 +86,7 @@ public class OwsOperation {
     public void setConstraint(List<OwsDomain> constraint) {
         this.constraint = constraint;
     }
-    
+
     /**
      *
      * @return
@@ -102,6 +103,5 @@ public class OwsOperation {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
+
 }

@@ -232,6 +232,4 @@ public class SearchResults {
     public void setFederatedSearchResultBase(List<FederatedSearchResultBase> federatedSearchResultBase) {
         this.federatedSearchResultBase = federatedSearchResultBase;
     }
-    
-    
 }

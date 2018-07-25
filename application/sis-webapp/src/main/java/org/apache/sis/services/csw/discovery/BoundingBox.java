@@ -18,11 +18,7 @@ package org.apache.sis.services.csw.discovery;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlList;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import org.opengis.metadata.extent.GeographicBoundingBox;
 
 /**
@@ -31,11 +27,10 @@ import org.opengis.metadata.extent.GeographicBoundingBox;
  */
 @XmlType(name = "BoundingBoxType", namespace = Namespaces.OWS, propOrder = {
     "lowerCorner",
-    "upperCorner",
-    
-})
+    "upperCorner",})
 @XmlRootElement(name = "BoundingBox", namespace = Namespaces.OWS)
 public class BoundingBox {
+
     private List<Double> lowerCorner;
     private List<Double> upperCorner;
     private String crs;
@@ -45,10 +40,10 @@ public class BoundingBox {
      *
      * @return
      */
-    @XmlElement(name = "LowerCorner",namespace=Namespaces.OWS)
+    @XmlElement(name = "LowerCorner", namespace = Namespaces.OWS)
     @XmlList
     public List<Double> getLowerCorner() {
-            return lowerCorner;
+        return lowerCorner;
     }
 
     /**
@@ -56,17 +51,17 @@ public class BoundingBox {
      * @param lowerCorner
      */
     public void setLowerCorner(List<Double> lowerCorner) {
-            this.lowerCorner = lowerCorner;
+        this.lowerCorner = lowerCorner;
     }
 
     /**
      *
      * @return
      */
-    @XmlElement(name = "UpperCorner",namespace=Namespaces.OWS)
+    @XmlElement(name = "UpperCorner", namespace = Namespaces.OWS)
     @XmlList
     public List<Double> getUpperCorner() {
-            return upperCorner;
+        return upperCorner;
     }
 
     /**
@@ -74,11 +69,12 @@ public class BoundingBox {
      * @param upperCorner
      */
     public void setUpperCorner(List<Double> upperCorner) {
-            this.upperCorner = upperCorner;
-    }  
+        this.upperCorner = upperCorner;
+    }
+
     BoundingBox() {
     }
-    
+
     BoundingBox(final GeographicBoundingBox bbox) {
         lowerCorner = new ArrayList<>();
         upperCorner = new ArrayList<>();
@@ -86,5 +82,10 @@ public class BoundingBox {
         lowerCorner.add(bbox.getSouthBoundLatitude());
         upperCorner.add(bbox.getEastBoundLongitude());
         upperCorner.add(bbox.getNorthBoundLatitude());
+    }
+
+    @Override
+    public String toString() {
+        return "BoundingBox{" + "lowerCorner=" + lowerCorner + ", upperCorner=" + upperCorner + ", crs=" + crs + ", dimensions=" + dimensions + '}';
     }
 }

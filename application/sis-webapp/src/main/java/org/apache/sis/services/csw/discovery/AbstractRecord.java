@@ -24,5 +24,4 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlType(name = "AbstractRecordType", namespace = Namespaces.CSW)
 public abstract class AbstractRecord {
-    
 }

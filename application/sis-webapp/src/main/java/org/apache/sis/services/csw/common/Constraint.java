@@ -22,20 +22,19 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="QueryConstraintType",namespace=Namespaces.CSW)
-@XmlRootElement(name="Constraint")
+@XmlType(name = "QueryConstraintType", namespace = Namespaces.CSW)
+@XmlRootElement(name = "Constraint")
 public class Constraint {
+
     private Object search;
 
     /**
      *
      * @return
      */
-    @XmlElements(value = { 
-            @XmlElement(name="Filter",type=Filter.class),
-            @XmlElement(name="CqlText", 
-                        type=String.class),
-    })
+    @XmlElements(value = {
+        @XmlElement(name = "Filter", type = Filter.class),
+        @XmlElement(name = "CqlText",type = String.class),})
     public Object getSearch() {
         return search;
     }
@@ -47,5 +46,5 @@ public class Constraint {
     public void setSearch(Object search) {
         this.search = search;
     }
-    
+
 }

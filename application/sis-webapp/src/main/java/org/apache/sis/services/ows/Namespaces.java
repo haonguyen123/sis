@@ -16,13 +16,14 @@
  */
 package org.apache.sis.services.ows;
 
-
-
 /**
  *
  * @author haonguyen
  */
-public class Namespaces {
+public final class Namespaces {
+
+    private Namespaces() {
+    }
 
     /**
      *

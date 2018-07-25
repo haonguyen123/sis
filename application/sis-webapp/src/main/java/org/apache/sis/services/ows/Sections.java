@@ -23,17 +23,17 @@ import javax.xml.bind.annotation.*;
  *
  * @author haonguyen
  */
-@XmlType(name="SectionsType",namespace=Namespaces.OWS)
-@XmlRootElement(name="Sections",namespace = Namespaces.OWS)
+@XmlType(name = "SectionsType", namespace = Namespaces.OWS)
+@XmlRootElement(name = "Sections", namespace = Namespaces.OWS)
 public class Sections {
+
     private List<Section> section;
 
     /**
      *
      * @return
      */
-    
-    @XmlElement(name = "Section",namespace = Namespaces.OWS)
+    @XmlElement(name = "Section", namespace = Namespaces.OWS)
     public List<Section> getSection() {
         return section;
     }
@@ -45,5 +45,5 @@ public class Sections {
     public void setSection(List<Section> section) {
         this.section = section;
     }
-    
+
 }
