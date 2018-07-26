@@ -25,15 +25,23 @@ import javax.xml.bind.annotation.*;
  */
 @XmlType(name = "AcceptFormatsType", namespace = Namespaces.OWS)
 @XmlRootElement(name = "AcceptFormats", namespace = Namespaces.OWS)
-class AcceptFormats {
+public class AcceptFormats {
 
     private List<OutputFormat> outputFormat;
 
+    /**
+     *
+     * @return
+     */
     @XmlElement(name = "OutputFormat")
     public List<OutputFormat> getOutputFormat() {
         return outputFormat;
     }
 
+    /**
+     *
+     * @param outputFormat
+     */
     public void setOutputFormat(List<OutputFormat> outputFormat) {
         this.outputFormat = outputFormat;
     }

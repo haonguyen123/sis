@@ -25,7 +25,7 @@ import javax.xml.namespace.QName;
  */
 @XmlType(name = "UpdateType", namespace = Namespaces.CSW)
 @XmlRootElement(name = "Update", namespace = Namespaces.CSW)
-class Update {
+public class Update {
 
     private Object choice;
     private QName typName;

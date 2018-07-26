@@ -72,26 +72,124 @@ import org.opengis.util.InternationalString;
 @XmlRootElement(name = "Record", namespace = Namespaces.CSW)
 
 public class Record extends AbstractRecord {
-
+    /**
+     * A name given to the resource. 
+     * Typically, Title will be a name by which the resource is formally known.
+     */
     private String title;
+    /**
+     * An entity primarily responsible for making the content of the resource. 
+     * Examples of Creator include a person, an organization, or a service. 
+     * Typically, the name of a Creator should be used to indicate the entity.
+     */
     private String creator;
+    /**
+     * A topic of the content of the resource. 
+     * Typically, Subject will be expressed as keywords, key phrases, or 
+     * classification codes that describe a topic of the resource. Recommended 
+     * best practice is to select a value from a controlled vocabulary or formal 
+     * classification scheme.
+     */
     private String subject;
+    /**
+     * An account of the content of the resource. 
+     * Examples of Description include, but are not limited to, an abstract, 
+     * table of contents, reference to a graphical representation of content, 
+     * or free-text account of the content.
+     */
     private String description;
+    /**
+     * An entity responsible for making the resource available. 
+     * Examples of Publisher include a person, an organization, or a service. 
+     * Typically, the name of a Publisher should be used to indicate the entity.
+     */
     private String publisher;
+    /**
+     * An entity responsible for making contributions to the content of the resource. 
+     * Examples of Contributor include a person, an organization, or a service. 
+     * Typically, the name of a Contributor should be used to indicate the entity.
+     */
     private String contributor;
+    /**
+     * A date of an event in the lifecycle of the resource. 
+     * Typically, Date will be associated with the creation or availability of 
+     * the resource. Recommended best practice for encoding the date value is 
+     * defined in a profile of ISO 8601 and includes (among others) dates of the form YYYY-MM-DD.
+     */
     private Date date;
+    /**
+     * The nature or genre of the content of the resource. 
+     * Type includes terms describing general categories, functions, genres, 
+     * or aggregation levels for content. Recommended best practice is to select 
+     * a value from a controlled vocabulary (for example, the DCMI Type Vocabulary). 
+     * To describe the physical or digital manifestation of the resource, use the 
+     * Format element.
+     */
     private String type;
+    /**
+     * The physical or digital manifestation of the resource. 
+     * Typically, Format will include the media-type or dimensions of the resource. 
+     * Format may be used to identify the software, hardware, or other equipment 
+     * needed to display or operate the resource. Examples of dimensions include 
+     * size and duration. Recommended best practice is to select a value from a 
+     * controlled vocabulary (for example, the list of Internet Media Types defining 
+     * computer media formats).
+     */
     private String format;
+    /**
+     * An unambiguous reference to the resource within a given context. 
+     * Recommended best practice is to identify the resource by means of a string 
+     * or number conforming to a formal identification system. Formal identification 
+     * systems include but are not limited to the Uniform Resource Identifier (URI) 
+     * (including the Uniform Resource Locator (URL)), the Digital Object Identifier 
+     * (DOI), and the International Standard Book Number (ISBN).
+     */
     private String identifier;
+    /**
+     * A Reference to a resource from which the present resource is derived. 
+     * The present resource may be derived from the Source resource in whole or 
+     * in part. Recommended best practice is to identify the referenced resource 
+     * by means of a string or number conforming to a formal identification system.
+     */
     private String source;
+    /**
+     * A language of the intellectual content of the resource. 
+     * Recommended best practice is to use RFC 3066, which, in conjunction with 
+     * ISO 639, defines two- and three-letter primary language tags with optional 
+     * subtags. Examples include "en" or "eng" for English, "akk" for Akkadian, 
+     * and "en-GB" for English used in the United Kingdom.
+     */
     private String language;
+    /**
+     * A reference to a related resource. 
+     * Recommended best practice is to identify the referenced resource by means 
+     * of a string or number conforming to a formal identification system.
+     */
     private String relation;
+    /**
+     * The extent or scope of the content of the resource. 
+     * Typically, Coverage will include spatial location (a place name or geographic coordinates), 
+     * temporal period (a period label, date, or date range), or jurisdiction 
+     * (such as a named administrative entity). Recommended best practice is to 
+     * select a value from a controlled vocabulary (for example, the Thesaurus of 
+     * Geographic Names [TGN]) and to use, where appropriate, named places or 
+     * time periods in preference to numeric identifiers such as sets of coordinates 
+     * or date ranges.
+     */
     private BoundingBox coverage;
+    /**
+     * Information about rights held in and over the resource. 
+     * Typically, Rights will contain a rights management statement for the 
+     * resource, or reference a service providing such information. 
+     * Rights information often encompasses Intellectual Property Rights (IPR), 
+     * Copyright, and various Property Rights. If the Rights element is absent, 
+     * no assumptions may be made about any rights held in or over the resource.
+     */
     private String rights;
 
     /**
-     *
-     * @return
+     * Return A name given to the resource. 
+     * @return A name given to the resource. 
      */
     @XmlElement(name = "title", namespace = Namespaces.DC)
     public String getTitle() {
@@ -99,7 +197,7 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
+     * Set A name given to the resource. 
      * @param title
      */
     public void setTitle(String title) {
@@ -107,8 +205,8 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
-     * @return
+     * Return An entity primarily responsible for making the content of the resource. 
+     * @return A topic of the content of the resource. 
      */
     @XmlElement(name = "creator", namespace = Namespaces.DC)
     public String getCreator() {
@@ -116,7 +214,7 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
+     * Set An entity primarily responsible for making the content of the resource. 
      * @param creator
      */
     public void setCreator(String creator) {
@@ -124,8 +222,8 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
-     * @return
+     * Return A topic of the content of the resource. 
+     * @return A topic of the content of the resource. 
      */
     @XmlElement(name = "subject", namespace = Namespaces.DC)
     public String getSubject() {
@@ -133,7 +231,7 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
+     * Set A topic of the content of the resource. 
      * @param subject
      */
     public void setSubject(String subject) {
@@ -141,8 +239,8 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
-     * @return
+     * Return An account of the content of the resource.
+     * @return An account of the content of the resource.
      */
     @XmlElement(name = "abstract", namespace = Namespaces.DCT)
     public String getDescription() {
@@ -150,7 +248,7 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
+     * Set An account of the content of the resource.
      * @param description
      */
     public void setDescription(String description) {
@@ -158,8 +256,8 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
-     * @return
+     * Return An entity responsible for making the resource available.
+     * @return An entity responsible for making the resource available.
      */
     @XmlElement(name = "publisher", namespace = Namespaces.DC)
     public String getPublisher() {
@@ -167,7 +265,7 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
+     * Set An entity responsible for making the resource available.
      * @param publisher
      */
     public void setPublisher(String publisher) {
@@ -175,8 +273,8 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
-     * @return
+     * Return An entity responsible for making contributions to the content of the resource.
+     * @return An entity responsible for making contributions to the content of the resource.
      */
     @XmlElement(name = "contributor", namespace = Namespaces.DC)
     public String getContributor() {
@@ -184,7 +282,7 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
+     * Set An entity responsible for making contributions to the content of the resource.
      * @param contributor
      */
     public void setContributor(String contributor) {
@@ -192,8 +290,8 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
-     * @return
+     * Return A date of an event in the lifecycle of the resource. 
+     * @return A date of an event in the lifecycle of the resource. 
      */
     @XmlElement(name = "modified", namespace = Namespaces.DCT)
     public Date getDate() {
@@ -201,7 +299,7 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
+     * Set A date of an event in the lifecycle of the resource. 
      * @param date
      */
     public void setDate(Date date) {
@@ -209,8 +307,8 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
-     * @return
+     * Return The nature or genre of the content of the resource.
+     * @return The nature or genre of the content of the resource.
      */
     @XmlElement(name = "type", namespace = Namespaces.DC)
     public String getType() {
@@ -218,7 +316,7 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
+     * Set The nature or genre of the content of the resource.
      * @param type
      */
     public void setType(String type) {
@@ -226,8 +324,8 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
-     * @return
+     * Return The physical or digital manifestation of the resource.
+     * @return The physical or digital manifestation of the resource.
      */
     @XmlElement(name = "format", namespace = Namespaces.DC)
     public String getFormat() {
@@ -235,7 +333,7 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
+     * Set The physical or digital manifestation of the resource.
      * @param format
      */
     public void setFormat(String format) {
@@ -243,8 +341,8 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
-     * @return
+     * Return An unambiguous reference to the resource within a given context.
+     * @return An unambiguous reference to the resource within a given context.
      */
     @XmlElement(name = "identifier", namespace = Namespaces.DC)
     public String getIdentifier() {
@@ -252,7 +350,7 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
+     * Set An unambiguous reference to the resource within a given context.
      * @param identifier
      */
     public void setIdentifier(String identifier) {
@@ -260,8 +358,8 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
-     * @return
+     * Return A Reference to a resource from which the present resource is derived.
+     * @return A Reference to a resource from which the present resource is derived.
      */
     @XmlElement(name = "source", namespace = Namespaces.DC)
     public String getSource() {
@@ -269,7 +367,7 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
+     * Set A Reference to a resource from which the present resource is derived.
      * @param source
      */
     public void setSource(String source) {
@@ -277,8 +375,8 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
-     * @return
+     * Return A language of the intellectual content of the resource.
+     * @return A language of the intellectual content of the resource.
      */
     @XmlElement(name = "language", namespace = Namespaces.DC)
     public String getLanguage() {
@@ -286,7 +384,7 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
+     * Set A language of the intellectual content of the resource.
      * @param language
      */
     public void setLanguage(String language) {
@@ -294,8 +392,8 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
-     * @return
+     * Return A reference to a related resource.
+     * @return A reference to a related resource.
      */
     @XmlElement(name = "relation", namespace = Namespaces.DC)
     public String getRelation() {
@@ -303,7 +401,7 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
+     * Set A reference to a related resource.
      * @param relation
      */
     public void setRelation(String relation) {
@@ -311,8 +409,8 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
-     * @return
+     * Return The extent or scope of the content of the resource.
+     * @return The extent or scope of the content of the resource.
      */
     @XmlElement(name = "BoundingBox", namespace = Namespaces.OWS)
     public BoundingBox getCoverage() {
@@ -320,7 +418,7 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
+     * Set The extent or scope of the content of the resource.
      * @param coverage
      */
     public void setCoverage(BoundingBox coverage) {
@@ -328,8 +426,8 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
-     * @return
+     * Return Information about rights held in and over the resource.
+     * @return Information about rights held in and over the resource.
      */
     @XmlElement(name = "rights", namespace = Namespaces.DC)
     public String getRights() {
@@ -337,7 +435,7 @@ public class Record extends AbstractRecord {
     }
 
     /**
-     *
+     * Set Information about rights held in and over the resource.
      * @param rights
      */
     public void setRights(String rights) {
@@ -520,6 +618,10 @@ public class Record extends AbstractRecord {
     public String toString() {
         return "Record{" + "title=" + title + ", creator=" + creator + ", subject=" + subject + ", description=" + description + ", publisher=" + publisher + ", contributor=" + contributor + ", date=" + date + ", type=" + type + ", format=" + format + ", identifier=" + identifier + ", source=" + source + ", language=" + language + ", relation=" + relation + ", coverage=" + coverage + ", rights=" + rights + '}';
     }
+
+    /**
+     *
+     */
     public static Comparator<Record> dateComparatorA = new Comparator<Record>() {
 
         @Override
@@ -536,6 +638,10 @@ public class Record extends AbstractRecord {
            return date1.compareTo(date2);
         }
     };
+
+    /**
+     *
+     */
     public static Comparator<Record> dateComparatorD = new Comparator<Record>() {
 
         @Override

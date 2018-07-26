@@ -26,15 +26,27 @@ import org.apache.sis.services.csw.common.RequestBase;
  */
 @XmlType(name="GetRecordByIdType",namespace=Namespaces.CSW)
 @XmlRootElement(name="GetRecordById",namespace=Namespaces.CSW)
+/**
+ * Convenience operation to retrieve default record representations by identifier. 
+ * Id - object identifier (a URI) that provides a reference to a catalogue item (
+ * or a result set if the catalogue supports persistent result sets). 
+ * ElementSetName - one of "brief, "summary", or "full"
+ */
 public class GetRecordById extends RequestBase{
+    /**
+     * Object identifier (a URI) that provides a reference to a catalogue.
+     */
     private String id;
+    /**
+     * One of "brief, "summary", or "full".
+     */
     private ElementSetName elementSetName;
     private String outputFormat="application/xml";
     private String outputSchema;
 
     /**
-     *
-     * @return
+     * Return Object identifier (a URI) that provides a reference to a catalogue.
+     * @return Object identifier (a URI) that provides a reference to a catalogue.
      */
     @XmlElement(name="Id")
     public String getId() {
@@ -42,7 +54,7 @@ public class GetRecordById extends RequestBase{
     }
 
     /**
-     *
+     * Set Object identifier (a URI) that provides a reference to a catalogue.
      * @param id
      */
     public void setId(String id) {
@@ -50,8 +62,8 @@ public class GetRecordById extends RequestBase{
     }
 
     /**
-     *
-     * @return
+     * Return One of "brief, "summary", or "full" record.
+     * @return One of "brief, "summary", or "full".
      */
     @XmlElement(name="ElementSetName",namespace = Namespaces.CSW)
     public ElementSetName getElementSetName() {
@@ -59,7 +71,7 @@ public class GetRecordById extends RequestBase{
     }
 
     /**
-     *
+     * Set One of "brief, "summary", or "full".
      * @param elementSetName
      */
     public void setElementSetName(ElementSetName elementSetName) {

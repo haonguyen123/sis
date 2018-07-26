@@ -24,15 +24,28 @@ import javax.xml.bind.annotation.*;
  */
 @XmlType(name = "UpdateSequenceType", namespace = Namespaces.OWS)
 @XmlRootElement(name = "UpdateSequence", namespace = Namespaces.OWS)
-class UpdateSequence {
-
+public class UpdateSequence {
+    /**
+     * Service metadata document version, having values that are "increased" 
+     * whenever any change is made in service metadata document. 
+     * Values are selected by each server, and are always opaque to clients. 
+     * See updateSequence parameter use subclause for more information.
+     */
     private String value;
 
+    /**
+     * Return Service metadata document version
+     * @return Service metadata document version
+     */
     @XmlValue
     public String getValue() {
         return value;
     }
 
+    /**
+     * Set Service metadata document version
+     * @param value
+     */
     public void setValue(String value) {
         this.value = value;
     }

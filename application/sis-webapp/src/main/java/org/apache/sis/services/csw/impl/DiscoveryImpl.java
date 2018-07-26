@@ -63,11 +63,20 @@ public final class DiscoveryImpl implements Discovery {
         getAllRecord();
     }
 
+    /**
+     *
+     */
     public void getAllRecord() {
         listrecord = discovery.record;
         listpath = discovery.pathfile;
     }
 
+    /**
+     *
+     * @param fes
+     * @return
+     * @throws ParseException
+     */
     public List<Record> filterRecordKVP(FilterFesKvp fes) throws ParseException {
         List<Record> records = new ArrayList<>();
         if (fes.getRecordIds() != null) {
@@ -145,6 +154,12 @@ public final class DiscoveryImpl implements Discovery {
         return abRecord;
     }
 
+    /**
+     *
+     * @param query
+     * @param records
+     * @return
+     */
     public List<Record> sortBy(Query query, List<Record> records) {
         List<Record> record = records;
         if ("modified".equals(query.getSortBy().getPropertyName().getPropertyName()) && "ASCENDING".equals(query.getSortBy().getSortOrder().name())) {
@@ -156,6 +171,11 @@ public final class DiscoveryImpl implements Discovery {
         return record;
     }
 
+    /**
+     *
+     * @param constraint
+     * @return
+     */
     public List<AbstractRecord> filterRecord(String constraint) {
         List<AbstractRecord> abRecord = new ArrayList<>();
         return abRecord;
@@ -200,6 +220,12 @@ public final class DiscoveryImpl implements Discovery {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param getRecord
+     * @param fes
+     * @return
+     */
     @Override
     public GetRecordsResponse getRecords(GetRecords getRecord, FilterFesKvp fes) {
         GetRecordsResponse record = new GetRecordsResponse();
@@ -236,6 +262,12 @@ public final class DiscoveryImpl implements Discovery {
         }
         return record;
     }
+
+    /**
+     *
+     * @param name
+     * @return
+     */
     @Override
     public File getPath(String name){
         return listpath.get(name);

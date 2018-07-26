@@ -24,15 +24,28 @@ import javax.xml.bind.annotation.*;
  */
 @XmlType(name = "OutputFormatType", namespace = Namespaces.OWS)
 @XmlRootElement(name = "OutputFormat", namespace = Namespaces.OWS)
-class OutputFormat {
-
+public class OutputFormat {
+    /**
+     * Reference to a format in which this data can be encoded and transferred. 
+     * More specific parameter names should be used by specific OWS specifications 
+     * wherever applicable. More than one such parameter can be included for 
+     * different purposes.
+     */
     private String value;
 
+    /**
+     * Return a format in which this data can be encoded and transferred
+     * @return a format in which this data can be encoded and transferred
+     */
     @XmlValue
     public String getValue() {
         return value;
     }
 
+    /**
+     * Set a format in which this data can be encoded and transferred
+     * @param value
+     */
     public void setValue(String value) {
         this.value = value;
     }

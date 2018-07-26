@@ -25,12 +25,16 @@ import javax.xml.bind.annotation.*;
  */
 @XmlRootElement(name = "AllowedValues", namespace = Namespaces.OWS)
 public class AllowedValues {
-
+    /**
+     * List of all the valid values  for this quantity.
+     * For numeric quantities, signed values should be ordered from negative 
+     * infinity to positive infinity.
+     */
     private List<Value> value;
 
     /**
-     *
-     * @return
+     * Return list of all the valid values  for this quantity
+     * @return list of all the valid values  for this quantity
      */
     @XmlElement(name = "Value", namespace = Namespaces.OWS)
     public List<Value> getValue() {
@@ -38,7 +42,7 @@ public class AllowedValues {
     }
 
     /**
-     *
+     * Set list of all the valid values  for this quantity
      * @param value
      */
     public void setValue(List<Value> value) {

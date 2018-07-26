@@ -23,11 +23,14 @@ import javax.xml.bind.annotation.XmlValue;
  * @author haonguyen
  */
 public class Service {
-
+    /**
+     * Service type identifier, where the string value is the OWS type abbreviation, 
+     * such as "CSW" or "WFS".
+     */
     private String service;
 
     /**
-     *
+     * 
      * @param service
      */
     public Service(String service) {
@@ -35,8 +38,8 @@ public class Service {
     }
 
     /**
-     *
-     * @return
+     * Return Service type identifier.
+     * @return Service type identifier.
      */
     @XmlValue
     public String getService() {
@@ -44,7 +47,7 @@ public class Service {
     }
 
     /**
-     *
+     * Set Service type identifier.
      * @param service
      */
     public void setService(String service) {

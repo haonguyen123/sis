@@ -23,6 +23,10 @@ import javax.xml.bind.annotation.XmlEnum;
  * @author haonguyen
  */
 @XmlEnum
+/**
+ * Named subsets of catalogue object properties; these views are mapped to a 
+ * specific information model and are defined in an application profile.
+ */
 public enum RequiredElementSetNamesType {
 
     /**

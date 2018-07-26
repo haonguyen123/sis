@@ -49,6 +49,12 @@ import org.opengis.filter.sort.SortOrder;
 @Produces("application/xml")
 public class GetCapabilitiesService {
 
+    /**
+     *
+     * @param operation
+     * @param service
+     * @return
+     */
     @Path("/")
     public Object sub(@QueryParam("request") String operation,
             @QueryParam("service") String service) {
@@ -66,8 +72,16 @@ public class GetCapabilitiesService {
         }
     }
 
+    /**
+     *
+     */
     public class O_GetCapabilities {
 
+        /**
+         *
+         * @return
+         * @throws JAXBException
+         */
         @GET
         @Consumes("application/xml")
         public String getCapabilities() throws JAXBException {
@@ -76,8 +90,18 @@ public class GetCapabilitiesService {
         }
     }
 
+    /**
+     *
+     */
     public class O_GetRecordById {
 
+        /**
+         *
+         * @param id
+         * @return
+         * @throws JAXBException
+         * @throws DataStoreException
+         */
         @GET
         @Consumes("application/xml")
         public Response getRecordById(@QueryParam("Id") String id) throws JAXBException, DataStoreException {
@@ -96,8 +120,28 @@ public class GetCapabilitiesService {
         }
     }
 
+    /**
+     *
+     */
     public class O_GetRecords {
 
+        /**
+         *
+         * @param requestId
+         * @param startPosition
+         * @param maxRecords
+         * @param sortby
+         * @param q
+         * @param recordids
+         * @param bbox
+         * @param time
+         * @param constraintlanguage
+         * @param constraintlanguageversion
+         * @param constraint
+         * @return
+         * @throws JAXBException
+         * @throws DataStoreException
+         */
         @GET
         @Consumes("application/xml")
         public Response getRecords(@QueryParam("requestid") URI requestId,
@@ -186,17 +230,36 @@ public class GetCapabilitiesService {
         }
     }
 
+    /**
+     *
+     */
     public class O_GetDomain {
     }
 
+    /**
+     *
+     */
     public class O_Harvest {
     }
 
+    /**
+     *
+     */
     public class O_UnHarvest {
     }
 
+    /**
+     *
+     */
     public class O_Transaction {
     }
+
+    /**
+     *
+     * @param name
+     * @return
+     * @throws DataStoreException
+     */
     @GET
     @Path("/download/{name}")
     @Produces("text/plain")

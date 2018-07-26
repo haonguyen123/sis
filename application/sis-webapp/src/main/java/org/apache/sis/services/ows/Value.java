@@ -21,19 +21,23 @@ package org.apache.sis.services.ows;
  * @author haonguyen
  */
 public class Value {
-
+    /**
+     * A single value, encoded as a string. 
+     * This type can be used for one value, for a spacing between allowed values, 
+     * or for the default value of a parameter.
+     */
     private String value;
 
     /**
-     *
-     * @return
+     * Return a single value, encoded as a string. 
+     * @return a single value, encoded as a string. 
      */
     public String getValue() {
         return value;
     }
 
     /**
-     *
+     * Set a single value, encoded as a string. 
      * @param value
      */
     public void setValue(String value) {

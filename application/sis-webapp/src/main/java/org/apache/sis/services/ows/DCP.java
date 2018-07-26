@@ -26,13 +26,23 @@ import javax.xml.bind.annotation.*;
     "http"
 })
 @XmlRootElement(name = "DCP", namespace = Namespaces.OWS)
+/**
+ * Information for one distributed Computing Platform (DCP) supported for this 
+ * operation. 
+ * At present, only the HTTP DCP is defined, so this element only includes the HTTP element.
+ */
 public class DCP {
-
+    /**
+     * Connect point URLs for the HTTP Distributed Computing Platform (DCP). 
+     * Normally, only one Get and/or one Post is included in this element. 
+     * More than one Get and/or Post is allowed to support including alternative 
+     * URLs for uses such as load balancing or backup.
+     */
     private HTTP http;
 
     /**
-     *
-     * @return
+     * Return Connect point URLs for the HTTP Distributed Computing Platform (DCP).
+     * @return Connect point URLs for the HTTP Distributed Computing Platform (DCP).
      */
     @XmlElement(name = "HTTP", namespace = Namespaces.OWS)
     public HTTP getHttp() {
@@ -40,7 +50,7 @@ public class DCP {
     }
 
     /**
-     *
+     * Set Connect point URLs for the HTTP Distributed Computing Platform (DCP).
      * @param http
      */
     public void setHttp(HTTP http) {

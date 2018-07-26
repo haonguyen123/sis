@@ -24,12 +24,21 @@ import javax.xml.bind.annotation.*;
  * @author haonguyen
  */
 public class OnlineResource {
-
+    /**
+     * This type contains only a restricted and annotated set of the attributes 
+     * from the xlink:simpleAttrs attributeGroup.
+     */
     private String type;
+    /**
+     * Reference to a remote resource or local payload. 
+     * A remote resource is typically addressed by a URL. For a local payload 
+     * (such as a multipart mime message), the xlink:href must start with the prefix cid:.
+     */
     private URI href;
 
     /**
-     *
+     * Return This type contains only a restricted and annotated set of the attributes 
+     * from the xlink:simpleAttrs attributeGroup.
      * @return
      */
     @XmlAttribute(name = "xlink:type")
@@ -38,7 +47,8 @@ public class OnlineResource {
     }
 
     /**
-     *
+     * Set This type contains only a restricted and annotated set of the attributes 
+     * from the xlink:simpleAttrs attributeGroup.
      * @param type
      */
     public void setType(String type) {
@@ -46,8 +56,8 @@ public class OnlineResource {
     }
 
     /**
-     *
-     * @return
+     * Return  Reference to a remote resource or local payload. 
+     * @return Reference to a remote resource or local payload. 
      */
     @XmlAttribute(name = "xlink:href")
     public URI getHref() {
@@ -55,7 +65,7 @@ public class OnlineResource {
     }
 
     /**
-     *
+     * Set Reference to a remote resource or local payload. 
      * @param href
      */
     public void setHref(URI href) {

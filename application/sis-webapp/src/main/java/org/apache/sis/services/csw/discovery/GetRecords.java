@@ -32,16 +32,41 @@ import org.apache.sis.services.csw.common.RequestBase;
     "query",})
 @XmlRootElement(name = "GetRecords", namespace = Namespaces.CSW)
 public class GetRecords extends RequestBase {
-
+    /**
+     * Governs the behaviour of a distributed search. 
+     * hopCount - the maximum number of message hops before the search is terminated. 
+     * Each catalogue node decrements this value when the request is received, 
+     * and must not forward the request if hopCount=0.
+     */
     private DistributedSearch distributedSearch;
     private String responseHandler;
+    /**
+     * Specifies a query to execute against instances of one or more object types. 
+     * A set of ElementName elements may be included to specify an adhoc view of 
+     * the csw30:Record instances in the result set. Otherwise, use ElementSetName 
+     * to specify a predefined view. The Constraint element contains a query filter 
+     * expressed in a supported query language. A sorting criterion that specifies 
+     * a property to sort by may be included. typeNames - a list of object types to query.
+     */
     private Object query;
+    /**
+     * RequestId becomes mandatory in the case of a distributed search. 
+     * Must be a unique Id (i.e. a UUID).
+     */
     private URI requestId;
+    /**
+     * Various attributes that specify basic retrieval options: 
+     * outputFormat - the media type of the response message 
+     * outputSchema - the preferred schema for records in the result set 
+     * startPosition - requests a slice of the result set, starting at this position 
+     * maxRecords - the maximum number of records to return.
+     * No records are returned if maxRecords=0.
+     */
     private BasicRetrievalOptions basicRetrievalOptions;
 
     /**
-     *
-     * @return
+     * Return Governs the behaviour of a distributed search. 
+     * @return Governs the behaviour of a distributed search. 
      */
     @XmlElement(name = "DistributedSearch", namespace = Namespaces.CSW)
     public DistributedSearch getDistributedSearch() {
@@ -49,7 +74,7 @@ public class GetRecords extends RequestBase {
     }
 
     /**
-     *
+     * Set Governs the behaviour of a distributed search. 
      * @param distributedSearch
      */
     public void setDistributedSearch(DistributedSearch distributedSearch) {
@@ -57,7 +82,7 @@ public class GetRecords extends RequestBase {
     }
 
     /**
-     *
+     * 
      * @return
      */
     @XmlElement(name = "ResponseHandler", namespace = Namespaces.CSW)
@@ -74,8 +99,8 @@ public class GetRecords extends RequestBase {
     }
 
     /**
-     *
-     * @return
+     * Return Specifies a query to execute against instances of one or more object types. 
+     * @return Specifies a query to execute against instances of one or more object types. 
      */
     @XmlElements({
         @XmlElement(name = "AbstractQuery", type = AbstractQuery.class)})
@@ -84,7 +109,7 @@ public class GetRecords extends RequestBase {
     }
 
     /**
-     *
+     * Set Specifies a query to execute against instances of one or more object types. 
      * @param query
      */
     public void setQuery(Object query) {
@@ -92,8 +117,8 @@ public class GetRecords extends RequestBase {
     }
 
     /**
-     *
-     * @return
+     * Return RequestId becomes mandatory in the case of a distributed search. 
+     * @return RequestId becomes mandatory in the case of a distributed search. 
      */
     @XmlAttribute
     public URI getRequestId() {
@@ -101,7 +126,7 @@ public class GetRecords extends RequestBase {
     }
 
     /**
-     *
+     * Set RequestId becomes mandatory in the case of a distributed search. 
      * @param requestId
      */
     public void setRequestId(URI requestId) {
@@ -109,8 +134,8 @@ public class GetRecords extends RequestBase {
     }
 
     /**
-     *
-     * @return
+     * Return Various attributes that specify basic retrieval options .
+     * @return Various attributes that specify basic retrieval options.
      */
     @XmlAttribute
     public BasicRetrievalOptions getBasicRetrievalOptions() {
@@ -118,7 +143,7 @@ public class GetRecords extends RequestBase {
     }
 
     /**
-     *
+     * Set Various attributes that specify basic retrieval options.
      * @param basicRetrievalOptions
      */
     public void setBasicRetrievalOptions(BasicRetrievalOptions basicRetrievalOptions) {
