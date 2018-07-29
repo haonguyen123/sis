@@ -17,21 +17,29 @@
 package org.apache.sis.internal.sql.feature;
 
 import java.util.Set;
+import java.util.List;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import org.opengis.util.LocalName;
+import javax.sql.DataSource;
 import org.opengis.util.GenericName;
-import org.apache.sis.util.ArraysExt;
 import org.apache.sis.internal.metadata.sql.Reflection;
-import org.apache.sis.storage.DataStore;
+import org.apache.sis.internal.storage.MetadataBuilder;
+import org.apache.sis.internal.util.UnmodifiableArrayList;
 import org.apache.sis.storage.sql.SQLStore;
+import org.apache.sis.storage.DataStore;
+import org.apache.sis.storage.Resource;
 import org.apache.sis.storage.FeatureSet;
 import org.apache.sis.storage.FeatureNaming;
 import org.apache.sis.storage.DataStoreException;
+import org.apache.sis.storage.IllegalNameException;
 import org.apache.sis.util.logging.WarningListeners;
+import org.apache.sis.util.collection.TreeTable;
+import org.apache.sis.util.Debug;
 
 
 /**
@@ -54,14 +62,26 @@ public final class Database {
     public static final String WILDCARD = "%";
 
     /**
-     * All tables known to this {@code Database}.
+     * All tables known to this {@code Database}. Populated in the constructor,
+     * and shall not be modified after construction for preserving thread-safety.
      */
-    public final FeatureNaming<FeatureSet> tables;
+    private final FeatureNaming<Table> tablesByNames;
+
+    /**
+     * All tables known to this {@code Database} in declaration order.
+     * This table contains only the tables specified at construction time, not the dependencies.
+     */
+    private final Table[] tables;
 
     /**
      * Functions that may be specific to the geospatial database in use.
      */
     final SpatialFunctions functions;
+
+    /**
+     * {@code true} if this database contains at least one geometry column.
+     */
+    public final boolean hasGeometry;
 
     /**
      * Creates a new model about the specified tables in a database.
@@ -81,43 +101,60 @@ public final class Database {
      * </ul>
      *
      * @param  store        the data store for which we are creating a model. Used only in case of error.
-     * @param  connection   connection to the database.
-     * @param  tableNames   qualified name of the tables.
-     * @param  listeners    where to send the warnings.
+     * @param  connection   connection to the database. Sometime the caller already has a connection at hand.
+     * @param  source       provider of (pooled) connections to the database. Specified by users at construction time.
+     * @param  tableNames   qualified name of the tables. Specified by users at construction time.
+     * @param  listeners    where to send the warnings. This is the value of {@code store.listeners}.
      * @throws SQLException if a database error occurred while reading metadata.
      * @throws DataStoreException if a logical error occurred while analyzing the database structure.
      */
-    public Database(final SQLStore store, final Connection connection, final GenericName[] tableNames,
-            final WarningListeners<DataStore> listeners) throws SQLException, DataStoreException
+    public Database(final SQLStore store, final Connection connection, final DataSource source,
+            final GenericName[] tableNames, final WarningListeners<DataStore> listeners)
+            throws SQLException, DataStoreException
     {
-        tables = new FeatureNaming<>();
-        final Analyzer analyzer = new Analyzer(connection.getMetaData(), listeners);
+        final Analyzer analyzer = new Analyzer(source, connection.getMetaData(), listeners, store.getLocale());
         final String[] tableTypes = getTableTypes(analyzer.metadata);
+        final Set<TableReference> declared = new LinkedHashSet<>();
         for (final GenericName tableName : tableNames) {
-            String[] names = tableName.getParsedNames().stream().map(LocalName::toString).toArray(String[]::new);
-            ArraysExt.reverse(names);               // Reorganize in (catalog, schemaPattern, tablePattern) order.
-            names = ArraysExt.resize(names, 3);     // Pad with null values if necessary.
+            final String[] names = TableReference.splitName(tableName);
             try (ResultSet reflect = analyzer.metadata.getTables(names[2], names[1], names[0], tableTypes)) {
                 while (reflect.next()) {
-                    final String table = reflect.getString(Reflection.TABLE_NAME);
+                    final String table = analyzer.getUniqueString(reflect, Reflection.TABLE_NAME);
                     if (analyzer.isIgnoredTable(table)) {
                         continue;
                     }
-                    String remarks = reflect.getString(Reflection.REMARKS);
-                    remarks = (remarks != null) ? remarks.trim() : "";      // Empty string means that we verified that there is no remarks.
-                    analyzer.addDependency(new TableReference(
-                            reflect.getString(Reflection.TABLE_CAT),
-                            reflect.getString(Reflection.TABLE_SCHEM),
-                            table, remarks));
+                    declared.add(new TableReference(
+                            analyzer.getUniqueString(reflect, Reflection.TABLE_CAT),
+                            analyzer.getUniqueString(reflect, Reflection.TABLE_SCHEM), table,
+                            analyzer.getUniqueString(reflect, Reflection.REMARKS)));
                 }
             }
         }
-        TableReference dependency;
-        while ((dependency = analyzer.nextDependency()) != null) {
-            final Table table = new Table(analyzer, dependency);
-            tables.add(store, table.getType().getName(), table);
+        /*
+         * At this point we got the list of tables requested by the user. Now create the Table objects for each
+         * specified name. During this iteration, we may discover new tables to analyze because of dependencies
+         * (foreigner keys).
+         */
+        final List<Table> tableList;
+        tableList = new ArrayList<>(tableNames.length);
+        for (final TableReference reference : declared) {
+            // Adds only the table explicitly required by the user.
+            tableList.add(analyzer.table(reference, reference.getName(analyzer), null));
         }
-        functions = analyzer.functions;
+        /*
+         * At this point we finished to create the table explicitly requested by the users.
+         * Register all tables only at this point, because other tables (dependencies) may
+         * have been analyzed as a side-effect of above loop.
+         */
+        boolean hasGeometry = false;
+        tablesByNames = new FeatureNaming<>();
+        for (final Table table : analyzer.finish()) {
+            tablesByNames.add(store, table.featureType.getName(), table);
+            hasGeometry |= table.hasGeometry;
+        }
+        this.tables = tableList.toArray(new Table[tableList.size()]);
+        this.functions = analyzer.functions;
+        this.hasGeometry = hasGeometry;
     }
 
     /**
@@ -134,5 +171,67 @@ public final class Database {
             }
         }
         return types.toArray(new String[types.size()]);
+    }
+
+    /**
+     * Stores information about tables in the given metadata.
+     * Only tables explicitely requested by the user are listed.
+     *
+     * @param  metadata  information about the database.
+     * @param  builder   where to add information about the tables.
+     * @throws SQLException if an error occurred while fetching table information.
+     */
+    public final void listTables(final DatabaseMetaData metadata, final MetadataBuilder builder) throws SQLException {
+        for (final Table table : tables) {
+            final long n = table.countRows(metadata, false);
+            builder.addFeatureType(table.featureType, (n > 0 && n <= Integer.MAX_VALUE) ? (int) n : null);
+        }
+    }
+
+    /**
+     * Returns all tables in declaration order.
+     * The list contains only the tables explicitly requested at construction time.
+     *
+     * @return all tables in an unmodifiable list.
+     */
+    public final List<Resource> tables() {
+        return UnmodifiableArrayList.wrap(tables);
+    }
+
+    /**
+     * Returns the table for the given name.
+     * The given name may be one of the tables specified at construction time, or one of its dependencies.
+     *
+     * @param  store  the data store for which we are fetching a table. Used only in case of error.
+     * @param  name   name of the table to fetch.
+     * @return the table (never null).
+     * @throws IllegalNameException if no table of the given name is found or if the name is ambiguous.
+     */
+    public final FeatureSet findTable(final SQLStore store, final String name) throws IllegalNameException {
+        return tablesByNames.get(store, name);
+    }
+
+    /**
+     * Creates a tree representation of this table for debugging purpose.
+     *
+     * @param  parent  the parent node where to add the tree representation.
+     */
+    @Debug
+    final void appendTo(final TreeTable.Node parent) {
+        for (final Table child : tables) {
+            child.appendTo(parent);
+        }
+    }
+
+    /**
+     * Formats a graphical representation of this database for debugging purpose. This representation can
+     * be printed to the {@linkplain System#out standard output stream} (for example) if the output device
+     * uses a monospaced font and supports Unicode.
+     *
+     * @return string representation of this database.
+     */
+    @Override
+    public String toString() {
+        return TableReference.toString(this, (n) -> appendTo(n));
     }
 }

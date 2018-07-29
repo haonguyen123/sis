@@ -66,14 +66,24 @@ public final class Resources extends IndexedResourceBundle {
         public static final short DataSource = 1;
 
         /**
-         * Unexpected duplication of “{0}” entity named “{1}”.
+         * Unexpected duplication of column named “{0}”.
          */
-        public static final short DuplicatedEntity_2 = 5;
+        public static final short DuplicatedColumn_1 = 5;
 
         /**
          * “{0}” is not a valid qualified name for a table.
          */
         public static final short IllegalQualifiedName_1 = 3;
+
+        /**
+         * Unexpected error while analyzing the database schema.
+         */
+        public static final short InternalError = 6;
+
+        /**
+         * Unexpected column “{1}” in the “{0}” foreigner key.
+         */
+        public static final short MalformedForeignerKey_2 = 7;
 
         /**
          * Table names, optionally with their schemas and catalogs.
@@ -195,7 +205,7 @@ public final class Resources extends IndexedResourceBundle {
      * @param  args  values to substitute to "{0}", "{1}", <i>etc</i>.
      * @return an international string for the given key.
      */
-    public static InternationalString formatInternational(final short key, final Object... args) {
+    public static ResourceInternationalString formatInternational(final short key, final Object... args) {
         return new International(key, args);
     }
 }

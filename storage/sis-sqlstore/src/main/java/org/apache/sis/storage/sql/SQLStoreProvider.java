@@ -147,7 +147,7 @@ public class SQLStoreProvider extends DataStoreProvider {
             final Map<String,String> properties = new HashMap<>(4);     // TODO: use Map.of with JDK9.
             properties.put("separator",      ".");
             properties.put("separator.head", ":");
-            tableNS = ns = factory.createNameSpace(factory.createLocalName(null, "JDBC"), properties);
+            tableNS = ns = factory.createNameSpace(factory.createLocalName(null, "database"), properties);
         }
         return factory.createGenericName(ns, names);
     }
