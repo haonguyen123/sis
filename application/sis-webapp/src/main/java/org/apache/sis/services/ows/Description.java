@@ -30,14 +30,22 @@ import javax.xml.bind.annotation.*;
 })
 @XmlRootElement(name = "Description", namespace = Namespaces.OWS)
 public class Description {
-
+    /**
+     * Descriptive title for the object.
+     */
     private String title;
+    /**
+     * Descriptive abstracts for the object.
+     */
     private String abstracts;
+    /**
+     * Descriptive keyword for the object.
+     */
     private List<OwsKeywords> keywords;
 
     /**
-     *
-     * @return
+     * Return title for the object.
+     * @return title for the object
      */
     @XmlElement(name = "Title", namespace = Namespaces.OWS)
     public String getTitle() {
@@ -45,7 +53,7 @@ public class Description {
     }
 
     /**
-     *
+     * Set title for the object.
      * @param title
      */
     public void setTitle(String title) {
@@ -53,8 +61,8 @@ public class Description {
     }
 
     /**
-     *
-     * @return
+     * Return abstracts for the object.
+     * @return abstracts for the object
      */
     @XmlElement(name = "Abstract", namespace = Namespaces.OWS)
     public String getAbstracts() {
@@ -62,7 +70,7 @@ public class Description {
     }
 
     /**
-     *
+     * Set abstracts for the object
      * @param abstracts
      */
     public void setAbstracts(String abstracts) {
@@ -70,8 +78,8 @@ public class Description {
     }
 
     /**
-     *
-     * @return
+     * Return  keywords for the object.
+     * @return keywords for the object.
      */
     @XmlElement(name = "Keywords", namespace = Namespaces.OWS)
     public List<OwsKeywords> getKeywords() {
@@ -79,7 +87,7 @@ public class Description {
     }
 
     /**
-     *
+     * Set keywords for the object.
      * @param keywords
      */
     public void setKeywords(List<OwsKeywords> keywords) {

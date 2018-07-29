@@ -31,17 +31,35 @@ import javax.xml.bind.annotation.*;
     "electronicMailAddress",})
 @XmlRootElement(name = "Address", namespace = Namespaces.OWS)
 public class Address {
-
+    /**
+     * Address line for the location.
+     */
     private String deliveryPoint;
+    /**
+     * City of the location.
+     */
     private String city;
+    /**
+     * State or province of the location.
+     */
     private String administrativeArea;
+    /**
+     * ZIP or other postal code.
+     */
     private String postalCode;
+    /**
+     * Country of the physical address.
+     */
     private String country;
+    /**
+     * Address of the electronic mailbox of the responsible organization or 
+     * individual.
+     */
     private String electronicMailAddress;
 
     /**
-     *
-     * @return
+     * Return Address line for the location.
+     * @return Address line for the location.
      */
     @XmlElement(name = "DeliveryPoint", namespace = Namespaces.OWS)
     public String getDeliveryPoint() {
@@ -49,7 +67,7 @@ public class Address {
     }
 
     /**
-     *
+     * Set Address line for the location.
      * @param deliveryPoint
      */
     public void setDeliveryPoint(String deliveryPoint) {
@@ -57,8 +75,8 @@ public class Address {
     }
 
     /**
-     *
-     * @return
+     * Return City of the location.
+     * @return City of the location.
      */
     @XmlElement(name = "City", namespace = Namespaces.OWS)
     public String getCity() {
@@ -66,7 +84,7 @@ public class Address {
     }
 
     /**
-     *
+     * Set City of the location.
      * @param city
      */
     public void setCity(String city) {
@@ -74,8 +92,8 @@ public class Address {
     }
 
     /**
-     *
-     * @return
+     * Return State or province of the location.
+     * @return State or province of the location.
      */
     @XmlElement(name = "AdministrativeArea", namespace = Namespaces.OWS)
 
@@ -84,7 +102,7 @@ public class Address {
     }
 
     /**
-     *
+     * set State or province of the location.
      * @param administrativeArea
      */
     public void setAdministrativeArea(String administrativeArea) {
@@ -92,8 +110,8 @@ public class Address {
     }
 
     /**
-     *
-     * @return
+     * Return ZIP or other postal code.
+     * @return ZIP or other postal code.
      */
     @XmlElement(name = "PostalCode", namespace = Namespaces.OWS)
     public String getPostalCode() {
@@ -101,7 +119,7 @@ public class Address {
     }
 
     /**
-     *
+     * Set ZIP or other postal code.
      * @param postalCode
      */
     public void setPostalCode(String postalCode) {
@@ -109,8 +127,8 @@ public class Address {
     }
 
     /**
-     *
-     * @return
+     * Return Country of the physical address.
+     * @return Country of the physical address.
      */
     @XmlElement(name = "Country", namespace = Namespaces.OWS)
     public String getCountry() {
@@ -118,7 +136,7 @@ public class Address {
     }
 
     /**
-     *
+     * Set Country of the physical address.
      * @param country
      */
     public void setCountry(String country) {
@@ -126,8 +144,10 @@ public class Address {
     }
 
     /**
-     *
-     * @return
+     * Address of the electronic mailbox of the responsible organization or 
+     * individual.
+     * @return Address of the electronic mailbox of the responsible organization or 
+     * individual.
      */
     @XmlElement(name = "ElectronicMailAddress", namespace = Namespaces.OWS)
     public String getElectronicMailAddress() {
@@ -135,7 +155,8 @@ public class Address {
     }
 
     /**
-     *
+     * Set Address of the electronic mailbox of the responsible organization or 
+     * individual.
      * @param electronicMailAddress
      */
     public void setElectronicMailAddress(String electronicMailAddress) {

@@ -25,6 +25,11 @@ import org.apache.sis.services.ows.CapabilitiesBase;
  */
 @XmlType(name = "CapabilitiesType", namespace = Namespaces.CSW)
 @XmlRootElement(name = "Capabilities", namespace = Namespaces.CSW)
+/**
+ * This type extends ows:CapabilitiesBaseType defined in OGC 06-121r9 to include 
+ * information about supported OGC filter components. 
+ * A profile may extend this type to describe additional capabilities.
+ */
 public class Capabilities extends CapabilitiesBase {
 //    private FilterCapabilities filterCapabilities;
 //     /**

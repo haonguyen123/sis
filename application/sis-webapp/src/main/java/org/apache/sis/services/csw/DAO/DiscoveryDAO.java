@@ -41,6 +41,10 @@ public final class DiscoveryDAO {
      *
      */
     public Map<String, Record> record;
+
+    /**
+     *
+     */
     public Map<String, File> pathfile;
     /**
      *

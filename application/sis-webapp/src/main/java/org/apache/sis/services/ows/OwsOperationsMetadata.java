@@ -30,14 +30,31 @@ import javax.xml.bind.annotation.*;
 })
 @XmlRootElement(name = "OperationsMetadata", namespace = Namespaces.OWS)
 public class OwsOperationsMetadata {
-
+    /**
+     * Metadata for unordered list of all the (requests for) operations that 
+     * this server interface implements. 
+     * The list of required and optional operations implemented shall be specified 
+     * in the Implementation Specification for this service.
+     */
     private List<OwsOperation> operation;
+    /**
+     * Optional unordered list of parameter valid domains that each apply to one 
+     * or more operations which this server interface implements. 
+     * The list of required and optional parameter domain limitations shall be 
+     * specified in the Implementation Specification for this service.
+     */
     private List<OwsDomain> parameter;
+    /**
+     * Optional unordered list of valid domain constraints on non-parameter 
+     * quantities that each apply to this server. 
+     * The list of required and optional constraints shall be specified in the 
+     * Implementation Specification for this service.
+     */
     private List<OwsDomain> constraint;
 
     /**
-     *
-     * @return
+     * Return metadata for unordered list of all the (requests for) operations.
+     * @return metadata for unordered list of all the (requests for) operations.
      */
     @XmlElement(name = "Operation", namespace = Namespaces.OWS)
 
@@ -46,7 +63,7 @@ public class OwsOperationsMetadata {
     }
 
     /**
-     *
+     * Set metadata for unordered list of all the (requests for) operations.
      * @param operation
      */
     public void setOperation(List<OwsOperation> operation) {
@@ -54,8 +71,8 @@ public class OwsOperationsMetadata {
     }
 
     /**
-     *
-     * @return
+     * Return optional unordered list of parameter valid domains.
+     * @return optional unordered list of parameter valid domains.
      */
     @XmlElement(name = "Parameter", namespace = Namespaces.OWS)
 
@@ -64,7 +81,7 @@ public class OwsOperationsMetadata {
     }
 
     /**
-     *
+     * Set optional unordered list of parameter valid domains.
      * @param parameter
      */
     public void setParameter(List<OwsDomain> parameter) {
@@ -72,8 +89,10 @@ public class OwsOperationsMetadata {
     }
 
     /**
-     *
-     * @return
+     * Return optional unordered list of valid domain constraints on non-parameter 
+     * quantities.
+     * @return optional unordered list of valid domain constraints on non-parameter 
+     * quantities.
      */
     @XmlElement(name = "Constraint", namespace = Namespaces.OWS)
 
@@ -82,7 +101,8 @@ public class OwsOperationsMetadata {
     }
 
     /**
-     *
+     * Set optional unordered list of valid domain constraints on non-parameter 
+     * quantities.
      * @param constraint
      */
     public void setConstraint(List<OwsDomain> constraint) {

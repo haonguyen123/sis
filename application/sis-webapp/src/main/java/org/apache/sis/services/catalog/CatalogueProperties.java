@@ -29,6 +29,9 @@ public class CatalogueProperties {
 
     private static String pathdata;
 
+    /**
+     *
+     */
     public CatalogueProperties() {
         Properties prop = new Properties();
         InputStream input = null;
@@ -52,6 +55,11 @@ public class CatalogueProperties {
             }
         }
     }
+
+    /**
+     *
+     * @return
+     */
     public String getPathdata() {
         return pathdata;
     }

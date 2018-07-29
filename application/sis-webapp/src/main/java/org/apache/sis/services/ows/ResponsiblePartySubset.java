@@ -28,16 +28,33 @@ import javax.xml.bind.annotation.*;
     "contactInfo",
     "role"
 })
+    /**
+     * Identification of, and means of communication with, person responsible 
+     * for the server.
+     */
 public class ResponsiblePartySubset {
-
+    /**
+     * Name of the responsible person: surname, given name, title separated by a delimiter.
+     */
     private String individualName;
+    /**
+     * Name of the responsible organization.
+     */
     private String positionName;
+    /**
+     * Role or position of the responsible person.
+     */
     private OwsContact contactInfo;
+    /**
+     * Function performed by the responsible party. 
+     * Possible values of this Role shall include the values and the meanings 
+     * listed in Subclause B.5.5 of ISO 19115:2003.
+     */
     private String role;
 
     /**
-     *
-     * @return
+     * Return Name of the responsible person: surname, given name, title separated by a delimiter.
+     * @return Name of the responsible person: surname, given name, title separated by a delimiter.
      */
     @XmlElement(name = "IndividualName", namespace = Namespaces.OWS, required = true)
     public String getIndividualName() {
@@ -45,7 +62,7 @@ public class ResponsiblePartySubset {
     }
 
     /**
-     *
+     * Set Name of the responsible person: surname, given name, title separated by a delimiter.
      * @param individualName
      */
     public void setIndividualName(String individualName) {
@@ -53,8 +70,8 @@ public class ResponsiblePartySubset {
     }
 
     /**
-     *
-     * @return
+     * Return Name of the responsible organization.
+     * @return Name of the responsible organization.
      */
     @XmlElement(name = "PositionName", namespace = Namespaces.OWS)
     public String getPositionName() {
@@ -62,7 +79,7 @@ public class ResponsiblePartySubset {
     }
 
     /**
-     *
+     * Set Name of the responsible organization.
      * @param positionName
      */
     public void setPositionName(String positionName) {
@@ -70,8 +87,8 @@ public class ResponsiblePartySubset {
     }
 
     /**
-     *
-     * @return
+     * Return Role or position of the responsible person.
+     * @return Role or position of the responsible person.
      */
     @XmlElement(name = "ContactInfo", namespace = Namespaces.OWS)
     public OwsContact getContactInfo() {
@@ -79,7 +96,7 @@ public class ResponsiblePartySubset {
     }
 
     /**
-     *
+     * Set Role or position of the responsible person.
      * @param contactInfo
      */
     public void setContactInfo(OwsContact contactInfo) {
@@ -87,8 +104,8 @@ public class ResponsiblePartySubset {
     }
 
     /**
-     *
-     * @return
+     * Return Function performed by the responsible party. 
+     * @return Function performed by the responsible party. 
      */
     @XmlElement(name = "Role", namespace = Namespaces.OWS)
     public String getRole() {
@@ -96,7 +113,7 @@ public class ResponsiblePartySubset {
     }
 
     /**
-     *
+     * Set Function performed by the responsible party. 
      * @param role
      */
     public void setRole(String role) {

@@ -30,15 +30,45 @@ import javax.xml.bind.annotation.*;
 })
 @XmlRootElement(name = "Operation", namespace = Namespaces.OWS)
 public class OwsOperation {
-
+    /**
+     * Unordered list of Distributed Computing Platforms (DCPs) supported for 
+     * this operation. At present, only the HTTP DCP is defined, so this element 
+     * will appear only once.
+     */
     private DCP dcp;
+    /**
+     * Optional unordered list of parameter domains that each apply to this 
+     * operation which this server implements. 
+     * If one of these Parameter elements has the same "name" attribute as a 
+     * Parameter element in the OperationsMetadata element, this Parameter element 
+     * shall override the other one for this operation. The list of required and 
+     * optional parameter domain limitations for this operation shall be specified 
+     * in the Implementation Specification for this service.
+     */
     private List<OwsDomain> parameter;
+    /**
+     * Optional unordered list of valid domain constraints on non-parameter 
+     * quantities that each apply to this operation. 
+     * If one of these Constraint elements has the same "name" attribute as a 
+     * Constraint element in the OperationsMetadata element, this Constraint 
+     * element shall override the other one for this operation. The list of 
+     * required and optional constraints for this operation shall be specified 
+     * in the Implementation Specification for this service.
+     */
     private List<OwsDomain> constraint;
+    /**
+     * Name or identifier of this operation (request) (for example, GetCapabilities). 
+     * The list of required and optional operations implemented shall be specified 
+     * in the Implementation Specification for this service.
+
+     */
     private String name;
 
     /**
-     *
-     * @return
+     * Return unordered list of Distributed Computing Platforms (DCPs) supported for 
+     * this operation.
+     * @return unordered list of Distributed Computing Platforms (DCPs) supported for 
+     * this operation.
      */
     @XmlElement(name = "DCP", namespace = Namespaces.OWS)
     public DCP getDcp() {
@@ -46,7 +76,8 @@ public class OwsOperation {
     }
 
     /**
-     *
+     * get unordered list of Distributed Computing Platforms (DCPs) supported for 
+     * this operation.
      * @param dcp
      */
     public void setDcp(DCP dcp) {
@@ -54,8 +85,10 @@ public class OwsOperation {
     }
 
     /**
-     *
-     * @return
+     * Return Optional unordered list of parameter domains that each apply to this 
+     * operation.
+     * @return Return Optional unordered list of parameter domains that each apply to this 
+     * operation.
      */
     @XmlElement(name = "Parameter", namespace = Namespaces.OWS)
     public List<OwsDomain> getParameter() {
@@ -63,7 +96,8 @@ public class OwsOperation {
     }
 
     /**
-     *
+     * Set optional unordered list of parameter domains that each apply to this 
+     * operation.
      * @param parameter
      */
     public void setParameter(List<OwsDomain> parameter) {
@@ -71,8 +105,10 @@ public class OwsOperation {
     }
 
     /**
-     *
-     * @return
+     * Return optional unordered list of valid domain constraints on non-parameter 
+     * quantities.
+     * @return optional unordered list of valid domain constraints on non-parameter 
+     * quantities.
      */
     @XmlElement(name = "Constraint", namespace = Namespaces.OWS)
     public List<OwsDomain> getConstraint() {
@@ -80,7 +116,8 @@ public class OwsOperation {
     }
 
     /**
-     *
+     * Set optional unordered list of valid domain constraints on non-parameter 
+     * quantities.
      * @param constraint
      */
     public void setConstraint(List<OwsDomain> constraint) {
@@ -88,8 +125,8 @@ public class OwsOperation {
     }
 
     /**
-     *
-     * @return
+     * Return name or identifier of this operation (request)
+     * @return name or identifier of this operation (request)
      */
     @XmlAttribute
     public String getName() {
@@ -97,7 +134,7 @@ public class OwsOperation {
     }
 
     /**
-     *
+     * Set name or identifier of this operation (request)
      * @param name
      */
     public void setName(String name) {

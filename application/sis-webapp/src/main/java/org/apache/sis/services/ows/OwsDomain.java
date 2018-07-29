@@ -24,12 +24,14 @@ import javax.xml.bind.annotation.*;
  */
 @XmlType(name = "DomainType", namespace = Namespaces.OWS)
 public class OwsDomain extends UnNamedDomain {
-
+    /**
+     * When omitted, server shall return latest supported version.
+     */
     private String name;
 
     /**
-     *
-     * @return
+     * Return latest supported version.
+     * @return latest supported version.
      */
     @XmlAttribute
     public String getName() {
@@ -37,7 +39,7 @@ public class OwsDomain extends UnNamedDomain {
     }
 
     /**
-     *
+     *  Set latest supported version.
      * @param name
      */
     public void setName(String name) {

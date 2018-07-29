@@ -36,6 +36,10 @@ public class DefaultPropertyName implements PropertyName {
         return propertyName;
     }
 
+    /**
+     *
+     * @param propertyName
+     */
     public void setPropertyName(String propertyName) {
         this.propertyName = propertyName;
     }

@@ -16,11 +16,7 @@
  */
 package org.apache.sis.services.csw.discovery;
 
-import java.util.Date;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 /**
  *

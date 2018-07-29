@@ -25,13 +25,19 @@ import org.apache.sis.services.ows.Service;
  */
 @XmlType(name = "GetCapabilitiesType", namespace = Namespaces.CSW)
 @XmlRootElement(name = "GetCapabilities", namespace = Namespaces.CSW)
+/**
+ * Request for a description of service capabilities. 
+ * See OGC 06-121r9 for more information.
+ */
 public class GetCapabilities extends org.apache.sis.services.ows.GetCapabilities {
-
+    /**
+     * OGC service type identifier (CSW).
+     */
     private Service service;
 
     /**
-     *
-     * @return
+     * Return OGC service type identifier (CSW).
+     * @return OGC service type identifier (CSW).
      */
     @XmlAttribute
     public Service getService() {
@@ -39,7 +45,7 @@ public class GetCapabilities extends org.apache.sis.services.ows.GetCapabilities
     }
 
     /**
-     *
+     * Set OGC service type identifier (CSW).
      * @param service
      */
     public void setService(Service service) {

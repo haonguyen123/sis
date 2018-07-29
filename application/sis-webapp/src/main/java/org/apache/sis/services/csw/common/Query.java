@@ -31,15 +31,33 @@ import org.opengis.filter.sort.SortBy;
 })
 @XmlRootElement(name = "Query", namespace = Namespaces.CSW)
 public class Query extends AbstractQuery {
-
+    /**
+     * Named subsets of catalogue object properties; 
+     * these views are mapped to a specific information model and are defined in 
+     * an application profile.
+     */
     private Object elementName;
+    /**
+     * A search constraint that adheres to one of the following syntaxes: 
+     * Filter - OGC filter expression 
+     * CqlText - OGC CQL predicate
+     */
     private Constraint constraint;
+    /**
+     * The result set may be sorted by specifying one or more metadata record 
+     * elements upon which to sort. 
+     */
     private SortBy sortBy;
+    /**
+     * The exact syntax is defined in an application profile. 
+     * If querying against the common record properties, only a single type may 
+     * be specified (Record).
+     */
     private TypeNameList typeNameList;
 
     /**
-     *
-     * @return
+     * Return Named subsets of catalogue object properties.
+     * @return Named subsets of catalogue object properties.
      */
     @XmlElements(value = {
         @XmlElement(name = "ElementSetName", type = ElementSetName.class),
@@ -49,7 +67,7 @@ public class Query extends AbstractQuery {
     }
 
     /**
-     *
+     * Set Named subsets of catalogue object properties.
      * @param elementName
      */
     public void setElementName(Object elementName) {
@@ -57,8 +75,8 @@ public class Query extends AbstractQuery {
     }
 
     /**
-     *
-     * @return
+     * Return A search constraint that adheres to one of the following syntaxes.
+     * @return A search constraint that adheres to one of the following syntaxes.
      */
     @XmlElement(name = "Constraint", namespace = Namespaces.CSW)
     public Constraint getConstraint() {
@@ -66,7 +84,7 @@ public class Query extends AbstractQuery {
     }
 
     /**
-     *
+     * Set A search constraint that adheres to one of the following syntaxes.
      * @param constraint
      */
     public void setConstraint(Constraint constraint) {
@@ -74,8 +92,10 @@ public class Query extends AbstractQuery {
     }
 
     /**
-     *
-     * @return
+     * Return The result set may be sorted by specifying one or more metadata record 
+     * elements upon which to sort.
+     * @return result set may be sorted by specifying one or more metadata record 
+     * elements upon which to sort.
      */
     @XmlElement(name = "SortBy", namespace = Namespaces.FES, type = DefaultSortBy.class)
     public SortBy getSortBy() {
@@ -83,7 +103,8 @@ public class Query extends AbstractQuery {
     }
 
     /**
-     *
+     * Set the result set may be sorted by specifying one or more metadata record 
+     * elements upon which to sort.
      * @param sortBy
      */
     public void setSortBy(SortBy sortBy) {
@@ -91,8 +112,8 @@ public class Query extends AbstractQuery {
     }
 
     /**
-     *
-     * @return
+     * Reuturn The exact syntax is defined in an application profile. 
+     * @return The exact syntax is defined in an application profile. 
      */
     @XmlAttribute
     public TypeNameList getTypeNameList() {
@@ -100,7 +121,7 @@ public class Query extends AbstractQuery {
     }
 
     /**
-     *
+     * Set The exact syntax is defined in an application profile. 
      * @param typeNameList
      */
     public void setTypeNameList(TypeNameList typeNameList) {

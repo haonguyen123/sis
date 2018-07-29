@@ -27,13 +27,22 @@ import javax.xml.bind.annotation.*;
     "facsimile",})
 @XmlRootElement(name = "Telephone ", namespace = Namespaces.OWS)
 public class Telephone {
-
+    /**
+     * Telephone number by which individuals can speak to the responsible 
+     * organization or individual.
+     */
     private String voice;
+    /**
+     * Telephone number of a facsimile machine for the responsible organization 
+     * or individual.
+     */
     private String facsimile;
 
     /**
-     *
-     * @return
+     * Return Telephone number by which individuals can speak to the responsible 
+     * organization or individual.
+     * @return Telephone number by which individuals can speak to the responsible 
+     * organization or individual.
      */
     @XmlElement(name = "Voice", namespace = Namespaces.OWS)
     public String getVoice() {
@@ -41,7 +50,8 @@ public class Telephone {
     }
 
     /**
-     *
+     * Set Telephone number by which individuals can speak to the responsible 
+     * organization or individual.
      * @param voice
      */
     public void setVoice(String voice) {
@@ -49,8 +59,10 @@ public class Telephone {
     }
 
     /**
-     *
-     * @return
+     * Return Telephone number of a facsimile machine for the responsible organization 
+     * or individual.
+     * @return Telephone number of a facsimile machine for the responsible organization 
+     * or individual.
      */
     @XmlElement(name = "Facsimile", namespace = Namespaces.OWS)
     public String getFacsimile() {
@@ -58,7 +70,8 @@ public class Telephone {
     }
 
     /**
-     *
+     * Set Telephone number of a facsimile machine for the responsible organization 
+     * or individual.
      * @param facsimile
      */
     public void setFacsimile(String facsimile) {

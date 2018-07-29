@@ -26,12 +26,19 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "SectionsType", namespace = Namespaces.OWS)
 @XmlRootElement(name = "Sections", namespace = Namespaces.OWS)
 public class Sections {
-
+    /**
+     * Unordered list of zero or more names of requested sections in complete 
+     * service metadata document. 
+     * Each Section value shall contain an allowed section name as specified by 
+     * each OWS specification. See Sections parameter subclause for more information.
+     */
     private List<Section> section;
 
     /**
-     *
-     * @return
+     * Return Unordered list of zero or more names of requested sections in complete 
+     * service metadata document. 
+     * @return Unordered list of zero or more names of requested sections in complete 
+     * service metadata document. 
      */
     @XmlElement(name = "Section", namespace = Namespaces.OWS)
     public List<Section> getSection() {
@@ -39,7 +46,8 @@ public class Sections {
     }
 
     /**
-     *
+     * Set Unordered list of zero or more names of requested sections in complete 
+     * service metadata document. 
      * @param section
      */
     public void setSection(List<Section> section) {

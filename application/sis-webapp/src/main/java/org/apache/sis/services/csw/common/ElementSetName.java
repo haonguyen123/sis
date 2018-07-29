@@ -25,12 +25,16 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "ElementSetName", namespace = Namespaces.CSW)
 @XmlRootElement(name = "ElementSetName")
 public class ElementSetName extends ElementSetType {
-
+    /**
+     * Includes the values “brief”, “summary” and “full”.  
+     * May include any other value that the server recognizes as a named set of 
+     * information model elements.
+     */
     private TypeNameList typeNames;
 
     /**
-     *
-     * @return
+     * Return includes the values “brief”, “summary” and “full”.
+     * @return includes the values “brief”, “summary” and “full”.
      */
     @XmlAttribute
     public TypeNameList getTypeNames() {
@@ -38,7 +42,7 @@ public class ElementSetName extends ElementSetType {
     }
 
     /**
-     *
+     * Set includes the values “brief”, “summary” and “full”.
      * @param typeNames
      */
     public void setTypeNames(TypeNameList typeNames) {

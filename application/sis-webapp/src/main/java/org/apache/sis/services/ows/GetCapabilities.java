@@ -26,16 +26,36 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "GetCapabilitiesType", namespace = Namespaces.OWS)
 @XmlRootElement(name = "GetCapabilities", namespace = Namespaces.OWS)
 public class GetCapabilities {
-
+    /**
+     * When omitted, server shall return latest supported version.
+     */
     private AcceptVersions acceptVersions;
+    /**
+     * When omitted or not supported by server, server shall return complete 
+     * service metadata (Capabilities) document.
+     */
     private Sections sections;
+    /**
+     * When omitted or not supported by server, server shall return service 
+     * metadata document using the MIME type "text/xml".
+     */
     private AcceptFormats acceptFormats;
+    /**
+     * Ordered list of languages desired by the client for all human readable 
+     * text in the response, in order of preference. 
+     * For every element, the first matching language available from the server 
+     * shall be present in the response.
+     */
     private List<Language> AcceptLanguages;
+    /**
+     * When omitted or not supported by server, server shall return latest 
+     * complete service metadata document.
+     */
     private UpdateSequence updateSequence;
 
     /**
-     *
-     * @return
+     * Return latest supported version.
+     * @return latest supported version.
      */
     @XmlElement(name = "AcceptVersions")
     public AcceptVersions getAcceptVersions() {
@@ -43,7 +63,7 @@ public class GetCapabilities {
     }
 
     /**
-     *
+     * Set latest supported version.
      * @param acceptVersions
      */
     public void setAcceptVersions(AcceptVersions acceptVersions) {
@@ -51,8 +71,8 @@ public class GetCapabilities {
     }
 
     /**
-     *
-     * @return
+     * Return complete service metadata (Capabilities) document.
+     * @return complete service metadata (Capabilities) document.
      */
     @XmlElement(name = "Sections")
     public Sections getSections() {
@@ -60,7 +80,7 @@ public class GetCapabilities {
     }
 
     /**
-     *
+     * Set complete service metadata (Capabilities) document.
      * @param sections
      */
     public void setSections(Sections sections) {
@@ -68,8 +88,8 @@ public class GetCapabilities {
     }
 
     /**
-     *
-     * @return
+     * Return service metadata document using the MIME type "text/xml".
+     * @return  service metadata document using the MIME type "text/xml".
      */
     @XmlElement(name = "AcceptFormats")
     public AcceptFormats getAcceptFormats() {
@@ -77,7 +97,7 @@ public class GetCapabilities {
     }
 
     /**
-     *
+     * Set service metadata document using the MIME type "text/xml".
      * @param acceptFormats
      */
     public void setAcceptFormats(AcceptFormats acceptFormats) {
@@ -85,8 +105,10 @@ public class GetCapabilities {
     }
 
     /**
-     *
-     * @return
+     * Return Ordered list of languages desired by the client for all human readable 
+     * text in the response, in order of preference.
+     * @return Ordered list of languages desired by the client for all human readable 
+     * text in the response, in order of preference.
      */
     @XmlElement(name = "AcceptLanguages")
     public List<Language> getAcceptLanguages() {
@@ -94,7 +116,8 @@ public class GetCapabilities {
     }
 
     /**
-     *
+     * Set Ordered list of languages desired by the client for all human readable 
+     * text in the response, in order of preference.
      * @param AcceptLanguages
      */
     public void setAcceptLanguages(List<Language> AcceptLanguages) {
@@ -102,8 +125,8 @@ public class GetCapabilities {
     }
 
     /**
-     *
-     * @return
+     * Return latest complete service metadata document.
+     * @return latest complete service metadata document.
      */
     @XmlElement(name = "UpdateSequence")
     public UpdateSequence getUpdateSequence() {
@@ -111,7 +134,7 @@ public class GetCapabilities {
     }
 
     /**
-     *
+     * Set latest complete service metadata document.
      * @param updateSequence
      */
     public void setUpdateSequence(UpdateSequence updateSequence) {

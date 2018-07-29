@@ -25,12 +25,14 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "QueryConstraintType", namespace = Namespaces.CSW)
 @XmlRootElement(name = "Constraint")
 public class Constraint {
-
+    /**
+     * Text of query constraint in the predicate language identified by the .
+     */
     private Object search;
 
     /**
-     *
-     * @return
+     * Return Text of query constraint in the predicate language identified by the .
+     * @return Text of query constraint in the predicate language identified by the .
      */
     @XmlElements(value = {
         @XmlElement(name = "Filter", type = Filter.class),
@@ -40,11 +42,10 @@ public class Constraint {
     }
 
     /**
-     *
+     * Set Text of query constraint in the predicate language identified by the .
      * @param search
      */
     public void setSearch(Object search) {
         this.search = search;
     }
-
 }

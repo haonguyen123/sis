@@ -28,13 +28,22 @@ import javax.xml.bind.annotation.*;
 })
 @XmlRootElement(name = "HTTP", namespace = Namespaces.OWS)
 public class HTTP {
-
+    /**
+     * Connect point URL prefix and any constraints for the HTTP "Get" request 
+     * method for this operation request.
+     */
     private RequestMethod get;
+    /**
+     * Connect point URL and any constraints for the HTTP "Post" request method 
+     * for this operation request.
+     */
     private RequestMethod post;
 
     /**
-     *
-     * @return
+     * Return Connect point URL prefix and any constraints for the HTTP "Get" request 
+     * method
+     * @return Connect point URL prefix and any constraints for the HTTP "Get" request 
+     * method.
      */
     @XmlElement(name = "Get", namespace = Namespaces.OWS)
     public RequestMethod getGet() {
@@ -42,7 +51,8 @@ public class HTTP {
     }
 
     /**
-     *
+     * Set Connect point URL prefix and any constraints for the HTTP "Get" request 
+     * method.
      * @param get
      */
     public void setGet(RequestMethod get) {
@@ -50,7 +60,8 @@ public class HTTP {
     }
 
     /**
-     *
+     * Return Connect point URL and any constraints for the HTTP "Post" request 
+     * method.
      * @return
      */
     @XmlElement(name = "Post", namespace = Namespaces.OWS)
@@ -59,7 +70,8 @@ public class HTTP {
     }
 
     /**
-     *
+     * Set Connect point URL and any constraints for the HTTP "Post" request 
+     * method
      * @param post
      */
     public void setPost(RequestMethod post) {

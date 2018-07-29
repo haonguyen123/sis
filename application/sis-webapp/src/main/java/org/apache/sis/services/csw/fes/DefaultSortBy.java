@@ -37,6 +37,11 @@ public class DefaultSortBy implements SortBy {
     public PropertyName getPropertyName() {
         return propertyName;
     }
+
+    /**
+     *
+     * @param propertyName
+     */
     public void setPropertyName(PropertyName propertyName) {
         this.propertyName = propertyName;
     }
@@ -45,6 +50,11 @@ public class DefaultSortBy implements SortBy {
     public SortOrder getSortOrder() {
         return sortOrder;
     }
+
+    /**
+     *
+     * @param sortOrder
+     */
     public void setSortOrder(SortOrder sortOrder) {
         this.sortOrder = sortOrder;
     }
