@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.*;
     "role"
 })
     /**
-     * Identification of, and means of communication with, person responsible 
+     * Identification of, and means of communication with, person responsible
      * for the server.
      */
 public class ResponsiblePartySubset {
@@ -46,8 +46,8 @@ public class ResponsiblePartySubset {
      */
     private OwsContact contactInfo;
     /**
-     * Function performed by the responsible party. 
-     * Possible values of this Role shall include the values and the meanings 
+     * Function performed by the responsible party.
+     * Possible values of this Role shall include the values and the meanings
      * listed in Subclause B.5.5 of ISO 19115:2003.
      */
     private String role;
@@ -104,8 +104,8 @@ public class ResponsiblePartySubset {
     }
 
     /**
-     * Return Function performed by the responsible party. 
-     * @return Function performed by the responsible party. 
+     * Return Function performed by the responsible party.
+     * @return Function performed by the responsible party.
      */
     @XmlElement(name = "Role", namespace = Namespaces.OWS)
     public String getRole() {
@@ -113,7 +113,7 @@ public class ResponsiblePartySubset {
     }
 
     /**
-     * Set Function performed by the responsible party. 
+     * Set Function performed by the responsible party.
      * @param role
      */
     public void setRole(String role) {

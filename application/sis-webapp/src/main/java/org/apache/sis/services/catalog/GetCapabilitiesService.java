@@ -19,7 +19,6 @@ package org.apache.sis.services.catalog;
 
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URI;
 import java.util.UUID;
 import javax.ws.rs.*;

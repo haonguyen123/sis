@@ -52,7 +52,7 @@ public class Address {
      */
     private String country;
     /**
-     * Address of the electronic mailbox of the responsible organization or 
+     * Address of the electronic mailbox of the responsible organization or
      * individual.
      */
     private String electronicMailAddress;
@@ -144,9 +144,9 @@ public class Address {
     }
 
     /**
-     * Address of the electronic mailbox of the responsible organization or 
+     * Address of the electronic mailbox of the responsible organization or
      * individual.
-     * @return Address of the electronic mailbox of the responsible organization or 
+     * @return Address of the electronic mailbox of the responsible organization or
      * individual.
      */
     @XmlElement(name = "ElectronicMailAddress", namespace = Namespaces.OWS)
@@ -155,7 +155,7 @@ public class Address {
     }
 
     /**
-     * Set Address of the electronic mailbox of the responsible organization or 
+     * Set Address of the electronic mailbox of the responsible organization or
      * individual.
      * @param electronicMailAddress
      */

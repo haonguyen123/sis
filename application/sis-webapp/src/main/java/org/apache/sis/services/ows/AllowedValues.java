@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.*;
 public class AllowedValues {
     /**
      * List of all the valid values  for this quantity.
-     * For numeric quantities, signed values should be ordered from negative 
+     * For numeric quantities, signed values should be ordered from negative
      * infinity to positive infinity.
      */
     private List<Value> value;

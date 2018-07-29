@@ -26,8 +26,8 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "ElementSetName")
 public class ElementSetName extends ElementSetType {
     /**
-     * Includes the values “brief”, “summary” and “full”.  
-     * May include any other value that the server recognizes as a named set of 
+     * Includes the values “brief”, “summary” and “full”.
+     * May include any other value that the server recognizes as a named set of
      * information model elements.
      */
     private TypeNameList typeNames;

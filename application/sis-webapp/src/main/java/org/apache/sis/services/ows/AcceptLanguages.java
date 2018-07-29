@@ -26,18 +26,18 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "AcceptLanguagesType", namespace = Namespaces.OWS)
 @XmlRootElement(name = "AcceptLanguages", namespace = Namespaces.OWS)
 public class AcceptLanguages {
-    /** 
-     * Identifier of the language used by the data(set) contents. This language 
-     * identifier shall be as specified in IETF RFC 4646. The language tags shall 
-     * be either complete 5 character codes (e.g. "en-CA"), or abbreviated 2 
-     * character codes (e.g. "en"). In addition to the RFC 4646 codes, the server 
-     * shall support the single special value "*" which is used to indicate "any 
+    /**
+     * Identifier of the language used by the data(set) contents. This language
+     * identifier shall be as specified in IETF RFC 4646. The language tags shall
+     * be either complete 5 character codes (e.g. "en-CA"), or abbreviated 2
+     * character codes (e.g. "en"). In addition to the RFC 4646 codes, the server
+     * shall support the single special value "*" which is used to indicate "any
      * language".
      */
     private List<Language> language;
 
     /**
-     * Return the language used by the data(set) contents 
+     * Return the language used by the data(set) contents
      * @return the language of the string
      */
     @XmlElement(name = "Language")

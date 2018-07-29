@@ -28,20 +28,20 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "Telephone ", namespace = Namespaces.OWS)
 public class Telephone {
     /**
-     * Telephone number by which individuals can speak to the responsible 
+     * Telephone number by which individuals can speak to the responsible
      * organization or individual.
      */
     private String voice;
     /**
-     * Telephone number of a facsimile machine for the responsible organization 
+     * Telephone number of a facsimile machine for the responsible organization
      * or individual.
      */
     private String facsimile;
 
     /**
-     * Return Telephone number by which individuals can speak to the responsible 
+     * Return Telephone number by which individuals can speak to the responsible
      * organization or individual.
-     * @return Telephone number by which individuals can speak to the responsible 
+     * @return Telephone number by which individuals can speak to the responsible
      * organization or individual.
      */
     @XmlElement(name = "Voice", namespace = Namespaces.OWS)
@@ -50,7 +50,7 @@ public class Telephone {
     }
 
     /**
-     * Set Telephone number by which individuals can speak to the responsible 
+     * Set Telephone number by which individuals can speak to the responsible
      * organization or individual.
      * @param voice
      */
@@ -59,9 +59,9 @@ public class Telephone {
     }
 
     /**
-     * Return Telephone number of a facsimile machine for the responsible organization 
+     * Return Telephone number of a facsimile machine for the responsible organization
      * or individual.
-     * @return Telephone number of a facsimile machine for the responsible organization 
+     * @return Telephone number of a facsimile machine for the responsible organization
      * or individual.
      */
     @XmlElement(name = "Facsimile", namespace = Namespaces.OWS)
@@ -70,7 +70,7 @@ public class Telephone {
     }
 
     /**
-     * Set Telephone number of a facsimile machine for the responsible organization 
+     * Set Telephone number of a facsimile machine for the responsible organization
      * or individual.
      * @param facsimile
      */

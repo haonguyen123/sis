@@ -28,22 +28,22 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "Keywords", namespace = Namespaces.OWS)
 public class OwsKeywords {
     /**
-     * Unordered list of one or more commonly used or formalised word(s) or 
-     * phrase(s) used to describe the subject. 
-     * When needed, the optional "type" can name the type of the associated list 
-     * of keywords that shall all have the same type. Also when needed, 
-     * the codeSpace attribute of that "type" can reference the type name authority 
-     * and/or thesaurus. If the xml:lang attribute is not included in a Keyword element, 
-     * then no language is specified for that element unless specified by another means. 
-     * All Keyword elements in the same Keywords element that share the same xml:lang 
+     * Unordered list of one or more commonly used or formalised word(s) or
+     * phrase(s) used to describe the subject.
+     * When needed, the optional "type" can name the type of the associated list
+     * of keywords that shall all have the same type. Also when needed,
+     * the codeSpace attribute of that "type" can reference the type name authority
+     * and/or thesaurus. If the xml:lang attribute is not included in a Keyword element,
+     * then no language is specified for that element unless specified by another means.
+     * All Keyword elements in the same Keywords element that share the same xml:lang
      * attribute value represent different keywords in that language.
      */
     private List<String> keyword;
 
     /**
-     * Return Unordered list of one or more commonly used or formalised word(s) or 
+     * Return Unordered list of one or more commonly used or formalised word(s) or
      * phrase(s) used to describe the subject.
-     * @return Unordered list of one or more commonly used or formalised word(s) or 
+     * @return Unordered list of one or more commonly used or formalised word(s) or
      * phrase(s) used to describe the subject.
      */
     @XmlElement(name = "Keyword", namespace = Namespaces.OWS)
@@ -52,7 +52,7 @@ public class OwsKeywords {
     }
 
     /**
-     * Set Unordered list of one or more commonly used or formalised word(s) or 
+     * Set Unordered list of one or more commonly used or formalised word(s) or
      * phrase(s) used to describe the subject.
      * @param keyword
      */

@@ -32,25 +32,25 @@ import org.opengis.filter.sort.SortBy;
 @XmlRootElement(name = "Query", namespace = Namespaces.CSW)
 public class Query extends AbstractQuery {
     /**
-     * Named subsets of catalogue object properties; 
-     * these views are mapped to a specific information model and are defined in 
+     * Named subsets of catalogue object properties;
+     * these views are mapped to a specific information model and are defined in
      * an application profile.
      */
     private Object elementName;
     /**
-     * A search constraint that adheres to one of the following syntaxes: 
-     * Filter - OGC filter expression 
+     * A search constraint that adheres to one of the following syntaxes:
+     * Filter - OGC filter expression
      * CqlText - OGC CQL predicate
      */
     private Constraint constraint;
     /**
-     * The result set may be sorted by specifying one or more metadata record 
-     * elements upon which to sort. 
+     * The result set may be sorted by specifying one or more metadata record
+     * elements upon which to sort.
      */
     private SortBy sortBy;
     /**
-     * The exact syntax is defined in an application profile. 
-     * If querying against the common record properties, only a single type may 
+     * The exact syntax is defined in an application profile.
+     * If querying against the common record properties, only a single type may
      * be specified (Record).
      */
     private TypeNameList typeNameList;
@@ -92,9 +92,9 @@ public class Query extends AbstractQuery {
     }
 
     /**
-     * Return The result set may be sorted by specifying one or more metadata record 
+     * Return The result set may be sorted by specifying one or more metadata record
      * elements upon which to sort.
-     * @return result set may be sorted by specifying one or more metadata record 
+     * @return result set may be sorted by specifying one or more metadata record
      * elements upon which to sort.
      */
     @XmlElement(name = "SortBy", namespace = Namespaces.FES, type = DefaultSortBy.class)
@@ -103,7 +103,7 @@ public class Query extends AbstractQuery {
     }
 
     /**
-     * Set the result set may be sorted by specifying one or more metadata record 
+     * Set the result set may be sorted by specifying one or more metadata record
      * elements upon which to sort.
      * @param sortBy
      */
@@ -112,8 +112,8 @@ public class Query extends AbstractQuery {
     }
 
     /**
-     * Reuturn The exact syntax is defined in an application profile. 
-     * @return The exact syntax is defined in an application profile. 
+     * Reuturn The exact syntax is defined in an application profile.
+     * @return The exact syntax is defined in an application profile.
      */
     @XmlAttribute
     public TypeNameList getTypeNameList() {
@@ -121,7 +121,7 @@ public class Query extends AbstractQuery {
     }
 
     /**
-     * Set The exact syntax is defined in an application profile. 
+     * Set The exact syntax is defined in an application profile.
      * @param typeNameList
      */
     public void setTypeNameList(TypeNameList typeNameList) {

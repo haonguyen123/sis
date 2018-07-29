@@ -27,29 +27,29 @@ import javax.xml.bind.annotation.*;
 })
 @XmlRootElement(name = "RequestMethod", namespace = Namespaces.OWS)
 /**
- * Connect point URL and any constraints for this HTTP request method for this 
- * operation request. 
- * In the OnlineResourceType, the xlink:href attribute in the xlink:simpleAttrs 
- * attribute group shall be used to contain this URL. The other attributes in 
+ * Connect point URL and any constraints for this HTTP request method for this
+ * operation request.
+ * In the OnlineResourceType, the xlink:href attribute in the xlink:simpleAttrs
+ * attribute group shall be used to contain this URL. The other attributes in
  * the xlink:simpleAttrs attribute group should not be used.
  */
 public class RequestMethod extends OnlineResource {
     /**
-     * Optional unordered list of valid domain constraints on non-parameter 
-     * quantities that each apply to this request method for this operation. 
-     * If one of these Constraint elements has the same "name" attribute as a 
-     * Constraint element in the OperationsMetadata or Operation element, this 
-     * Constraint element shall override the other one for this operation. The 
-     * list of required and optional constraints for this request method for 
-     * this operation shall be specified in the Implementation Specification for 
+     * Optional unordered list of valid domain constraints on non-parameter
+     * quantities that each apply to this request method for this operation.
+     * If one of these Constraint elements has the same "name" attribute as a
+     * Constraint element in the OperationsMetadata or Operation element, this
+     * Constraint element shall override the other one for this operation. The
+     * list of required and optional constraints for this request method for
+     * this operation shall be specified in the Implementation Specification for
      * this service.
      */
     private OwsDomain contraint;
 
     /**
-     * Return Optional unordered list of valid domain constraints on non-parameter 
+     * Return Optional unordered list of valid domain constraints on non-parameter
      * quantities.
-     * @return Optional unordered list of valid domain constraints on non-parameter 
+     * @return Optional unordered list of valid domain constraints on non-parameter
      * quantities.
      */
     @XmlElement(name = "Contraint", namespace = Namespaces.OWS)
@@ -58,7 +58,7 @@ public class RequestMethod extends OnlineResource {
     }
 
     /**
-     * Set Optional unordered list of valid domain constraints on non-parameter 
+     * Set Optional unordered list of valid domain constraints on non-parameter
      * quantities.
      * @param contraint
      */

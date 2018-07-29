@@ -26,9 +26,9 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "UpdateSequence", namespace = Namespaces.OWS)
 public class UpdateSequence {
     /**
-     * Service metadata document version, having values that are "increased" 
-     * whenever any change is made in service metadata document. 
-     * Values are selected by each server, and are always opaque to clients. 
+     * Service metadata document version, having values that are "increased"
+     * whenever any change is made in service metadata document.
+     * Values are selected by each server, and are always opaque to clients.
      * See updateSequence parameter use subclause for more information.
      */
     private String value;
