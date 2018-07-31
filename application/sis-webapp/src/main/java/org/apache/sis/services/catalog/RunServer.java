@@ -26,6 +26,7 @@ import java.io.InputStreamReader;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.ext.search.SearchContextProvider;
 import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
+import org.apache.sis.storage.DataStoreException;
 
 /**
  *
@@ -41,7 +42,7 @@ public final class RunServer {
      *
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DataStoreException {
         JAXRSServerFactoryBean restServer = new JAXRSServerFactoryBean();
         restServer.setProvider(new SearchContextProvider());
         restServer.setResourceClasses(GetCapabilitiesService.class);

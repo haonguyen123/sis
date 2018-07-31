@@ -48,7 +48,12 @@ import org.opengis.filter.sort.SortOrder;
 @Path("/csw")
 @Produces("application/xml")
 public class GetCapabilitiesService {
+    private final Discovery discovery;;
 
+    public GetCapabilitiesService() throws DataStoreException {
+        this.discovery = new DiscoveryImpl();
+    }
+    
     /**
      *
      * @param operation
@@ -105,7 +110,7 @@ public class GetCapabilitiesService {
         @GET
         @Consumes("application/xml")
         public Response getRecordById(@QueryParam("Id") String id) throws JAXBException, DataStoreException {
-            Discovery discovery = new DiscoveryImpl();
+            
             GetRecordById getRecordById = new GetRecordById();
             getRecordById.setId(id);
             return Response
@@ -144,23 +149,22 @@ public class GetCapabilitiesService {
          */
         @GET
         @Consumes("application/xml")
-        public Response getRecords(@QueryParam("requestid") URI requestId,
-                @QueryParam("startposition") @DefaultValue("1") int startPosition,
-                @QueryParam("maxrecords") @DefaultValue("10") int maxRecords,
-                @QueryParam("sortby") String sortby,
-                @QueryParam("q") String q,
-                @QueryParam("recordids") String recordids,
-                @QueryParam("bbox") String bbox,
-                //                                    @QueryParam("geometry") String geometry,
-                //                                    @QueryParam("relation") String relation,
-                @QueryParam("time") String time,
-                //                                    @QueryParam("trelation") String trelation,
-                @QueryParam("constraintlanguage") String constraintlanguage,
-                @QueryParam("constraintlanguageversion") String constraintlanguageversion,
-                @QueryParam("constraint") String constraint
+        public Response getRecords( @QueryParam("requestid") URI requestId,
+                                    @QueryParam("startposition") @DefaultValue("1") int startPosition,
+                                    @QueryParam("maxrecords") @DefaultValue("10") int maxRecords,
+                                    @QueryParam("sortby") String sortby,
+                                    @QueryParam("q") String q,
+                                    @QueryParam("recordids") String recordids,
+                                    @QueryParam("bbox") String bbox,
+                                    @QueryParam("geometry") String geometry,
+                                    @QueryParam("relation") String relation,
+                                    @QueryParam("time") String time,
+                                    //                                    @QueryParam("trelation") String trelation,
+                                    @QueryParam("constraintlanguage") String constraintlanguage,
+                                    @QueryParam("constraintlanguageversion") String constraintlanguageversion,
+                                    @QueryParam("constraint") String constraint
         ) throws JAXBException, DataStoreException {
             GetRecordsResponse record = new GetRecordsResponse();
-            Discovery discovery = new DiscoveryImpl();
             GetRecords params = new GetRecords();
             if (requestId != null) {
                 params.setRequestId(requestId);
@@ -190,8 +194,12 @@ public class GetCapabilitiesService {
                     params.setQuery(query);
                 }
             }
-            if (q != null || recordids != null || bbox != null || time != null) {
+            if (relation == null) {
+                relation = "intersects";    
+            }
+            if (q != null || recordids != null || bbox != null || time != null || geometry != null) {
                 FilterFesKvp fes = new FilterFesKvp();
+                fes.setRelation(relation);
                 if (q != null) {
                     fes.setQ(q);
                 }
@@ -204,6 +212,11 @@ public class GetCapabilitiesService {
                 if (time != null) {
                     fes.setTime(time);
                 }
+                if (geometry !=null ) {
+                    fes.setGeometry(geometry);
+                }
+                    
+                
                 record = discovery.getRecords(params, fes);
             }
             if (constraint != null && "FIQL".equals(constraintlanguage)) {
@@ -264,7 +277,6 @@ public class GetCapabilitiesService {
     @Path("/download/{name}")
     @Produces("text/plain")
     public Response getFile(@PathParam("name") String name) throws DataStoreException  {
-        Discovery discovery = new DiscoveryImpl();
         File file = discovery.getPath(name);
         Response.ResponseBuilder response = Response.ok((Object) file);
         response.header("Content-Disposition", "attachment; filename=" + file.getName());

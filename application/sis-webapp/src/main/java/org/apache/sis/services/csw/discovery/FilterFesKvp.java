@@ -26,6 +26,9 @@ public class FilterFesKvp {
     private String recordIds;
     private String bbox;
     private String time;
+    private String geometry;
+    private String relation;
+    
 
     /**
      *
@@ -90,4 +93,21 @@ public class FilterFesKvp {
     public void setTime(String time) {
         this.time = time;
     }
+
+    public String getGeometry() {
+        return geometry;
+    }
+
+    public void setGeometry(String geometry) {
+        this.geometry = geometry;
+    }
+
+    public String getRelation() {
+        return relation;
+    }
+
+    public void setRelation(String relation) {
+        this.relation = relation;
+    }
+    
 }
