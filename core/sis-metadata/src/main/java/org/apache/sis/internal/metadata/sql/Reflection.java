@@ -93,6 +93,12 @@ public final class Reflection {
     public static final String COLUMN_SIZE = "COLUMN_SIZE";
 
     /**
+     * Whether an integer type is unsigned.
+     * Values in this column are integers ({@code boolean}) rather than {@code String}.
+     */
+    public static final String UNSIGNED_ATTRIBUTE = "UNSIGNED_ATTRIBUTE";
+
+    /**
      * The {@value} key for the nullability of a column. Possible values are {@code "YES"} if
      * the parameter can include NULLs, {@code "NO"} if the parameter cannot include NULLs,
      * and empty string if the nullability for the parameter is unknown.
@@ -187,6 +193,20 @@ public final class Reflection {
      * Values in this column may be null.
      */
     public static final String INDEX_NAME = "INDEX_NAME";
+
+    /**
+     * Index type: statistics, clustered, hashed or other.
+     *
+     * <p>Values in this column are short integers ({@code short}) rather than {@code String}.</p>
+     */
+    public static final String TYPE = "TYPE";
+
+    /**
+     * Number of rows in the table, or number of unique values in the index.
+     *
+     * <p>Values in this column are long integers ({@code long}) rather than {@code String}.</p>
+     */
+    public static final String CARDINALITY = "CARDINALITY";
 
     /**
      * Do not allow instantiation of this class.

@@ -38,13 +38,13 @@ public class OwsContact {
      */
     private Telephone phone;
     /**
-     * On-line information that can be used to contact the individual or organization. 
-     * OWS specifics: The xlink:href attribute in the xlink:simpleAttrs attribute 
-     * group shall be used to reference this resource. Whenever practical, 
-     * the xlink:href attribute with type anyURI should be a URL from which more 
-     * contact information can be electronically retrieved. 
-     * The xlink:title attribute with type "string" can be used to name this set 
-     * of information. The other attributes in the xlink:simpleAttrs attribute 
+     * On-line information that can be used to contact the individual or organization.
+     * OWS specifics: The xlink:href attribute in the xlink:simpleAttrs attribute
+     * group shall be used to reference this resource. Whenever practical,
+     * the xlink:href attribute with type anyURI should be a URL from which more
+     * contact information can be electronically retrieved.
+     * The xlink:title attribute with type "string" can be used to name this set
+     * of information. The other attributes in the xlink:simpleAttrs attribute
      * group should not be used.
      */
     private OnlineResource onlineResource;
@@ -84,8 +84,8 @@ public class OwsContact {
     }
 
     /**
-     * Return On-line information that can be used to contact the individual or organization. 
-     * @return On-line information that can be used to contact the individual or organization. 
+     * Return On-line information that can be used to contact the individual or organization.
+     * @return On-line information that can be used to contact the individual or organization.
      */
     @XmlElement(name = "OnlineResource", namespace = Namespaces.OWS)
     public OnlineResource getOnlineResource() {
@@ -93,7 +93,7 @@ public class OwsContact {
     }
 
     /**
-     * Set On-line information that can be used to contact the individual or organization. 
+     * Set On-line information that can be used to contact the individual or organization.
      * @param onlineResource
      */
     public void setOnlineResource(OnlineResource onlineResource) {

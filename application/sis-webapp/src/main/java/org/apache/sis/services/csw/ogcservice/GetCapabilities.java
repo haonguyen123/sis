@@ -26,7 +26,7 @@ import org.apache.sis.services.ows.Service;
 @XmlType(name = "GetCapabilitiesType", namespace = Namespaces.CSW)
 @XmlRootElement(name = "GetCapabilities", namespace = Namespaces.CSW)
 /**
- * Request for a description of service capabilities. 
+ * Request for a description of service capabilities.
  * See OGC 06-121r9 for more information.
  */
 public class GetCapabilities extends org.apache.sis.services.ows.GetCapabilities {

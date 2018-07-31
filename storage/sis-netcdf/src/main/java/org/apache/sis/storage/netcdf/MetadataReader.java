@@ -49,16 +49,12 @@ import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.crs.VerticalCRS;
 
 import org.apache.sis.util.iso.Types;
-import org.apache.sis.util.iso.SimpleInternationalString;
 import org.apache.sis.util.logging.WarningListeners;
 import org.apache.sis.storage.DataStore;
 import org.apache.sis.storage.DataStoreException;
 import org.apache.sis.metadata.iso.DefaultMetadata;
 import org.apache.sis.metadata.iso.citation.*;
 import org.apache.sis.metadata.iso.identification.*;
-import org.apache.sis.metadata.iso.lineage.DefaultSource;
-import org.apache.sis.metadata.iso.lineage.DefaultLineage;
-import org.apache.sis.metadata.iso.quality.DefaultDataQuality;
 import org.apache.sis.metadata.sql.MetadataStoreException;
 import org.apache.sis.internal.netcdf.Axis;
 import org.apache.sis.internal.netcdf.Decoder;
@@ -320,18 +316,6 @@ split:  while ((start = CharSequences.skipLeadingWhitespaces(value, start, lengt
             warning(Errors.Keys.UnknownEnumValue_2, codeType, name, null);
         }
         return code;
-    }
-
-    /**
-     * Adds the given element in the given collection if the element is not already present in the collection.
-     * We define this method because the metadata API uses collections while the SIS implementation uses lists.
-     * The lists are usually very short (typically 0 or 1 element), so the call to {@link List#contains(Object)}
-     * should be cheap.
-     */
-    private static <T> void addIfAbsent(final Collection<T> collection, final T element) {
-        if (!collection.contains(element)) {
-            collection.add(element);
-        }
     }
 
     /**
@@ -1066,31 +1050,17 @@ split:  while ((start = CharSequences.skipLeadingWhitespaces(value, start, lengt
         }
         addFileIdentifier();
         /*
-         * Add history in Metadata.dataQualityInfo.lineage.statement as specified by UnidataDD2MI.xsl.
-         * However Metadata.resourceLineage.statement could be a more appropriate place.
+         * Deperture: UnidataDD2MI.xsl puts the source in Metadata.dataQualityInfo.lineage.statement.
+         * However since ISO 19115:2014, Metadata.resourceLineage.statement seems a more appropriate place.
          * See https://issues.apache.org/jira/browse/SIS-361
          */
-        final DefaultMetadata metadata = build(false);
         for (final String path : searchPath) {
             decoder.setSearchPath(path);
-            DefaultLineage lineage = null;
-            String value = stringValue(HISTORY);
-            if (value != null) {
-                lineage = new DefaultLineage();
-                lineage.setStatement(new SimpleInternationalString(value));
-            }
-            value = stringValue(SOURCE);
-            if (value != null) {
-                if (lineage == null) lineage = new DefaultLineage();
-                addIfAbsent(lineage.getSources(), new DefaultSource(value));
-            }
-            if (lineage != null) {
-                final DefaultDataQuality quality = new DefaultDataQuality(ScopeCode.DATASET);
-                quality.setLineage(lineage);
-                addIfAbsent(metadata.getDataQualityInfo(), quality);
-            }
+            addLineage(stringValue(HISTORY));
+            addSource(stringValue(SOURCE), null, null);
         }
         decoder.setSearchPath(searchPath);
+        final DefaultMetadata metadata = build(false);
         metadata.setMetadataStandards(Citations.ISO_19115);
         addCompleteMetadata(createURI(stringValue(METADATA_LINK)));
         return metadata;

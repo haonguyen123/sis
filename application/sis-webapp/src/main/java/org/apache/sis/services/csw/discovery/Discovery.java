@@ -24,12 +24,12 @@ import java.io.File;
  * @author haonguyen
  */
 public interface Discovery {
-    
+
     /**
-     * The principal means of searching the catalogue. 
-     * The matching catalogue entries may be included with the response. 
+     * The principal means of searching the catalogue.
+     * The matching catalogue entries may be included with the response.
      * The client may assign a requestId (absolute URI). A distributed search is
-     * performed if the DistributedSearch element is present and the catalogue 
+     * performed if the DistributedSearch element is present and the catalogue
      * is a member of a federation. Profiles may allow alternative query expressions.
      * @param getRecord
      * @return RecordsResponse
@@ -44,8 +44,8 @@ public interface Discovery {
      */
     public GetRecordsResponse getRecords(GetRecords getRecord,FilterFesKvp fes);
     /**
-     * The mandatory GetRecordById request retrieves the default representation 
-     * of catalogue records using its identifier. 
+     * The mandatory GetRecordById request retrieves the default representation
+     * of catalogue records using its identifier.
      * @param getRecordById
      * @return a catalogue record using it identifier.
      */

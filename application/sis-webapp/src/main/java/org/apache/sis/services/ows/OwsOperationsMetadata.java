@@ -31,23 +31,23 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "OperationsMetadata", namespace = Namespaces.OWS)
 public class OwsOperationsMetadata {
     /**
-     * Metadata for unordered list of all the (requests for) operations that 
-     * this server interface implements. 
-     * The list of required and optional operations implemented shall be specified 
+     * Metadata for unordered list of all the (requests for) operations that
+     * this server interface implements.
+     * The list of required and optional operations implemented shall be specified
      * in the Implementation Specification for this service.
      */
     private List<OwsOperation> operation;
     /**
-     * Optional unordered list of parameter valid domains that each apply to one 
-     * or more operations which this server interface implements. 
-     * The list of required and optional parameter domain limitations shall be 
+     * Optional unordered list of parameter valid domains that each apply to one
+     * or more operations which this server interface implements.
+     * The list of required and optional parameter domain limitations shall be
      * specified in the Implementation Specification for this service.
      */
     private List<OwsDomain> parameter;
     /**
-     * Optional unordered list of valid domain constraints on non-parameter 
-     * quantities that each apply to this server. 
-     * The list of required and optional constraints shall be specified in the 
+     * Optional unordered list of valid domain constraints on non-parameter
+     * quantities that each apply to this server.
+     * The list of required and optional constraints shall be specified in the
      * Implementation Specification for this service.
      */
     private List<OwsDomain> constraint;
@@ -89,9 +89,9 @@ public class OwsOperationsMetadata {
     }
 
     /**
-     * Return optional unordered list of valid domain constraints on non-parameter 
+     * Return optional unordered list of valid domain constraints on non-parameter
      * quantities.
-     * @return optional unordered list of valid domain constraints on non-parameter 
+     * @return optional unordered list of valid domain constraints on non-parameter
      * quantities.
      */
     @XmlElement(name = "Constraint", namespace = Namespaces.OWS)
@@ -101,7 +101,7 @@ public class OwsOperationsMetadata {
     }
 
     /**
-     * Set optional unordered list of valid domain constraints on non-parameter 
+     * Set optional unordered list of valid domain constraints on non-parameter
      * quantities.
      * @param constraint
      */

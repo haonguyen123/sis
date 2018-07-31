@@ -26,9 +26,9 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "OutputFormat", namespace = Namespaces.OWS)
 public class OutputFormat {
     /**
-     * Reference to a format in which this data can be encoded and transferred. 
-     * More specific parameter names should be used by specific OWS specifications 
-     * wherever applicable. More than one such parameter can be included for 
+     * Reference to a format in which this data can be encoded and transferred.
+     * More specific parameter names should be used by specific OWS specifications
+     * wherever applicable. More than one such parameter can be included for
      * different purposes.
      */
     private String value;

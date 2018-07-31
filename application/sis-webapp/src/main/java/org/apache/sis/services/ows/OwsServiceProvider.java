@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.*;
 })
 @XmlRootElement(name = "ServiceProvider", namespace = Namespaces.OWS)
 /**
- * Metadata about the organization that provides this specific service instance 
+ * Metadata about the organization that provides this specific service instance
  * or server.
  */
 public class OwsServiceProvider {
@@ -42,8 +42,8 @@ public class OwsServiceProvider {
      */
     private OnlineResource providerSite;
     /**
-     * Information for contacting the service provider. 
-     * The OnlineResource element within this ServiceContact element should not 
+     * Information for contacting the service provider.
+     * The OnlineResource element within this ServiceContact element should not
      * be used to reference a web site of the service provider.
      */
     private ResponsiblePartySubset serviceContact;
@@ -83,8 +83,8 @@ public class OwsServiceProvider {
     }
 
     /**
-     * Return Information for contacting the service provider. 
-     * @return Information for contacting the service provider. 
+     * Return Information for contacting the service provider.
+     * @return Information for contacting the service provider.
      */
     @XmlElement(name = "ServiceContact", namespace = Namespaces.OWS)
     public ResponsiblePartySubset getServiceContact() {
@@ -92,7 +92,7 @@ public class OwsServiceProvider {
     }
 
     /**
-     * Set Information for contacting the service provider. 
+     * Set Information for contacting the service provider.
      * @param serviceContact
      */
     public void setServiceContact(ResponsiblePartySubset serviceContact) {

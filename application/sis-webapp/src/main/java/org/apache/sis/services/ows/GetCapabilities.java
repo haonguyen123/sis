@@ -31,24 +31,24 @@ public class GetCapabilities {
      */
     private AcceptVersions acceptVersions;
     /**
-     * When omitted or not supported by server, server shall return complete 
+     * When omitted or not supported by server, server shall return complete
      * service metadata (Capabilities) document.
      */
     private Sections sections;
     /**
-     * When omitted or not supported by server, server shall return service 
+     * When omitted or not supported by server, server shall return service
      * metadata document using the MIME type "text/xml".
      */
     private AcceptFormats acceptFormats;
     /**
-     * Ordered list of languages desired by the client for all human readable 
-     * text in the response, in order of preference. 
-     * For every element, the first matching language available from the server 
+     * Ordered list of languages desired by the client for all human readable
+     * text in the response, in order of preference.
+     * For every element, the first matching language available from the server
      * shall be present in the response.
      */
     private List<Language> AcceptLanguages;
     /**
-     * When omitted or not supported by server, server shall return latest 
+     * When omitted or not supported by server, server shall return latest
      * complete service metadata document.
      */
     private UpdateSequence updateSequence;
@@ -105,9 +105,9 @@ public class GetCapabilities {
     }
 
     /**
-     * Return Ordered list of languages desired by the client for all human readable 
+     * Return Ordered list of languages desired by the client for all human readable
      * text in the response, in order of preference.
-     * @return Ordered list of languages desired by the client for all human readable 
+     * @return Ordered list of languages desired by the client for all human readable
      * text in the response, in order of preference.
      */
     @XmlElement(name = "AcceptLanguages")
@@ -116,7 +116,7 @@ public class GetCapabilities {
     }
 
     /**
-     * Set Ordered list of languages desired by the client for all human readable 
+     * Set Ordered list of languages desired by the client for all human readable
      * text in the response, in order of preference.
      * @param AcceptLanguages
      */

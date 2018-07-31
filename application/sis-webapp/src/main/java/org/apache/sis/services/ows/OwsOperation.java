@@ -31,43 +31,43 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "Operation", namespace = Namespaces.OWS)
 public class OwsOperation {
     /**
-     * Unordered list of Distributed Computing Platforms (DCPs) supported for 
-     * this operation. At present, only the HTTP DCP is defined, so this element 
+     * Unordered list of Distributed Computing Platforms (DCPs) supported for
+     * this operation. At present, only the HTTP DCP is defined, so this element
      * will appear only once.
      */
     private DCP dcp;
     /**
-     * Optional unordered list of parameter domains that each apply to this 
-     * operation which this server implements. 
-     * If one of these Parameter elements has the same "name" attribute as a 
-     * Parameter element in the OperationsMetadata element, this Parameter element 
-     * shall override the other one for this operation. The list of required and 
-     * optional parameter domain limitations for this operation shall be specified 
+     * Optional unordered list of parameter domains that each apply to this
+     * operation which this server implements.
+     * If one of these Parameter elements has the same "name" attribute as a
+     * Parameter element in the OperationsMetadata element, this Parameter element
+     * shall override the other one for this operation. The list of required and
+     * optional parameter domain limitations for this operation shall be specified
      * in the Implementation Specification for this service.
      */
     private List<OwsDomain> parameter;
     /**
-     * Optional unordered list of valid domain constraints on non-parameter 
-     * quantities that each apply to this operation. 
-     * If one of these Constraint elements has the same "name" attribute as a 
-     * Constraint element in the OperationsMetadata element, this Constraint 
-     * element shall override the other one for this operation. The list of 
-     * required and optional constraints for this operation shall be specified 
+     * Optional unordered list of valid domain constraints on non-parameter
+     * quantities that each apply to this operation.
+     * If one of these Constraint elements has the same "name" attribute as a
+     * Constraint element in the OperationsMetadata element, this Constraint
+     * element shall override the other one for this operation. The list of
+     * required and optional constraints for this operation shall be specified
      * in the Implementation Specification for this service.
      */
     private List<OwsDomain> constraint;
     /**
-     * Name or identifier of this operation (request) (for example, GetCapabilities). 
-     * The list of required and optional operations implemented shall be specified 
+     * Name or identifier of this operation (request) (for example, GetCapabilities).
+     * The list of required and optional operations implemented shall be specified
      * in the Implementation Specification for this service.
 
      */
     private String name;
 
     /**
-     * Return unordered list of Distributed Computing Platforms (DCPs) supported for 
+     * Return unordered list of Distributed Computing Platforms (DCPs) supported for
      * this operation.
-     * @return unordered list of Distributed Computing Platforms (DCPs) supported for 
+     * @return unordered list of Distributed Computing Platforms (DCPs) supported for
      * this operation.
      */
     @XmlElement(name = "DCP", namespace = Namespaces.OWS)
@@ -76,7 +76,7 @@ public class OwsOperation {
     }
 
     /**
-     * get unordered list of Distributed Computing Platforms (DCPs) supported for 
+     * get unordered list of Distributed Computing Platforms (DCPs) supported for
      * this operation.
      * @param dcp
      */
@@ -85,9 +85,9 @@ public class OwsOperation {
     }
 
     /**
-     * Return Optional unordered list of parameter domains that each apply to this 
+     * Return Optional unordered list of parameter domains that each apply to this
      * operation.
-     * @return Return Optional unordered list of parameter domains that each apply to this 
+     * @return Return Optional unordered list of parameter domains that each apply to this
      * operation.
      */
     @XmlElement(name = "Parameter", namespace = Namespaces.OWS)
@@ -96,7 +96,7 @@ public class OwsOperation {
     }
 
     /**
-     * Set optional unordered list of parameter domains that each apply to this 
+     * Set optional unordered list of parameter domains that each apply to this
      * operation.
      * @param parameter
      */
@@ -105,9 +105,9 @@ public class OwsOperation {
     }
 
     /**
-     * Return optional unordered list of valid domain constraints on non-parameter 
+     * Return optional unordered list of valid domain constraints on non-parameter
      * quantities.
-     * @return optional unordered list of valid domain constraints on non-parameter 
+     * @return optional unordered list of valid domain constraints on non-parameter
      * quantities.
      */
     @XmlElement(name = "Constraint", namespace = Namespaces.OWS)
@@ -116,7 +116,7 @@ public class OwsOperation {
     }
 
     /**
-     * Set optional unordered list of valid domain constraints on non-parameter 
+     * Set optional unordered list of valid domain constraints on non-parameter
      * quantities.
      * @param constraint
      */

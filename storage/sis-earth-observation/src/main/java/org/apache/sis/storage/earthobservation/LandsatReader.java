@@ -107,6 +107,10 @@ final class LandsatReader {
     /**
      * Names of Landsat bands.
      *
+     * @todo Those names and the wavelength could be moved to the {@code SpatialMetadata} database,
+     *       as described in <a href="https://issues.apache.org/jira/browse/SIS-338">SIS-338</a>.
+     *       It would make easier to enrich the metadata with more information.
+     *
      * @see #bands
      * @see #band(String, int)
      */
@@ -516,14 +520,13 @@ final class LandsatReader {
              * Value is "GEOTIFF".
              */
             case "OUTPUT_FORMAT": {
-                if (Constants.GEOTIFF.equalsIgnoreCase(value)) 
-//                    try {
-//                        value = Constants.GEOTIFF;              // Because 'metadata.setFormat(…)' is case-sensitive.
-//                        metadata.setFormat(value);
-//                        break;
-//                    } catch (MetadataStoreException e) {
-//                        warning(key, null, e);
-//                    }
+                if (Constants.GEOTIFF.equalsIgnoreCase(value)) try {
+                    value = Constants.GEOTIFF;              // Because 'metadata.setFormat(…)' is case-sensitive.
+                    metadata.setFormat(value);
+                    break;
+                } catch (MetadataStoreException e) {
+                    warning(key, null, e);
+                }
                 metadata.addFormatName(value);
                 break;
             }
@@ -977,7 +980,7 @@ final class LandsatReader {
                 }
             }
             result.setMetadataStandards(Citations.ISO_19115);
-            result.apply(DefaultMetadata.State.FINAL);
+            result.transition(DefaultMetadata.State.FINAL);
         }
         return result;
     }

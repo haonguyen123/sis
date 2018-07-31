@@ -30,50 +30,50 @@ import org.opengis.metadata.extent.GeographicBoundingBox;
     "upperCorner",})
 @XmlRootElement(name = "BoundingBox", namespace = Namespaces.OWS)
 /**
- * XML encoded minimum rectangular bounding box (or region) parameter, 
+ * XML encoded minimum rectangular bounding box (or region) parameter,
  * surrounding all the associated data.
  */
 public class BoundingBox {
     /**
      * Position of the bounding box corner at which the value of each coordinate
-     * normally is the algebraic minimum within this bounding box. 
-     * In some cases, this position is normally displayed at the top, such as the 
-     * top left for some image coordinates. For more information, see Subclauses 
+     * normally is the algebraic minimum within this bounding box.
+     * In some cases, this position is normally displayed at the top, such as the
+     * top left for some image coordinates. For more information, see Subclauses
      * 10.2.5 and C.13.
      */
     private List<Double> lowerCorner;
     /**
-     * Position of the bounding box corner at which the value of each coordinate 
-     * normally is the algebraic maximum within this bounding box. 
-     * In some cases, this position is normally displayed at the bottom, such as 
-     * the bottom right for some image coordinates. For more information, 
+     * Position of the bounding box corner at which the value of each coordinate
+     * normally is the algebraic maximum within this bounding box.
+     * In some cases, this position is normally displayed at the bottom, such as
+     * the bottom right for some image coordinates. For more information,
      * see Subclauses 10.2.5 and C.13.
      */
     private List<Double> upperCorner;
     /**
-     * Usually references the definition of a CRS, as specified in [OGC Topic 2]. 
-     * Such a CRS definition can be XML encoded using the 
-     * gml:CoordinateReferenceSystemType in [GML 3.1]. 
-     * For well known references, it is not required that a CRS definition exist 
-     * at the location the URI points to. If no anyURI value is included, 
-     * the applicable CRS must be either: a) Specified outside the bounding box, 
-     * but inside a data structure that includes this bounding box, as specified 
-     * for a specific OWS use of this bounding box type. b) Fixed and specified 
+     * Usually references the definition of a CRS, as specified in [OGC Topic 2].
+     * Such a CRS definition can be XML encoded using the
+     * gml:CoordinateReferenceSystemType in [GML 3.1].
+     * For well known references, it is not required that a CRS definition exist
+     * at the location the URI points to. If no anyURI value is included,
+     * the applicable CRS must be either: a) Specified outside the bounding box,
+     * but inside a data structure that includes this bounding box, as specified
+     * for a specific OWS use of this bounding box type. b) Fixed and specified
      * the Implementation Specification for a specific OWS use of the bounding box type.
      */
     private String crs;
     /**
-     * The number of dimensions in this CRS (the length of a coordinate sequence 
-     * in this use of the PositionType). 
+     * The number of dimensions in this CRS (the length of a coordinate sequence
+     * in this use of the PositionType).
      * This number is specified by the CRS definition, but can also be specified here.
      */
     private String dimensions;
 
     /**
      * Return Position of the bounding box corner at which the value of each coordinate
-     * normally is the algebraic minimum within this bounding box. 
+     * normally is the algebraic minimum within this bounding box.
      * @return Position of the bounding box corner at which the value of each coordinate
-     * normally is the algebraic minimum within this bounding box. 
+     * normally is the algebraic minimum within this bounding box.
      */
     @XmlElement(name = "LowerCorner", namespace = Namespaces.OWS)
     @XmlList
@@ -91,10 +91,10 @@ public class BoundingBox {
     }
 
     /**
-     * Return Position of the bounding box corner at which the value of each coordinate 
-     * normally is the algebraic maximum within this bounding box. 
-     * @return Position of the bounding box corner at which the value of each coordinate 
-     * normally is the algebraic maximum within this bounding box. 
+     * Return Position of the bounding box corner at which the value of each coordinate
+     * normally is the algebraic maximum within this bounding box.
+     * @return Position of the bounding box corner at which the value of each coordinate
+     * normally is the algebraic maximum within this bounding box.
      */
     @XmlElement(name = "UpperCorner", namespace = Namespaces.OWS)
     @XmlList
@@ -103,8 +103,8 @@ public class BoundingBox {
     }
 
     /**
-     * Set Position of the bounding box corner at which the value of each coordinate 
-     * normally is the algebraic maximum within this bounding box. 
+     * Set Position of the bounding box corner at which the value of each coordinate
+     * normally is the algebraic maximum within this bounding box.
      * @param upperCorner
      */
     public void setUpperCorner(List<Double> upperCorner) {
@@ -113,7 +113,7 @@ public class BoundingBox {
 
     BoundingBox() {
     }
-    
+
     BoundingBox(final GeographicBoundingBox bbox) {
         lowerCorner = new ArrayList<>();
         upperCorner = new ArrayList<>();

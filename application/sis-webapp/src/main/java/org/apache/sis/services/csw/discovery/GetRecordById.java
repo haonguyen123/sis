@@ -27,9 +27,9 @@ import org.apache.sis.services.csw.common.RequestBase;
 @XmlType(name="GetRecordByIdType",namespace=Namespaces.CSW)
 @XmlRootElement(name="GetRecordById",namespace=Namespaces.CSW)
 /**
- * Convenience operation to retrieve default record representations by identifier. 
+ * Convenience operation to retrieve default record representations by identifier.
  * Id - object identifier (a URI) that provides a reference to a catalogue item (
- * or a result set if the catalogue supports persistent result sets). 
+ * or a result set if the catalogue supports persistent result sets).
  * ElementSetName - one of "brief, "summary", or "full"
  */
 public class GetRecordById extends RequestBase{

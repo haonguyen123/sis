@@ -34,11 +34,11 @@ public class CapabilitiesBase {
     private OwsServiceIdentification serviceIdentification;
     private OwsServiceProvider serviceProvider;
     /**
-     * Metadata about the operations and related abilities specified by this 
-     * service and implemented by this server, including the URLs for operation 
-     * requests. 
-     * The basic contents of this section shall be the same for all OWS types, 
-     * but individual services can add elements and/or change the optionality of 
+     * Metadata about the operations and related abilities specified by this
+     * service and implemented by this server, including the URLs for operation
+     * requests.
+     * The basic contents of this section shall be the same for all OWS types,
+     * but individual services can add elements and/or change the optionality of
      * optional elements.
      */
     private OwsOperationsMetadata operationsMetadata;

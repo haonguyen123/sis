@@ -27,28 +27,28 @@ import javax.xml.bind.annotation.*;
     "serviceTypeVersion",})
 @XmlRootElement(name = "ServiceIdentification", namespace = Namespaces.OWS)
 /**
- * General metadata for this specific server. 
+ * General metadata for this specific server.
  * This XML Schema of this section shall be the same for all OWS.
  */
 public class OwsServiceIdentification extends Description {
     /**
-     * A service type name from a registry of services. 
-     * For example, the values of the codeSpace URI and name and code string may 
-     * be "OGC" and "catalogue." This type name is normally used for 
+     * A service type name from a registry of services.
+     * For example, the values of the codeSpace URI and name and code string may
+     * be "OGC" and "catalogue." This type name is normally used for
      * machine-to-machine communication.
      */
     private String serviceType;
     /**
-     * Unordered list of one or more versions of this service type implemented 
-     * by this server. 
-     * This information is not adequate for version negotiation, and shall not 
+     * Unordered list of one or more versions of this service type implemented
+     * by this server.
+     * This information is not adequate for version negotiation, and shall not
      * be used for that purpose.
      */
     private Version serviceTypeVersion;
 
     /**
-     * Return A service type name from a registry of services. 
-     * @return A service type name from a registry of services. 
+     * Return A service type name from a registry of services.
+     * @return A service type name from a registry of services.
      */
     @XmlElement(name = "ServiceType", namespace = Namespaces.OWS)
     public String getServiceType() {
@@ -56,7 +56,7 @@ public class OwsServiceIdentification extends Description {
     }
 
     /**
-     * Set A service type name from a registry of services. 
+     * Set A service type name from a registry of services.
      * @param serviceType
      */
     public void setServiceType(String serviceType) {
@@ -64,10 +64,10 @@ public class OwsServiceIdentification extends Description {
     }
 
     /**
-     * Return Unordered list of one or more versions of this service type implemented 
-     * by this server. 
-     * @return Unordered list of one or more versions of this service type implemented 
-     * by this server. 
+     * Return Unordered list of one or more versions of this service type implemented
+     * by this server.
+     * @return Unordered list of one or more versions of this service type implemented
+     * by this server.
      */
     @XmlElement(name = "ServiceTypeVersion", namespace = Namespaces.OWS)
     public Version getServiceTypeVersion() {
@@ -75,8 +75,8 @@ public class OwsServiceIdentification extends Description {
     }
 
     /**
-     * Set Unordered list of one or more versions of this service type implemented 
-     * by this server. 
+     * Set Unordered list of one or more versions of this service type implemented
+     * by this server.
      * @param serviceTypeVersion
      */
     public void setServiceTypeVersion(Version serviceTypeVersion) {
