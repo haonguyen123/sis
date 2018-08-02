@@ -33,36 +33,20 @@ public abstract class RequestBase {
     private Service service;
     private Version version;
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public Service getService() {
         return service;
     }
 
-    /**
-     *
-     * @param service
-     */
     public void setService(Service service) {
         this.service = service;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public Version getVersion() {
         return version;
     }
 
-    /**
-     *
-     * @param version
-     */
     public void setVersion(Version version) {
         this.version = version;
     }

@@ -28,13 +28,13 @@ import org.apache.sis.services.csw.common.RequestBase;
 @XmlRootElement(name="GetRecordById",namespace=Namespaces.CSW)
 /**
  * Convenience operation to retrieve default record representations by identifier.
- * Id - object identifier (a URI) that provides a reference to a catalogue item (
- * or a result set if the catalogue supports persistent result sets).
+ * Id - object identifier (a URI) that provides a reference to a catalog item (
+ * or a result set if the catalog supports persistent result sets).
  * ElementSetName - one of "brief, "summary", or "full"
  */
 public class GetRecordById extends RequestBase{
     /**
-     * Object identifier (a URI) that provides a reference to a catalogue.
+     * Object identifier (a URI) that provides a reference to a catalog.
      */
     private String id;
     /**
@@ -78,36 +78,20 @@ public class GetRecordById extends RequestBase{
         this.elementSetName = elementSetName;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public String getOutputFormat() {
         return outputFormat;
     }
 
-    /**
-     *
-     * @param outputFormat
-     */
     public void setOutputFormat(String outputFormat) {
         this.outputFormat = outputFormat;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public String getOutputSchema() {
         return outputSchema;
     }
 
-    /**
-     *
-     * @param outputSchema
-     */
     public void setOutputSchema(String outputSchema) {
         this.outputSchema = outputSchema;
     }

@@ -22,10 +22,5 @@ package org.apache.sis.services.csw.ogcservice;
  */
 public interface OGCService {
 
-    /**
-     *
-     * @param getCapabilities
-     * @return
-     */
     public Capabilities getCapalities(GetCapabilities getCapabilities);
 }

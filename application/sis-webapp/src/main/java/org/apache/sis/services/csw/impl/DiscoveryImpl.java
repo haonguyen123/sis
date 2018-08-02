@@ -28,20 +28,16 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import org.apache.cxf.jaxrs.ext.search.SearchCondition;
+import org.apache.cxf.jaxrs.ext.search.fiql.FiqlParser;
+import org.apache.sis.services.catalog.GeometryRelation;
 import org.apache.sis.services.csw.DAO.DiscoveryDAO;
 import org.apache.sis.services.csw.common.Query;
-import org.apache.sis.services.csw.discovery.AbstractRecord;
-import org.apache.sis.services.csw.discovery.Discovery;
-import org.apache.sis.services.csw.discovery.FilterFesKvp;
-import org.apache.sis.services.csw.discovery.GetDomain;
-import org.apache.sis.services.csw.discovery.GetDomainResponse;
-import org.apache.sis.services.csw.discovery.GetRecordById;
-import org.apache.sis.services.csw.discovery.GetRecords;
-import org.apache.sis.services.csw.discovery.GetRecordsResponse;
-import org.apache.sis.services.csw.discovery.Record;
-import org.apache.sis.services.csw.discovery.SearchResults;
+import org.apache.sis.services.csw.discovery.*;
 import org.apache.sis.storage.DataStoreException;
 import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.io.WKTReader;
 
 /**
  *
@@ -52,10 +48,7 @@ public final class DiscoveryImpl implements Discovery {
     private final DiscoveryDAO discovery;
     private Map<String, Record> listrecord;
     private Map<String, File> listpath;
-    /**
-     *
-     * @throws DataStoreException
-     */
+
     public DiscoveryImpl() throws DataStoreException {
         this.discovery = new DiscoveryDAO();
         this.listrecord = new HashMap<>();
@@ -63,21 +56,12 @@ public final class DiscoveryImpl implements Discovery {
         getAllRecord();
     }
 
-    /**
-     *
-     */
     public void getAllRecord() {
         listrecord = discovery.record;
         listpath = discovery.pathfile;
     }
 
-    /**
-     *
-     * @param fes
-     * @return
-     * @throws ParseException
-     */
-    public List<Record> filterRecordKVP(FilterFesKvp fes) throws ParseException {
+    public List<Record> filterRecordKVP(FilterFesKvp fes) throws ParseException, org.locationtech.jts.io.ParseException{
         List<Record> records = new ArrayList<>();
         if (fes.getRecordIds() != null) {
             String[] keys = fes.getRecordIds().split(",");
@@ -148,18 +132,70 @@ public final class DiscoveryImpl implements Discovery {
                 }
             }
             records.removeAll(rm);
-
+        }
+        if (fes.getGeometry() != null) {
+            List<Record> rm = new ArrayList<>();
+            WKTReader rdr = new WKTReader();
+            Geometry geos1 = rdr.read(fes.getGeometry());
+            for (Record record : records) {
+                if (record.getCoverage() != null) {
+                    Geometry geos2 = rdr.read(parseBboxtoString(record.getCoverage()));
+                    boolean compare = geometryRelation(geos1,geos2,fes.getRelation());
+                    if (compare == false) {
+                        rm.add(record);
+                    }
+                } else {
+                    rm.add(record);
+                }
+            }
+            records.removeAll(rm);
         }
         List<Record> abRecord = new ArrayList<>(records);
         return abRecord;
     }
+    public String parseBboxtoString(BoundingBox bbox){
+        double xmin = bbox.getLowerCorner().get(0);
+        double xmax = bbox.getUpperCorner().get(0);
+        double ymin = bbox.getLowerCorner().get(1);
+        double ymax = bbox.getUpperCorner().get(1);
+        String geos = "POLYGON (("  +xmin+" "+ymin+","
+                                    +xmin+" "+ymax+","
+                                    +xmax+" "+ymax+","
+                                    +xmax+" "+ymin+","
+                                    +xmin+" "+ymin+ "))";
+        return geos;
+    }
+    public boolean geometryRelation(Geometry geos1,Geometry geos2,String relation){
+        boolean result  = false;
+        switch (relation) {
+            case GeometryRelation.CONTAINS :
+                result = geos1.contains(geos2);
+                break;
+            case GeometryRelation.CROSSES :
+                result = geos1.crosses(geos2);
+                break;
+            case GeometryRelation.DISJOINT :
+                result = geos1.disjoint(geos2);
+                break;
+            case GeometryRelation.EQUALS :
+                result = geos1.equals(geos2);
+                break;
+            case GeometryRelation.INTERSECTS :
+                result = geos1.intersects(geos2);
+                break;
+            case GeometryRelation.OVERLAPS :
+                result = geos1.overlaps(geos2);
+                break;
+            case GeometryRelation.TOUCHES :
+                result = geos1.touches(geos2);
+                break;
+            case GeometryRelation.WITHIN :
+                result = geos1.within(geos2);
+                break;
+        }
+        return result;
+    }
 
-    /**
-     *
-     * @param query
-     * @param records
-     * @return
-     */
     public List<Record> sortBy(Query query, List<Record> records) {
         List<Record> record = records;
         if ("modified".equals(query.getSortBy().getPropertyName().getPropertyName()) && "ASCENDING".equals(query.getSortBy().getSortOrder().name())) {
@@ -171,11 +207,6 @@ public final class DiscoveryImpl implements Discovery {
         return record;
     }
 
-    /**
-     *
-     * @param constraint
-     * @return
-     */
     public List<AbstractRecord> filterRecord(String constraint) {
         List<AbstractRecord> abRecord = new ArrayList<>();
         return abRecord;
@@ -189,6 +220,11 @@ public final class DiscoveryImpl implements Discovery {
         List<Record> records = new ArrayList<>(listrecord.values());
         if (query != null && query.getSortBy() != null) {
             records = sortBy(query, records);
+        }
+        if (query != null && query.getConstraint() != null) {
+            FiqlParser<Record> parser = new FiqlParser<>(Record.class);
+            SearchCondition<Record> condition = parser.parse(query.getConstraint().getSearch().toString());
+            records = condition.findAll(records);
         }
         List<AbstractRecord> list = new ArrayList<>(records);
         int maxRecord = getRecord.getBasicRetrievalOptions().getMaxRecords();
@@ -220,23 +256,20 @@ public final class DiscoveryImpl implements Discovery {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     *
-     * @param getRecord
-     * @param fes
-     * @return
-     */
     @Override
     public GetRecordsResponse getRecords(GetRecords getRecord, FilterFesKvp fes) {
         GetRecordsResponse record = new GetRecordsResponse();
-
         try {
-
             Query query = (Query) getRecord.getQuery();
             SearchResults searchResults = new SearchResults();
             List<Record> records = new ArrayList<>(filterRecordKVP(fes));
             if (query != null && query.getSortBy() != null) {
                 records = sortBy(query, records);
+            }
+            if (query != null && query.getConstraint() != null) {
+                FiqlParser<Record> parser = new FiqlParser<>(Record.class);
+                SearchCondition<Record> condition = parser.parse(query.getConstraint().getSearch().toString());
+                records = condition.findAll(records);
             }
             List<AbstractRecord> list;
             list = new ArrayList<>(records);
@@ -256,28 +289,14 @@ public final class DiscoveryImpl implements Discovery {
             }
             record.setSearchResults(searchResults);
             record.setRequestID(getRecord.getRequestId());
-
-        } catch (ParseException ex) {
+        } catch (ParseException | org.locationtech.jts.io.ParseException ex) {
             Logger.getLogger(DiscoveryImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return record;
     }
 
-    /**
-     *
-     * @param name
-     * @return
-     */
     @Override
     public File getPath(String name){
         return listpath.get(name);
     }
-//    public static void main(String[] args) throws DataStoreException, ParseException {
-//        DiscoveryImpl a = new DiscoveryImpl();
-//        List<String> id = new ArrayList<>();
-//        FilterFesKvp fes = new FilterFesKvp();
-////        fes.setBbox("89.658721,22.689607,90.493351,23.476758");
-////        fes.setBbox("105.942440,20.437593,106.453925,20.777734");
-//        System.out.println(a.filterRecordKVP(fes).size());
-//    }
 }

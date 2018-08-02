@@ -32,7 +32,6 @@ import javax.xml.bind.annotation.*;
     "format",
     "description",})
 @XmlRootElement(name = "SummaryRecord", namespace = Namespaces.CSW)
-
 public class SummaryRecord extends AbstractRecord {
 
     private String title;
@@ -43,121 +42,65 @@ public class SummaryRecord extends AbstractRecord {
     private String format;
     private String identifier;
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "title", namespace = Namespaces.DC)
     public String getTitle() {
         return title;
     }
 
-    /**
-     *
-     * @param title
-     */
     public void setTitle(String title) {
         this.title = title;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "subject", namespace = Namespaces.DC)
     public String getSubject() {
         return subject;
     }
 
-    /**
-     *
-     * @param subject
-     */
     public void setSubject(String subject) {
         this.subject = subject;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "abstract", namespace = Namespaces.DCT)
     public String getDescription() {
         return description;
     }
 
-    /**
-     *
-     * @param description
-     */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "modified", namespace = Namespaces.DCT)
     public Date getDate() {
         return date;
     }
 
-    /**
-     *
-     * @param date
-     */
     public void setDate(Date date) {
         this.date = date;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "type", namespace = Namespaces.DC)
     public String getType() {
         return type;
     }
 
-    /**
-     *
-     * @param type
-     */
     public void setType(String type) {
         this.type = type;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "format", namespace = Namespaces.DC)
     public String getFormat() {
         return format;
     }
 
-    /**
-     *
-     * @param format
-     */
     public void setFormat(String format) {
         this.format = format;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "identifier", namespace = Namespaces.DC)
     public String getIdentifier() {
         return identifier;
     }
 
-    /**
-     *
-     * @param identifier
-     */
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
     }

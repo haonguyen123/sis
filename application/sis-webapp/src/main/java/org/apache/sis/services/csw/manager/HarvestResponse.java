@@ -28,10 +28,6 @@ public class HarvestResponse {
 
     private Object choice;
 
-    /**
-     *
-     * @return
-     */
     @XmlElements({
         @XmlElement(name = "TransactionResponse", type = TransactionResponse.class)
     })
@@ -39,10 +35,6 @@ public class HarvestResponse {
         return choice;
     }
 
-    /**
-     *
-     * @param choice
-     */
     public void setChoice(Object choice) {
         this.choice = choice;
     }

@@ -28,68 +28,35 @@ public class FilterFesKvp {
     private String time;
     private String geometry;
     private String relation;
-    
 
-    /**
-     *
-     * @return
-     */
     public String getQ() {
         return q;
     }
 
-    /**
-     *
-     * @param q
-     */
     public void setQ(String q) {
         this.q = q;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getRecordIds() {
         return recordIds;
     }
 
-    /**
-     *
-     * @param recordIds
-     */
     public void setRecordIds(String recordIds) {
         this.recordIds = recordIds;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getBbox() {
         return bbox;
     }
 
-    /**
-     *
-     * @param bbox
-     */
     public void setBbox(String bbox) {
         this.bbox = bbox;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getTime() {
         return time;
     }
 
-    /**
-     *
-     * @param time
-     */
     public void setTime(String time) {
         this.time = time;
     }
@@ -109,5 +76,4 @@ public class FilterFesKvp {
     public void setRelation(String relation) {
         this.relation = relation;
     }
-    
 }

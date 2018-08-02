@@ -58,10 +58,6 @@ public class OGCServiceDAO {
         return new DefaultParameterDescriptor<>(properties(name), 1, 1, type, null, validValues, defaultValue);
     }
 
-    /**
-     *
-     * @return
-     */
     private OwsServiceIdentification serviceIdentification() {
         OwsServiceIdentification service = new OwsServiceIdentification();
         service.setServiceType("CSW");
@@ -154,10 +150,6 @@ public class OGCServiceDAO {
         return operations;
     }
 
-    /**
-     *
-     * @return
-     */
     public Capabilities capa() {
         Capabilities capabilities = new Capabilities();
         capabilities.setOperationsMetadata(operationsMetadata());

@@ -112,7 +112,7 @@ public class Query extends AbstractQuery {
     }
 
     /**
-     * Reuturn The exact syntax is defined in an application profile.
+     * Return The exact syntax is defined in an application profile.
      * @return The exact syntax is defined in an application profile.
      */
     @XmlAttribute

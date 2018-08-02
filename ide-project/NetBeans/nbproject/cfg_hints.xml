@@ -157,5 +157,8 @@
             <attribute name="enabled" value="true"/>
             <attribute name="hintSeverity" value="HINT"/>
         </node>
+        <node name="org.netbeans.modules.java.hints.bugs.NPECheck">
+            <attribute name="enabled" value="false"/>
+        </node>
     </tool>
 </configuration>

@@ -39,7 +39,7 @@ public class Read {
 //        citation.setTitle(new SimpleInternationalString("haonguyen"));
 //        source.add(citation);
         Metadata meta = new DefaultMetadata();
-        DataStore ds = DataStores.open(new File("/home/haonguyen/data/NetCDF/sst_ltm_1961-1990.nc"));
+        DataStore ds = DataStores.open(new File("/home/haonguyen/data/Landsat5/LT051250532010021101T1-SC20171005023341/LT05_L1TP_125053_20100211_20161016_01_T1_MTL.txt"));
 //          DataStore ds1 = DataStores.open(new File("/home/haonguyen/data/LC081260462017073101T1-SC20170831010609/LC08_L1TP_126046_20170731_20170811_01_T1_MTL.txt"));
 //          meta=ds1.getMetadata();
         System.out.println(ds.getMetadata());
@@ -47,5 +47,9 @@ public class Read {
 //          String id = source.add(meta);
 //          System.out.println(id);
 //        source.add(HardCodedCitations.SIS);
+    }
+    public static void main(String[] args) throws MetadataStoreException, DataStoreException, IOException {
+        Read a  = new Read();
+        a.write();
     }
 }

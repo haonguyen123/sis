@@ -52,13 +52,7 @@ public class GetCapabilitiesService {
     public GetCapabilitiesService() throws DataStoreException {
         this.discovery = new DiscoveryImpl();
     }
-    
-    /**
-     *
-     * @param operation
-     * @param service
-     * @return
-     */
+
     @Path("/")
     public Object sub(@QueryParam("request") String operation,
             @QueryParam("service") String service) {
@@ -76,16 +70,8 @@ public class GetCapabilitiesService {
         }
     }
 
-    /**
-     *
-     */
     public class O_GetCapabilities {
 
-        /**
-         *
-         * @return
-         * @throws JAXBException
-         */
         @GET
         @Consumes("application/xml")
         public String getCapabilities() throws JAXBException {
@@ -94,22 +80,11 @@ public class GetCapabilitiesService {
         }
     }
 
-    /**
-     *
-     */
     public class O_GetRecordById {
 
-        /**
-         *
-         * @param id
-         * @return
-         * @throws JAXBException
-         * @throws DataStoreException
-         */
         @GET
         @Consumes("application/xml")
         public Response getRecordById(@QueryParam("Id") String id) throws JAXBException, DataStoreException {
-            
             GetRecordById getRecordById = new GetRecordById();
             getRecordById.setId(id);
             return Response
@@ -124,28 +99,8 @@ public class GetCapabilitiesService {
         }
     }
 
-    /**
-     *
-     */
     public class O_GetRecords {
 
-        /**
-         *
-         * @param requestId
-         * @param startPosition
-         * @param maxRecords
-         * @param sortby
-         * @param q
-         * @param recordids
-         * @param bbox
-         * @param time
-         * @param constraintlanguage
-         * @param constraintlanguageversion
-         * @param constraint
-         * @return
-         * @throws JAXBException
-         * @throws DataStoreException
-         */
         @GET
         @Consumes("application/xml")
         public Response getRecords( @QueryParam("requestid") URI requestId,
@@ -194,7 +149,13 @@ public class GetCapabilitiesService {
                 }
             }
             if (relation == null) {
-                relation = "intersects";    
+                relation = GeometryRelation.INTERSECTS;
+            }
+            if (constraint != null && "FIQL".equals(constraintlanguage)) {
+                Constraint cons = new Constraint();
+                cons.setSearch(constraint);
+                query.setConstraint(cons);
+                params.setQuery(query);
             }
             if (q != null || recordids != null || bbox != null || time != null || geometry != null) {
                 FilterFesKvp fes = new FilterFesKvp();
@@ -214,22 +175,11 @@ public class GetCapabilitiesService {
                 if (geometry !=null ) {
                     fes.setGeometry(geometry);
                 }
-                    
-                
                 record = discovery.getRecords(params, fes);
             }
-            if (constraint != null && "FIQL".equals(constraintlanguage)) {
-                Constraint cons = new Constraint();
-                cons.setSearch(constraint);
-                query.setConstraint(cons);
-                params.setQuery(query);
-            }
-//            System.out.println(constraint);
-//            long elapsedTime = System.currentTimeMillis() - start;
-            if (q == null && recordids == null && bbox == null && time == null) {
+            if (q == null && recordids == null && bbox == null && time == null && geometry == null) {
                 record = discovery.getRecords(params);
             }
-//            record.getSearchResults().setElapsedTime(elapsedTime);
             return Response
                     .status(200)
                     .header("Access-Control-Allow-Origin", "*")
@@ -242,36 +192,18 @@ public class GetCapabilitiesService {
         }
     }
 
-    /**
-     *
-     */
     public class O_GetDomain {
     }
 
-    /**
-     *
-     */
     public class O_Harvest {
     }
 
-    /**
-     *
-     */
     public class O_UnHarvest {
     }
 
-    /**
-     *
-     */
     public class O_Transaction {
     }
 
-    /**
-     *
-     * @param name
-     * @return
-     * @throws DataStoreException
-     */
     @GET
     @Path("/download/{name}")
     @Produces("text/plain")

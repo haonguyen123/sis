@@ -29,9 +29,6 @@ public class CatalogueProperties {
 
     private static String pathdata;
 
-    /**
-     *
-     */
     public CatalogueProperties() {
         Properties prop = new Properties();
         InputStream input = null;
@@ -39,9 +36,7 @@ public class CatalogueProperties {
             input = new FileInputStream("config.properties");
             // load a properties file
             prop.load(input);
-
             // get the property value and print it out
-//            prop.entrySet().forEach(e -> System.out.println(e.getKey() + " : " + e.getValue()));
             pathdata = prop.getProperty("catalog.data");
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -56,10 +51,6 @@ public class CatalogueProperties {
         }
     }
 
-    /**
-     *
-     * @return
-     */
     public String getPathdata() {
         return pathdata;
     }

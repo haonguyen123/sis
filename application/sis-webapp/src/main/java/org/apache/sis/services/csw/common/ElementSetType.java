@@ -27,19 +27,11 @@ public class ElementSetType {
 
     private String value;
 
-    /**
-     *
-     * @return
-     */
     @XmlValue
     public String getValue() {
         return value;
     }
 
-    /**
-     *
-     * @param value
-     */
     public void setValue(String value) {
         this.value = value;
     }

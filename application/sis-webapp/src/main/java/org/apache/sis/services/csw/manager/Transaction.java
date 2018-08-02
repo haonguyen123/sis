@@ -31,10 +31,6 @@ public class Transaction extends RequestBase {
     private boolean verboseResponse;
     private String requestId;
 
-    /**
-     *
-     * @return
-     */
     @XmlElements({
         @XmlElement(name = "Insert", type = Insert.class),
         @XmlElement(name = "Update", type = Update.class),
@@ -43,44 +39,24 @@ public class Transaction extends RequestBase {
         return choice;
     }
 
-    /**
-     *
-     * @param choice
-     */
     public void setChoice(Object choice) {
         this.choice = choice;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public boolean isVerboseResponse() {
         return verboseResponse;
     }
 
-    /**
-     *
-     * @param verboseResponse
-     */
     public void setVerboseResponse(boolean verboseResponse) {
         this.verboseResponse = verboseResponse;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public String getRequestId() {
         return requestId;
     }
 
-    /**
-     *
-     * @param requestId
-     */
     public void setRequestId(String requestId) {
         this.requestId = requestId;
     }

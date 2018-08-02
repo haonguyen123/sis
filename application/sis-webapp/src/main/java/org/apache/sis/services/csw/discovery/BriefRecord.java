@@ -38,70 +38,38 @@ public class BriefRecord extends AbstractRecord {
     private String identifier;
     private BoundingBox boundingBox;
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "title", namespace = Namespaces.DC)
     public String getTitle() {
         return title;
     }
 
-    /**
-     *
-     * @param title
-     */
     public void setTitle(String title) {
         this.title = title;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "type", namespace = Namespaces.DC)
     public String getType() {
         return type;
     }
 
-    /**
-     *
-     * @param type
-     */
     public void setType(String type) {
         this.type = type;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "identifier", namespace = Namespaces.DC)
     public String getIdentifier() {
         return identifier;
     }
 
-    /**
-     *
-     * @param identifier
-     */
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "BoundingBox", namespace = Namespaces.OWS)
     public BoundingBox getBoundingBox() {
         return boundingBox;
     }
 
-    /**
-     *
-     * @param boundingBox
-     */
     public void setBoundingBox(BoundingBox boundingBox) {
         this.boundingBox = boundingBox;
     }

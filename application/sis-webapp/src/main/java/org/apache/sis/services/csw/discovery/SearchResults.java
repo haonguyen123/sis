@@ -38,163 +38,88 @@ public class SearchResults {
     private RequestStatusType status = RequestStatusType.subset;
     private List<AbstractRecord> abstractRecord;
     private List<FederatedSearchResultBase> federatedSearchResultBase;
-    /**
-     *
-     * @return
-     */
+
     @XmlAttribute
     public String getResultSetId() {
         return resultSetId;
     }
 
-    /**
-     *
-     * @param resultSetId
-     */
     public void setResultSetId(String resultSetId) {
         this.resultSetId = resultSetId;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public String getElementSet() {
         return elementSet;
     }
 
-    /**
-     *
-     * @param elementSet
-     */
     public void setElementSet(String elementSet) {
         this.elementSet = elementSet;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public String getRecordSchema() {
         return recordSchema;
     }
 
-    /**
-     *
-     * @param recordSchema
-     */
     public void setRecordSchema(String recordSchema) {
         this.recordSchema = recordSchema;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public int getNumberOfRecordsMatched() {
         return numberOfRecordsMatched;
     }
 
-    /**
-     *
-     * @param numberOfRecordsMatched
-     */
     public void setNumberOfRecordsMatched(int numberOfRecordsMatched) {
         this.numberOfRecordsMatched = numberOfRecordsMatched;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public int getNumberOfRecordsReturned() {
         return numberOfRecordsReturned;
     }
 
-    /**
-     *
-     * @param numberOfRecordsReturned
-     */
     public void setNumberOfRecordsReturned(int numberOfRecordsReturned) {
         this.numberOfRecordsReturned = numberOfRecordsReturned;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public int getNextRecord() {
         return nextRecord;
     }
 
-    /**
-     *
-     * @param nextRecord
-     */
     public void setNextRecord(int nextRecord) {
         this.nextRecord = nextRecord;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public Date getExpires() {
         return expires;
     }
 
-    /**
-     *
-     * @param expires
-     */
     public void setExpires(Date expires) {
         this.expires = expires;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public long getElapsedTime() {
         return elapsedTime;
     }
 
-    /**
-     *
-     * @param elapsedTime
-     */
     public void setElapsedTime(long elapsedTime) {
         this.elapsedTime = elapsedTime;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public RequestStatusType getStatus() {
         return status;
     }
 
-    /**
-     *
-     * @param status
-     */
     public void setStatus(RequestStatusType status) {
         this.status = status;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElementRefs({
         @XmlElementRef(name = "BriefRecord", type = BriefRecord.class),
         @XmlElementRef(name = "SummaryRecord", type = SummaryRecord.class),
@@ -204,18 +129,10 @@ public class SearchResults {
         return abstractRecord;
     }
 
-    /**
-     *
-     * @param abstractRecord
-     */
     public void setAbstractRecord(List<AbstractRecord> abstractRecord) {
         this.abstractRecord = abstractRecord;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElementRefs({
         @XmlElementRef(name = "FederatedSearchResult", type = FederatedSearchResult.class),
         @XmlElementRef(name = "FederatedException", type = FederatedException.class),
@@ -223,11 +140,6 @@ public class SearchResults {
     public List<FederatedSearchResultBase> getFederatedSearchResultBase() {
         return federatedSearchResultBase;
     }
-
-    /**
-     *
-     * @param federatedSearchResultBase
-     */
 
     public void setFederatedSearchResultBase(List<FederatedSearchResultBase> federatedSearchResultBase) {
         this.federatedSearchResultBase = federatedSearchResultBase;

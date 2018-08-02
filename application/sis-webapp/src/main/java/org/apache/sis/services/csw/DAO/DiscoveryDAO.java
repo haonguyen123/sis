@@ -37,29 +37,17 @@ public final class DiscoveryDAO {
 
     private final List<Metadata> metadata;
 
-    /**
-     *
-     */
     public Map<String, Record> record;
 
-    /**
-     *
-     */
     public Map<String, File> pathfile;
-    /**
-     *
-     * @throws DataStoreException
-     */
+
     public DiscoveryDAO() throws DataStoreException {
         this.metadata = new ArrayList<>();
         this.record = new HashMap<>();
         this.pathfile = new HashMap<>();
         allRecords();
     }
-    /**
-     *
-     * @throws DataStoreException
-     */
+
     public void allRecords() throws DataStoreException {
         CatalogueProperties catalog = new CatalogueProperties();
         File directory = new File(catalog.getPathdata());
@@ -87,16 +75,4 @@ public final class DiscoveryDAO {
             }
         }
     }
-//    public static void main(String[] args) throws DataStoreException {
-////        FiqlParser<Record> parser = new FiqlParser(Record.class);
-//        DiscoveryDAO a = new DiscoveryDAO();
-////        a.allRecords();
-//        System.out.println(a.pathfile);
-////        SearchCondition<Record> condition4 = parser.parse("title==*LC*");
-////        System.out.println(condition4.findAll(record.values()).size());
-////        Geometry geom = rdr.read("POLYGON ((0 0, 0 340, 320 340, 320 0, 120 0, 180 100, 60 100, 120 0, 0 0),   (80 300, 80 180, 200 180, 200 240, 280 200, 280 280, 200 240, 200 300, 80 300))");
-////        Geometry geom2 = rdr.read("POLYGON ((0 0, 0 340, 320 340, 320 0, 120 0, 0 0),   (120 0, 180 100, 60 100, 120 0),   (80 300, 80 180, 200 180, 200 240, 200 300, 80 300),  (200 240, 280 200, 280 280, 200 240))");
-////        System.out.println(geom.intersects(geom2));
-//
-//    }
 }

@@ -25,33 +25,15 @@ public final class Namespaces {
     private Namespaces() {
     }
 
-    /**
-     *
-     */
     public static final String DC = "http://purl.org/dc/elements/1.1/";
 
-    /**
-     *
-     */
     public static final String DCT = "http://purl.org/dc/terms/";
 
-    /**
-     *
-     */
     public static final String CSW = "http://www.opengis.net/cat/csw/3.0";
 
-    /**
-     *
-     */
     public static final String OWS = "http://www.opengis.net/ows/2.0";
 
-    /**
-     *
-     */
     public static final String FES = "http://www.opengis.net/fes/2.0";
 
-    /**
-     *
-     */
     public static final String GML = "http://www.opengis.net/gml/3.2";
 }

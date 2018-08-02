@@ -26,27 +26,15 @@ public class Version {
 
     private String version;
 
-    /**
-     *
-     * @param version
-     */
     public Version(String version) {
         this.version = version;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlValue
     public String getVersion() {
         return version;
     }
 
-    /**
-     *
-     * @param version
-     */
     public void setVersion(String version) {
         this.version = version;
     }

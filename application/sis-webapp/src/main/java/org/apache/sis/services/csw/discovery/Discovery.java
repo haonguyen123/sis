@@ -27,7 +27,7 @@ public interface Discovery {
 
     /**
      * The principal means of searching the catalogue.
-     * The matching catalogue entries may be included with the response.
+     * The matching catalog entries may be included with the response.
      * The client may assign a requestId (absolute URI). A distributed search is
      * performed if the DistributedSearch element is present and the catalogue
      * is a member of a federation. Profiles may allow alternative query expressions.
@@ -51,17 +51,7 @@ public interface Discovery {
      */
     public AbstractRecord getRecordById(GetRecordById getRecordById);
 
-    /**
-     *
-     * @param getDomain
-     * @return
-     */
     public GetDomainResponse getDomain(GetDomain getDomain);
 
-    /**
-     *
-     * @param name
-     * @return
-     */
     public File getPath(String name);
 }

@@ -28,19 +28,11 @@ public abstract class FederatedSearchResultBase {
 
     private String catalogueURL;
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public String getCatalogueURL() {
         return catalogueURL;
     }
 
-    /**
-     *
-     * @param catalogueURL
-     */
     public void setCatalogueURL(String catalogueURL) {
         this.catalogueURL = catalogueURL;
     }

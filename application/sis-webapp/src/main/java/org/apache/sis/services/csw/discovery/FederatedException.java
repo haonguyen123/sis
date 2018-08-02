@@ -30,19 +30,11 @@ public class FederatedException extends FederatedSearchResultBase {
 
     private List<String> exceptionReport;
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "ExceptionReport", namespace = Namespaces.OWS)
     public List<String> getExceptionReport() {
         return exceptionReport;
     }
 
-    /**
-     *
-     * @param exceptionReport
-     */
     public void setExceptionReport(List<String> exceptionReport) {
         this.exceptionReport = exceptionReport;
     }

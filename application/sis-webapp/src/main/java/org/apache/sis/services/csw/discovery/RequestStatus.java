@@ -27,46 +27,21 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "RequestStatus", namespace = Namespaces.CSW)
 public class RequestStatus {
     private Date timestamp;
-//    @XmlEnum(String.class)
     private RequestStatusType value;
 
-    /**
-     *
-     * @return
-     */
     @XmlValue
     public RequestStatusType getValue() {
         return value;
     }
 
-    /**
-     *
-     * @param value
-     */
     public void setValue(RequestStatusType value) {
         this.value = value;
     }
-//    public RequestStatusType status;
-//    @XmlValue
-//    public RequestStatusType getStatus() {
-//        return status;
-//    }
-//    public void setStatus(RequestStatusType status) {
-//        this.status = status;
-//    }
-    /**
-     *
-     * @return
-     */
     @XmlAttribute(name = "timestamp")
     public Date getTimestamp() {
         return timestamp;
     }
 
-    /**
-     *
-     * @param timestamp
-     */
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }

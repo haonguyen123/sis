@@ -23,7 +23,6 @@ import org.apache.sis.services.csw.common.Namespaces;
  *
  * @author haonguyen
  */
-@SuppressWarnings("CloneableClassWithoutClone")
 @XmlType(name = "LanguageType", namespace = Namespaces.OWS, propOrder = {
     "language",})
 @XmlRootElement(name = "Language", namespace = Namespaces.OWS)

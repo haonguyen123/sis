@@ -34,87 +34,47 @@ public class Harvest extends RequestBase {
     private Duration duration;
     private String responseHandler;
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "Source")
     public String getSource() {
         return source;
     }
 
-    /**
-     *
-     * @param source
-     */
     public void setSource(String source) {
         this.source = source;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "ResourceType")
     public String getResourceType() {
         return resourceType;
     }
 
-    /**
-     *
-     * @param resourceType
-     */
     public void setResourceType(String resourceType) {
         this.resourceType = resourceType;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "ResourceFormat")
     public String getResourceFormat() {
         return resourceFormat;
     }
 
-    /**
-     *
-     * @param resourceFormat
-     */
     public void setResourceFormat(String resourceFormat) {
         this.resourceFormat = resourceFormat;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "duration")
     public Duration getDuration() {
         return duration;
     }
 
-    /**
-     *
-     * @param duration
-     */
     public void setDuration(Duration duration) {
         this.duration = duration;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "ResponseHandler")
     public String getResponseHandler() {
         return responseHandler;
     }
 
-    /**
-     *
-     * @param responseHandler
-     */
     public void setResponseHandler(String responseHandler) {
         this.responseHandler = responseHandler;
     }

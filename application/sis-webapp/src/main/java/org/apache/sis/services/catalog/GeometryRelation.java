@@ -16,15 +16,14 @@
  */
 package org.apache.sis.services.catalog;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.opengis.util.CodeList;
-
 /**
  *
  * @author haonguyen
  */
 public final class GeometryRelation  {
+
+    private GeometryRelation() {
+    }
 
     public static final String EQUALS = "equals";
     public static final String  DISJOINT = "disjoint";
@@ -35,5 +34,5 @@ public final class GeometryRelation  {
     public static final String  INTERSECTS = "intersects";
     public static final String  CONTAINS = "contains";
     public static final String  DWITHIN ="dwithin";
-    public static final String  BEYOND = "beyond";   
+    public static final String  BEYOND = "beyond";
 }

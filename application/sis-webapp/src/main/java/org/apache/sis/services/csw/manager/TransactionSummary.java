@@ -35,53 +35,29 @@ public class TransactionSummary {
     private int totalUpdated;
     private int totalDeleted;
 
-    /**
-     *
-     * @return
-     */
     @XmlElement
     public int getTotalInserted() {
         return totalInserted;
     }
 
-    /**
-     *
-     * @param totalInserted
-     */
     public void setTotalInserted(int totalInserted) {
         this.totalInserted = totalInserted;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElement
     public int getTotalUpdated() {
         return totalUpdated;
     }
 
-    /**
-     *
-     * @param totalUpdated
-     */
     public void setTotalUpdated(int totalUpdated) {
         this.totalUpdated = totalUpdated;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElement
     public int getTotalDeleted() {
         return totalDeleted;
     }
 
-    /**
-     *
-     * @param totalDeleted
-     */
     public void setTotalDeleted(int totalDeleted) {
         this.totalDeleted = totalDeleted;
     }

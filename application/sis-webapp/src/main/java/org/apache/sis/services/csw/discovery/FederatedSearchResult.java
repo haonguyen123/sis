@@ -28,19 +28,11 @@ public class FederatedSearchResult extends FederatedSearchResultBase {
 
     private SearchResults searchResult;
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "searchResult", namespace = Namespaces.CSW)
     public SearchResults getSearchResult() {
         return searchResult;
     }
 
-    /**
-     *
-     * @param searchResult
-     */
     public void setSearchResult(SearchResults searchResult) {
         this.searchResult = searchResult;
     }

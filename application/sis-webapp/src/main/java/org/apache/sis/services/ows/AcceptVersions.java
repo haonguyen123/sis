@@ -29,19 +29,11 @@ public class AcceptVersions {
 
     private List<Version> value;
 
-    /**
-     *
-     * @return
-     */
     @XmlElement
     public List<Version> getValue() {
         return value;
     }
 
-    /**
-     *
-     * @param value
-     */
     public void setValue(List<Version> value) {
         this.value = value;
     }

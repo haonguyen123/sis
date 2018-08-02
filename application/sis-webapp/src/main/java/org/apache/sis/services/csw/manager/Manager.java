@@ -22,17 +22,7 @@ package org.apache.sis.services.csw.manager;
  */
 public interface Manager {
 
-    /**
-     *
-     * @param transaction
-     * @return
-     */
     public TransactionResponse transaction(Transaction transaction);
 
-    /**
-     *
-     * @param harvest
-     * @return
-     */
     public HarvestResponse harvest(Harvest harvest);
 }

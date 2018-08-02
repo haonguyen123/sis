@@ -24,24 +24,8 @@ import javax.xml.bind.annotation.XmlEnum;
  */
 @XmlEnum
 public enum RequestStatusType {
-
-    /**
-     *
-     */
     subset,
-
-    /**
-     *
-     */
     complete,
-
-    /**
-     *
-     */
     processing,
-
-    /**
-     *
-     */
     none;
 }

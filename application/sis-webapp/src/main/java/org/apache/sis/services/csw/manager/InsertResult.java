@@ -35,36 +35,20 @@ public class InsertResult {
     private BriefRecord briefRecord;
     private String handleRef;
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "BriefRecord")
     public BriefRecord getBriefRecord() {
         return briefRecord;
     }
 
-    /**
-     *
-     * @param briefRecord
-     */
     public void setBriefRecord(BriefRecord briefRecord) {
         this.briefRecord = briefRecord;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public String getHandleRef() {
         return handleRef;
     }
 
-    /**
-     *
-     * @param handleRef
-     */
     public void setHandleRef(String handleRef) {
         this.handleRef = handleRef;
     }

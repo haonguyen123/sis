@@ -1,7 +1,3 @@
-package org.apache.sis.services.catalog;
-
-
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -18,7 +14,7 @@ package org.apache.sis.services.catalog;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+package org.apache.sis.services.catalog;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,11 +33,6 @@ public final class RunServer {
     private RunServer() {
     }
 
-
-    /**
-     *
-     * @param args
-     */
     public static void main(String[] args) throws DataStoreException {
         JAXRSServerFactoryBean restServer = new JAXRSServerFactoryBean();
         restServer.setProvider(new SearchContextProvider());

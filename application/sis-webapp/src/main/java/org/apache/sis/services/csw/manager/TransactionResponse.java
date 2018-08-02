@@ -34,53 +34,29 @@ public class TransactionResponse {
     private InsertResult insertResult;
     private String version ;
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "TransactionSummary")
     public TransactionSummary getTransactionSummary() {
         return transactionSummary;
     }
 
-    /**
-     *
-     * @param transactionSummary
-     */
     public void setTransactionSummary(TransactionSummary transactionSummary) {
         this.transactionSummary = transactionSummary;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlElement(name = "InsertResult")
     public InsertResult getInsertResult() {
         return insertResult;
     }
 
-    /**
-     *
-     * @param insertResult
-     */
     public void setInsertResult(InsertResult insertResult) {
         this.insertResult = insertResult;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public String getVersion() {
         return version;
     }
 
-    /**
-     *
-     * @param version
-     */
     public void setVersion(String version) {
         this.version = version;
     }

@@ -31,36 +31,20 @@ public class FederatedCatalogue {
     private String catalogueURL;
     private long timeout;
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public String getCatalogueURL() {
         return catalogueURL;
     }
 
-    /**
-     *
-     * @param catalogueURL
-     */
     public void setCatalogueURL(String catalogueURL) {
         this.catalogueURL = catalogueURL;
     }
 
-    /**
-     *
-     * @return
-     */
     @XmlAttribute
     public long getTimeout() {
         return timeout;
     }
 
-    /**
-     *
-     * @param timeout
-     */
     public void setTimeout(long timeout) {
         this.timeout = timeout;
     }
