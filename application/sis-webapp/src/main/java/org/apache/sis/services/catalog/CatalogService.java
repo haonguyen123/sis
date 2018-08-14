@@ -158,7 +158,7 @@ public class CatalogService {
                 query.setConstraint(cons);
                 params.setQuery(query);
             }
-            if(isNullOrEmpty(q)){
+            if (isNullOrEmpty(q)) {
                 System.out.println("true");
             }
             if (!isNullOrEmpty(q) || !isNullOrEmpty(recordids) || !isNullOrEmpty(bbox ) || !isNullOrEmpty(time) || !isNullOrEmpty(geometry)) {
@@ -195,7 +195,7 @@ public class CatalogService {
                     .build();
         }
         public boolean isNullOrEmpty(String str) {
-            if(str != null && !str.trim().isEmpty())
+            if (str != null && !str.trim().isEmpty())
                 return false;
             return true;
         }
