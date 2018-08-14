@@ -46,10 +46,10 @@ import org.opengis.filter.sort.SortOrder;
  */
 @Path("/csw")
 @Produces("application/xml")
-public class GetCapabilitiesService {
+public class CatalogService {
     private final Discovery discovery;;
 
-    public GetCapabilitiesService() throws DataStoreException {
+    public CatalogService() throws DataStoreException {
         this.discovery = new DiscoveryImpl();
     }
 
@@ -113,17 +113,18 @@ public class GetCapabilitiesService {
                                     @QueryParam("geometry") String geometry,
                                     @QueryParam("relation") String relation,
                                     @QueryParam("time") String time,
-                                    //                                    @QueryParam("trelation") String trelation,
                                     @QueryParam("constraintlanguage") String constraintlanguage,
                                     @QueryParam("constraintlanguageversion") String constraintlanguageversion,
                                     @QueryParam("constraint") String constraint
         ) throws JAXBException, DataStoreException {
             GetRecordsResponse record = new GetRecordsResponse();
             GetRecords params = new GetRecords();
-            if (requestId != null) {
-                params.setRequestId(requestId);
+            if (requestId != null  ) {
+                if (!requestId.toString().trim().isEmpty()) {
+                    params.setRequestId(requestId);
+                }
             }
-            if (requestId == null) {
+            if (requestId == null || requestId.toString().trim().isEmpty()) {
                 params.setRequestId(URI.create("" + UUID.randomUUID() + ""));
             }
             BasicRetrievalOptions option = new BasicRetrievalOptions();
@@ -131,7 +132,7 @@ public class GetCapabilitiesService {
             option.setStartPosition(startPosition);
             params.setBasicRetrievalOptions(option);
             Query query = new Query();
-            if (sortby != null) {
+            if (!isNullOrEmpty(sortby)  ) {
                 String[] element = sortby.split(":");
                 if (element.length == 2) {
                     DefaultSortBy sort = new DefaultSortBy();
@@ -148,36 +149,39 @@ public class GetCapabilitiesService {
                     params.setQuery(query);
                 }
             }
-            if (relation == null) {
+            if (isNullOrEmpty(relation)) {
                 relation = GeometryRelation.INTERSECTS;
             }
-            if (constraint != null && "FIQL".equals(constraintlanguage)) {
+            if (!isNullOrEmpty(constraint) && "FIQL".equals(constraintlanguage)) {
                 Constraint cons = new Constraint();
                 cons.setSearch(constraint);
                 query.setConstraint(cons);
                 params.setQuery(query);
             }
-            if (q != null || recordids != null || bbox != null || time != null || geometry != null) {
+            if(isNullOrEmpty(q)){
+                System.out.println("true");
+            }
+            if (!isNullOrEmpty(q) || !isNullOrEmpty(recordids) || !isNullOrEmpty(bbox ) || !isNullOrEmpty(time) || !isNullOrEmpty(geometry)) {
                 FilterFesKvp fes = new FilterFesKvp();
                 fes.setRelation(relation);
-                if (q != null) {
+                if (!isNullOrEmpty(q)) {
                     fes.setQ(q);
                 }
-                if (bbox != null) {
+                if (!isNullOrEmpty(bbox )) {
                     fes.setBbox(bbox);
                 }
-                if (recordids != null) {
+                if (!isNullOrEmpty(recordids) ) {
                     fes.setRecordIds(recordids);
                 }
-                if (time != null) {
+                if (!isNullOrEmpty(time)) {
                     fes.setTime(time);
                 }
-                if (geometry !=null ) {
+                if (!isNullOrEmpty(geometry) ) {
                     fes.setGeometry(geometry);
                 }
                 record = discovery.getRecords(params, fes);
             }
-            if (q == null && recordids == null && bbox == null && time == null && geometry == null) {
+            if (isNullOrEmpty(q) && isNullOrEmpty(recordids) && isNullOrEmpty(bbox ) && isNullOrEmpty(time) && isNullOrEmpty(geometry)) {
                 record = discovery.getRecords(params);
             }
             return Response
@@ -189,6 +193,11 @@ public class GetCapabilitiesService {
                     .header("Access-Control-Max-Age", "1209600")
                     .entity(XML.marshal(record))
                     .build();
+        }
+        public boolean isNullOrEmpty(String str) {
+            if(str != null && !str.trim().isEmpty())
+                return false;
+            return true;
         }
     }
 

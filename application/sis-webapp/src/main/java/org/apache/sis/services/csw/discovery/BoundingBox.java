@@ -111,7 +111,7 @@ public class BoundingBox {
         this.upperCorner = upperCorner;
     }
 
-    BoundingBox() {
+    public BoundingBox() {
     }
 
     BoundingBox(final GeographicBoundingBox bbox) {

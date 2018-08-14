@@ -36,8 +36,8 @@ public final class RunServer {
     public static void main(String[] args) throws DataStoreException {
         JAXRSServerFactoryBean restServer = new JAXRSServerFactoryBean();
         restServer.setProvider(new SearchContextProvider());
-        restServer.setResourceClasses(GetCapabilitiesService.class);
-        restServer.setResourceProvider(new SingletonResourceProvider(new GetCapabilitiesService()));
+        restServer.setResourceClasses(CatalogService.class);
+        restServer.setResourceProvider(new SingletonResourceProvider(new CatalogService()));
         restServer.setAddress("http://192.168.1.9:9000/");
         restServer.create();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
